@@ -1,0 +1,7 @@
+var namespace_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces =
+[
+    [ "IApiAuthenticationWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_api_authentication_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_api_authentication_web_service" ],
+    [ "IFeatureToggleWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_feature_toggle_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_feature_toggle_web_service" ],
+    [ "IUserPreferenceWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_user_preference_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_user_preference_web_service" ],
+    [ "IVariableWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_variable_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_variable_web_service" ]
+];

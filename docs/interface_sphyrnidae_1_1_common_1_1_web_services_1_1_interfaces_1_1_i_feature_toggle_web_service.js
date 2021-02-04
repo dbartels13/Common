@@ -1,0 +1,4 @@
+var interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_feature_toggle_web_service =
+[
+    [ "GetAll", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_feature_toggle_web_service.html#a83ee4ac38d146f5ad98c57608983168a", null ]
+];

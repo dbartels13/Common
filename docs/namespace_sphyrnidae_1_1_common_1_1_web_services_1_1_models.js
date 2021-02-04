@@ -1,0 +1,4 @@
+var namespace_sphyrnidae_1_1_common_1_1_web_services_1_1_models =
+[
+    [ "UserPreferencesRequest", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_models_1_1_user_preferences_request.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_models_1_1_user_preferences_request" ]
+];

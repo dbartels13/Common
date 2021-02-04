@@ -1,0 +1,4 @@
+var namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager =
+[
+    [ "EncryptionKeyManager", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager_1_1_encryption_key_manager.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager_1_1_encryption_key_manager" ]
+];

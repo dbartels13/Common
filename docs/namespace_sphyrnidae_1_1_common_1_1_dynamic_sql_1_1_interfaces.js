@@ -1,0 +1,4 @@
+var namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces =
+[
+    [ "IDynamicSqlServerRepo", "interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_sql_server_repo.html", "interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_sql_server_repo" ]
+];

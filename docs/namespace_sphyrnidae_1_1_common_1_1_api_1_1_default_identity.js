@@ -1,0 +1,5 @@
+var namespace_sphyrnidae_1_1_common_1_1_api_1_1_default_identity =
+[
+    [ "IDefaultIdentity", "interface_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_i_default_identity.html", "interface_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_i_default_identity" ],
+    [ "SphyrnidaeDefaultIdentity", "class_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_sphyrnidae_default_identity.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_sphyrnidae_default_identity" ]
+];

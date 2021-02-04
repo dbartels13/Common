@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['usedistributedcache_2122',['UseDistributedCache',['../class_sphyrnidae_1_1_common_1_1_cache_1_1_models_1_1_cache_options.html#a7f8b194e316b4aa5158d2ad672a27a19',1,'Sphyrnidae::Common::Cache::Models::CacheOptions']]],
+  ['uselocalcache_2123',['UseLocalCache',['../class_sphyrnidae_1_1_common_1_1_cache_1_1_models_1_1_cache_options.html#a7bb54ab0adcac9e8da7254ec81c48ade',1,'Sphyrnidae::Common::Cache::Models::CacheOptions']]],
+  ['userid_2124',['UserId',['../class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html#a7e0b00bbdd1c05ae87eb94632222f9be',1,'Sphyrnidae.Common.Logging.Information.BaseLogInformation.UserId()'],['../class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_models_1_1_log_insert.html#afc186ea1c56781becc4fab7289a1fc4c',1,'Sphyrnidae.Common.Logging.Loggers.Models.LogInsert.UserId()'],['../class_sphyrnidae_1_1_common_1_1_user_preference_1_1_sphyrnidae_user_preference_settings.html#ac72be8e76f8ca3d5793ca13c2b6b9dc6',1,'Sphyrnidae.Common.UserPreference.SphyrnidaeUserPreferenceSettings.UserId()'],['../class_sphyrnidae_1_1_common_1_1_web_services_1_1_models_1_1_user_preferences_request.html#a6b98bc626967705d2c5e4ba803b73d80',1,'Sphyrnidae.Common.WebServices.Models.UserPreferencesRequest.UserId()']]],
+  ['username_2125',['Username',['../class_sphyrnidae_1_1_common_1_1_authentication_1_1_sphyrnidae_identity.html#a3641864c71db03b21847785cbab72b67',1,'Sphyrnidae::Common::Authentication::SphyrnidaeIdentity']]],
+  ['userstr_2126',['UserStr',['../class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html#a303605344f45d88c5ec2bb5828504e11',1,'Sphyrnidae::Common::Logging::Information::BaseLogInformation']]]
+];
