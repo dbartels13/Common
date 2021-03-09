@@ -14,7 +14,6 @@ namespace Sphyrnidae.Common.Logging.Loggers.Models
         public string RequestId { get; set; }
         public string Session { get; set; }
         public int UserId { get; set; }
-        public int CustomerId { get; set; }
         public string Message { get; set; }
         public string Category { get; set; }
         public string Machine { get; set; }

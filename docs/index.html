@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -88,75 +88,106 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="title">Overview </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_C__Users_dougb_Desktop_Sphyrnidae_New_Common_Common_Readme"></a>This Nuget package contains numerous helper methods and common functionality useful in any application. To install, you can search Nuget for "Sphyrnidae.Common" - and contains no license (is free to all to use). Please note that I do not currently have the source code available for use - when this is available, I'll be sure to update with a proper license. This documentation will guide you through all of the utilities available in this package.</p>
-<p>Additionally, I've included reference material for coding standards associated with these packages (although the guidance is generally applicable to any application regardless of this library).</p><ul>
-<li><a class="el" href="_setup_md.html">API Setup</a>: How to setup your API project</li>
-<li>API Standards: Best practices for coding an API.</li>
-</ul>
+<div class="textblock"><p><a class="anchor" id="md_C__Users_dougb_Desktop_Sphyrnidae_New_Common_Common_Readme"></a>This Nuget package contains numerous helper methods and common functionality useful in any application. To install, you can search Nuget for <a href="https://www.nuget.org/packages/Sphyrnidae.Common" target="blank">Sphyrnidae.Common</a> - (Gnu General Public License). The source code is open-sourced, and is located in GitHub: <a href="https://github.com/dbartels13/Common">https://github.com/dbartels13/Common</a> This documentation will guide you through all of the utilities available in this package.</p>
+<h1><a class="anchor" id="OverviewQuickStartMd"></a>
+Quick Start</h1>
+<p><a class="el" href="_setup_md.html">API Setup</a>: How to setup your API project</p>
+<h1><a class="anchor" id="OverviewAuthenticationMd"></a>
+Authentication</h1>
+<p>To learn about the Authentication and Authorization (JWT-based) go <a class="el" href="_authentication_md.html">here</a></p>
 <h1>Utility class types</h1>
-<p>All of the functionality in this library can be broken down into the following categories:</p><ol type="1">
-<li><a class="el" href="index.html#HelperMethods">Stand-Alone Helper Methods</a></li>
-<li><a class="el" href="index.html#InterfaceMethods">Interface Driven Methods</a></li>
-<li><a class="el" href="index.html#BaseClasses">Base Classes</a></li>
+<p>All of the functionality in this library can be broken down into the following categories: </p><ol>
+<li>
+<a class="el" href="index.html#OverviewHelperMethodsMd">Stand-Alone Helper Methods</a> </li>
+<li>
+<a class="el" href="index.html#OverviewInterfaceMethodsMd">Interface Driven Functionality</a> </li>
+<li>
+<a class="el" href="index.html#OverviewBaseClassesMd">Base Classes</a> </li>
+<li>
+<p class="startli"><a class="el" href="_api_md.html">Api-Specific Behavior</a></p>
+<p class="endli"></p>
+</li>
 </ol>
-<h1><a class="anchor" id="HelperMethods"></a>
+<h1><a class="anchor" id="OverviewHelperMethodsMd"></a>
 Helper Methods</h1>
-<p>These methods can be directly called without any interface registration. As such, all customization in the behavior of these methods is done via method overloads.</p>
+<p>These methods can be directly called without any interface registration. As such, all customization in the behavior of these methods is done via method overloads. All calls to uses these classes/methods are either extension methods, or at static in nature.</p>
 <p><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_active_directory_utilities.html">Active Directory</a>: Methods for accessing active directory (not currently supported)</p>
-<h1><a class="anchor" id="InterfaceMethods"></a>
-Interface Methods</h1>
-<p><a class="el" href="_alerts_md.html">Alerts</a>: Alerts</p>
-<h1><a class="anchor" id="BaseClasses"></a>
+<p><a class="el" href="_binary_list_md.html">BinaryList</a>: Fast searching of a list</p>
+<p><a class="el" href="_dynamic_sql_md.html">Dynamic Sql</a>: Helper for building a complex sql statement</p>
+<p><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_extensions.html">Extension Methods</a>: All kinds of extension methods</p>
+<h1><a class="anchor" id="OverviewInterfaceMethodsMd"></a>
+Interface-Based Functionality</h1>
+<p>These pieces of functionality are abstracted into an interface. From there, a default implementation is usually provided. A mock implementation is also provided. If the default implementation is abstract in nature, there may be a child class which does the rest of the implementation. Lastly, there could be a wrapper class around the interface. This wrapper class is sometimes done for ease-of-use, but is also done if there is specific functionality that should be done for every possible implementation (eg. it wraps the interface call in some helper code) </p><table class="doxtable">
+<tr>
+<th>Functionality </th><th>Interface </th><th>Mock </th><th>Implementation </th><th>Wrapper Class </th><th>Notes </th></tr>
+<tr>
+<td><a class="el" href="_alerts_md.html">Alerts</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html">IAlert</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert_none.html">AlertNone</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html">Alert</a> </td><td></td><td></td></tr>
+<tr>
+<td><a class="el" href="_api_md.html#ApiResponseMd">API Responses</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_i_api_response.html">IApiResponse</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response_standard.html">ApiResponseStandard</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response_standard.html">ApiResponseStandard</a> </td><td></td><td></td></tr>
+<tr>
+<td><a class="el" href="_application_md.html">Application Settings</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html">IApplicationSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_application_1_1_application_settings_mock.html">ApplicationSettingsMock</a> </td><td>None </td><td></td><td>You must override in your own project </td></tr>
+<tr>
+<td><a class="el" href="_cache_md.html">Caching</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html">ICache</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_none.html">CacheNone</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local.html">CacheLocal</a> <br  />
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_distributed.html">CacheDistributed</a> <br  />
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html">CacheLocalAndDistributed</a> (Default) </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_caching.html">Caching</a> </td><td></td></tr>
+<tr>
+<td><a class="el" href="_email_md.html">Email</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html">EmailMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html">DotNetEmail</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email.html">Email</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html">EmailBase</a>: Content generation </td></tr>
+<tr>
+<td><a class="el" href="_encryption_md.html">Encryption</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_none.html">EncryptionNone</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_dispatcher.html">EncryptionDispatcher</a> (Default) <br  />
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_strong.html">EncryptionStrong</a> <br  />
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_weak.html">EncryptionWeak</a> <br  />
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_normal.html">EncryptionNormal</a> <br  />
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_old.html">EncryptionOld</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_extensions.html">EncryptionExtensions</a> </td><td>Wrapper class is a string extension method </td></tr>
+<tr>
+<td><a class="el" href="_environment_md.html">Environmental Settings</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_environment_1_1_i_environment_settings.html">IEnvironmentSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings_mock.html">EnvironmentalSettingsMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings.html">EnvironmentalSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_environment_1_1_settings_environmental.html">SettingsEnvironmental</a> </td><td></td></tr>
+<tr>
+<td><a class="el" href="_feature_toggle_md.html">Feature Toggles</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_interfaces_1_1_i_feature_toggle_settings.html">IFeatureToggleSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings_default.html">FeatureToggleSettingsDefault</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings.html">FeatureToggleSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_settings_feature_toggle.html">SettingsFeatureToggle</a> </td><td>The implementation is an abstract class, so you should provide your own implementation </td></tr>
+<tr>
+<td><a class="el" href="_http_client_md.html">Http Client</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_client_1_1_i_http_client_settings.html">IHttpClientSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_http_client_1_1_http_client_settings_mock.html">HttpClientSettingsMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_http_client_1_1_http_client_settings.html">HttpClientSettings</a> </td><td></td><td></td></tr>
+<tr>
+<td><a class="el" href="_http_data_md.html">Http Data</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_data_1_1_i_http_data.html">IHttpData</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_http_data_1_1_http_data_mock.html">HttpDataMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_http_data_1_1_http_data.html">HttpData</a> </td><td></td><td></td></tr>
+<tr>
+<td><a class="el" href="_authentication_md.html">Identity / Authentication</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html">IIdentityHelper</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_basic_identity.html">BasicIdentity</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_basic_identity.html">BasicIdentity</a> </td><td></td><td></td></tr>
+<tr>
+<td><a class="el" href="_logging_md.html">Logging</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_non_logger.html">NonLogger</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html">Logger</a> </td><td></td><td></td></tr>
+<tr>
+<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr>
+<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<h1><a class="anchor" id="OverviewBaseClassesMd"></a>
 Base Classes</h1>
-<p>Utilities:</p>
-<p>For the most part, this project is generic. However, the following items aren't quite generic, so you may need to alter for your use:</p>
-<p>Models/ApiResponseObject: We are actually returning an HTTP 200 every time, with this as the structure Extensions/HttpResponseExtensions.WriteResponse() Models/SphyrnidaeIdentity: Will have whatever fields you need</p>
-<p>Models/SphyrnidaeFeatureToggle: If you have additional properties/logic, this can be updated (and the implementation of IFeatureToggle should be updated too) Models/SphyrnidaeUserPreference: If you have additional properties/logic, this can be updated (and the implementation of IUserPreferences should be updated too) Models/SphyrnidaeVariable: If you have additional properties/logic, this can be updated (and the implementation of IVariableSettings should be updated too)</p>
-<p>Logging: For the most part, this project is generic. However, the following items aren't quite generic, so you may need to alter for your use:</p>
-<p>LogInformation/BaseInformation: "User" property is set from the Identity "Customer" property is set from the Identity These may wish to be pulled from other places, or you may wish to not log them, or log other things.</p>
-<p>Would also need to update similar things in: Models/LogInsert Models/LogUpdate BaseLogger.cs</p>
-<h1>Installation</h1>
-<h2>Internal Nuget Feed Url</h2>
-<p>To install a nuget package into your solution, you will first need to reference our internal TFS Nuget feed. Current URL is:<br  />
- <a href="https://use1a-tfs.visualvault.com/tfs/auersoft/_packaging/VisualVault/nuget/v3/index.json">https://use1a-tfs.visualvault.com/tfs/auersoft/_packaging/VisualVault/nuget/v3/index.json</a></p>
-<p>To access current URL, go through TFS =&gt; Artifacts =&gt; Connect to feed =&gt; Package source URL</p>
-<p><br  />
-</p>
-<h2>Visual Studio Nuget Feed</h2>
-<p>Inside visual studio, select Tools =&gt; Options =&gt; Nuget Package Manager =&gt; Package Sources<br  />
- Name: "VisualVault" (You can call this anything you want, but "VisualVault" makes the most sense)<br  />
- Source: Paste in the package source URL from above.<br  />
- Click Update =&gt; OK</p>
-<p><br  />
-</p>
-<h2>Install in application</h2>
-<p>Inside of visual studio, you can right-click on 'Dependencies' inside your project, then select Manage Nuget Packages...<br  />
- Change the package source to be "VisualVault" (or whatever you named it above).<br  />
- Under 'Browse' tab, you should see all the packages listed.<br  />
- You can select any that you'd like/need, and then press the 'Install' button.</p>
-<p>If you'd like to install all packages, then you can select the VisualVault.WebApi.Core package.</p>
-<p><br  />
-</p>
-<h1>Packages</h1>
-<h2>Overview</h2>
-<p>The nuget packages are a collection of capabilities that are common to the entire suite of applications.<br  />
- Each nuget package generally builds upon the previous package to provide additional capabilities.<br  />
- Additionally, most packages are built with .net Standard, meaning they can be used in .net Framework, or in .net Core.<br  />
- The packages that are .net Core specific have a ".Core" extension in the name - and are only available in a .net Core application.</p>
-<p>If you're not sure where to start, go here.</p>
-<h2>Listing</h2>
-<p>Utilities This is a collection of extension methods, some share models, interfaces, and static wrappers for the interfaces.</p>
-<p>Utilities.Core This is additional utility functions that are specific to .net Core.</p>
-<p>Logging This is a logging framework similar to other frameworks, but with a great deal of additional capability. Many components in these nuget packages utilize this logging framework.</p>
-<p>Logging.Core This is some .net Core specific extension methods to the logging framework.</p>
-<p>Dal This is a data access layer (DAL) for connecting to databases, specifically implemented for Sql Server.</p>
-<p>Implementations.Common The Implementations namespace is where all of the services are implemented. This package contains generic implementations (non-VisualVault and non-Core). Eg. These could be used by anyone.</p>
-<p>Implementations The Implementations namespace is where all of the services are implemented. This package contains VisualVault-specific implementations. Eg. Can not be used outside of the company.</p>
-<p>Implementations.Core The Implementations namespace is where all of the services are implemented. This package contains generic implementations that are .net Core-specific implementations. Eg. These could be used by anyone.</p>
-<p>WebApi This is common methods that should be used by any Api implementation.</p>
-<p>WebApi.Core This provides all of the capabilities of these packages in a single place for consumption by a .net Core application.</p>
-<p>SharedEntities This is meant to store any common business logic across multiple applications.</p>
-<p><em>The complete listing with versions and dependencies can be found in the development shared folder =&gt; Applications and Settings.xlsx =&gt; Nuget tab.</em> </p>
+<p>The following are all base classes available for your consumption. These should always be inherited from because they provide some automatic "wiring" up of things like logging.</p>
+<p>It's important to know the naming conventions used for designing your API's. This basically assumes that you have a layered architecture with each layer having a defined responsibility and inputs/outputs. Here are the layers that are portrayed by these base classes: </p><ol>
+<li>
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_base_classes_1_1_base_api.html">BaseApi</a> [See <a class="el" href="_api_md.html">Api</a> for more information): All controllers should inherit from this class. A controller is solely responsible for retrieval of request objects and populating the response. A controller may be versioned if the request/response structure changes for an endpoint. Any business logic should go in the "Engine" layer. </li>
+<li>
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_base_classes_1_1_base_engine.html">BaseEngine</a>: All engines should inherit from this class. An engine is responsible for performing the main business logic for the API endpoint. There should be a 1:1 mapping between a controller action and an engine method (this could be M:1 with versioning). The engine will work with all the other layers to get data, and then perform the proper business logic to ultimately return a business object back to the controller's action. </li>
+<li>
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html">BaseRepo</a> [See <a class="el" href="_dal_md.html">Data Access Layer</a> for more information]: All database repositoris should inherit from this class. A repo is responsible for CRUD operations against a repository (eg. database, file sytem, etc). It is best practice to usually have a repository class per database table. </li>
+<li>
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html">WebServiceBase</a> [See Web Services for more information]: All web services should inherit from this class. A web service is a call to another system (could be SOA, microservices, or an external system). Each system/API that you need to access should be it's own web service class. </li>
+<li>
+Service layer (no base class): A service layer is a class that does one of the following things: <ol>
+<li>
+Wrapper around a repository class (eg. for caching) </li>
+<li>
+Wrapper around a web service class (eg. for caching or parsing of the response) </li>
+<li>
+Performs common business logic (eg. can be shared across multiple engines) </li>
+</ol>
+</li>
+<li>
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html">EmailBase</a>: You can inherit from this class to define a system email. This e-mail will be sent to the current user (logged in Identity). You will only need to override the <a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html#a112fafaa609e3fca3835c580a4e06389">Subject</a> and <a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html#ac6850b4b16cc24515d57c55a0e6896ce">Content</a>. You may also wish to have inherit and create your own base class which replaces the <a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html#a2fc374cc6a329dd60d5200e4b7fd76c0">Shell</a> </li>
+<li>
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_algorithm.html">EncryptionAlgorithm</a>: Any algorithms you wish to register for <a class="el" href="_encryption_md.html">encryption</a> should inherit from this class. This is only used when using the <a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_dispatcher.html">EncryptionDispatcher</a> implementation of the <a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a> interface. Alternatively, if you develop your own implementation and wish to use this same logic, you could reuse this base class. </li>
+</ol>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

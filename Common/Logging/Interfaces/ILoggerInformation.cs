@@ -1,9 +1,10 @@
-﻿using Sphyrnidae.Common.Authentication;
+﻿using Sphyrnidae.Common.Authentication.Identity;
+using System.Collections.Generic;
 
 namespace Sphyrnidae.Common.Logging.Interfaces
 {
     /// <summary>
-    /// 
+    /// Common information that will be accessed to be logged
     /// </summary>
     public interface ILoggerInformation
     {
@@ -25,7 +26,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <summary>
         /// The identity of the user executing the call (can be null, but certain logging properties will also be null)
         /// </summary>
-        SphyrnidaeIdentity Identity { get; }
+        BaseIdentity Identity { get; }
 
         /// <summary>
         /// The ID associated with a group of calls
@@ -36,5 +37,10 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// The method being executed (Eg. POST /api/v1/MyRoute)
         /// </summary>
         string Method { get; }
+
+        /// <summary>
+        /// Any custom additional properties that will be saved as options to be logged
+        /// </summary>
+        Dictionary<string, string> StaticProperties { get; }
     }
 }

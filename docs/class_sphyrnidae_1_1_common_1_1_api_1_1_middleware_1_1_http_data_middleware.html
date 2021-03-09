@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -99,8 +99,8 @@ $(document).ready(function(){initNavTree('class_sphyrnidae_1_1_common_1_1_api_1_
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0dbb3c9ceea5fa979c72f4e3ab8c186e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_http_data_middleware.html#a0dbb3c9ceea5fa979c72f4e3ab8c186e">HttpDataMiddleware</a> (RequestDelegate next)</td></tr>
 <tr class="separator:a0dbb3c9ceea5fa979c72f4e3ab8c186e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa3c2c911c2093013f5bf2d048ae0f6a"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_http_data_middleware.html#afa3c2c911c2093013f5bf2d048ae0f6a">Invoke</a> (HttpContext context, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_data_1_1_i_http_data.html">IHttpData</a> httpData, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_request_data_1_1_i_request_data.html">IRequestData</a> request, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_configuration.html">ILoggerConfiguration</a> config, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_environment_1_1_i_environment_settings.html">IEnvironmentSettings</a> env, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> logger)</td></tr>
-<tr class="separator:afa3c2c911c2093013f5bf2d048ae0f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f12154bdea0104c25fc4169f9f66a5"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_http_data_middleware.html#ad6f12154bdea0104c25fc4169f9f66a5">Invoke</a> (HttpContext context, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_data_1_1_i_http_data.html">IHttpData</a> httpData, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_request_data_1_1_i_request_data.html">IRequestData</a> request, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_configuration.html">ILoggerConfiguration</a> config, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_environment_1_1_i_environment_settings.html">IEnvironmentSettings</a> env, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> logger, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_i_api_response.html">IApiResponse</a> apiResponse)</td></tr>
+<tr class="separator:ad6f12154bdea0104c25fc4169f9f66a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_api_1_1_middleware.html">Middleware</a> which captures Request Data (HttpRequest) </p>
@@ -124,8 +124,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="afa3c2c911c2093013f5bf2d048ae0f6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afa3c2c911c2093013f5bf2d048ae0f6a">&#9670;&nbsp;</a></span>Invoke()</h2>
+<a id="ad6f12154bdea0104c25fc4169f9f66a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6f12154bdea0104c25fc4169f9f66a5">&#9670;&nbsp;</a></span>Invoke()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -164,7 +164,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a>&#160;</td>
-          <td class="paramname"><em>logger</em>&#160;</td>
+          <td class="paramname"><em>logger</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_i_api_response.html">IApiResponse</a>&#160;</td>
+          <td class="paramname"><em>apiResponse</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

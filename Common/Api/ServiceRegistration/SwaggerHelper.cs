@@ -6,7 +6,7 @@ using Sphyrnidae.Common.HttpClient;
 
 namespace Sphyrnidae.Common.Api.ServiceRegistration
 {
-    internal class SwaggerHelper
+    public static class SwaggerHelper
     {
         public static OpenApiInfo ApiInfo(IApplicationSettings app)
             => new OpenApiInfo

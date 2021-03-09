@@ -1,130 +1,214 @@
 # Overview
 This Nuget package contains numerous helper methods and common functionality useful in any application.
-To install, you can search Nuget for "Sphyrnidae.Common" - and contains no license (is free to all to use).
-Please note that I do not currently have the source code available for use - when this is available, I'll be sure to update with a proper license.
+To install, you can search Nuget for <a href="https://www.nuget.org/packages/Sphyrnidae.Common" target="blank">Sphyrnidae.Common</a> - (Gnu General Public License).
+The source code is open-sourced, and is located in GitHub: https://github.com/dbartels13/Common
 This documentation will guide you through all of the utilities available in this package.
 
-Additionally, I've included reference material for coding standards associated with these packages (although the guidance is generally applicable to any application regardless of this library).
-- [API Setup](@ref SetupMd): How to setup your API project
-- [API Standards](@ref StandardsAPIMd): Best practices for coding an API.
+## Quick Start {#OverviewQuickStartMd}
+[API Setup](@ref SetupMd): How to setup your API project
 
+## Authentication {#OverviewAuthenticationMd}
+To learn about the Authentication and Authorization (JWT-based) go [here](@ref AuthenticationMd)
 
 ## Utility class types
 All of the functionality in this library can be broken down into the following categories:
-1. [Stand-Alone Helper Methods](@ref HelperMethods)
-2. [Interface Driven Methods](@ref InterfaceMethods)
-3. [Base Classes](@ref BaseClasses)
+<ol>
+	<li>[Stand-Alone Helper Methods](@ref OverviewHelperMethodsMd)
+	<li>[Interface Driven Functionality](@ref OverviewInterfaceMethodsMd)
+	<li>[Base Classes](@ref OverviewBaseClassesMd)
+	<li>[Api-Specific Behavior](@ref ApiMd)
 
-## Helper Methods {#HelperMethods}
+## Helper Methods {#OverviewHelperMethodsMd}
 These methods can be directly called without any interface registration.
 As such, all customization in the behavior of these methods is done via method overloads.
+All calls to uses these classes/methods are either extension methods, or at static in nature.
 
 [Active Directory](@ref Sphyrnidae.Common.ActiveDirectoryUtilities): Methods for accessing active directory (not currently supported)
 
+[BinaryList](@ref BinaryListMd): Fast searching of a list
 
-## Interface Methods {#InterfaceMethods}
-[Alerts](@ref AlertsMd): Alerts
+[Dynamic Sql](@ref DynamicSqlMd): Helper for building a complex sql statement
+
+[Extension Methods](@ref Sphyrnidae.Common.Extensions): All kinds of extension methods
+
+## Interface-Based Functionality {#OverviewInterfaceMethodsMd}
+These pieces of functionality are abstracted into an interface.
+From there, a default implementation is usually provided.
+A mock implementation is also provided.
+If the default implementation is abstract in nature, there may be a child class which does the rest of the implementation.
+Lastly, there could be a wrapper class around the interface.
+This wrapper class is sometimes done for ease-of-use,
+but is also done if there is specific functionality that should be done for every possible implementation
+(eg. it wraps the interface call in some helper code)
+<table>
+	<tr>
+		<th>Functionality
+		<th>Interface
+		<th>Mock
+		<th>Implementation
+		<th>Wrapper Class
+		<th>Notes
+	<tr>
+		<td>[Alerts](@ref AlertsMd)
+		<td>[IAlert](@ref Sphyrnidae.Common.Alerts.IAlert)
+		<td>[AlertNone](@ref Sphyrnidae.Common.Alerts.AlertNone)
+		<td>[Alert](@ref Sphyrnidae.Common.Alerts.Alert)
+		<td>
+		<td>
+	<tr>
+		<td>[API Responses](@ref ApiResponseMd)
+		<td>[IApiResponse](@ref Sphyrnidae.Common.Api.Responses.IApiResponse)
+		<td>[ApiResponseStandard](@ref Sphyrnidae.Common.Api.Responses.ApiResponseStandard)
+		<td>[ApiResponseStandard](@ref Sphyrnidae.Common.Api.Responses.ApiResponseStandard)
+		<td>
+		<td>
+	<tr>
+		<td>[Application Settings](@ref ApplicationMd)
+		<td>[IApplicationSettings](@ref Sphyrnidae.Common.Application.IApplicationSettings)
+		<td>[ApplicationSettingsMock](@ref Sphyrnidae.Common.Application.ApplicationSettingsMock)
+		<td>None
+		<td>
+		<td>You must override in your own project
+	<tr>
+		<td>[Caching](@ref CacheMd)
+		<td>[ICache](@ref Sphyrnidae.Common.Cache.ICache)
+		<td>[CacheNone](@ref Sphyrnidae.Common.Cache.CacheNone)
+		<td>[CacheLocal](@ref Sphyrnidae.Common.Cache.CacheLocal)
+		<br />[CacheDistributed](@ref Sphyrnidae.Common.Cache.CacheDistributed)
+		<br />[CacheLocalAndDistributed](@ref Sphyrnidae.Common.Cache.CacheLocalAndDistributed) (Default)
+		<td>[Caching](@ref Sphyrnidae.Common.Cache.Caching)
+		<td>
+	<tr>
+		<td>[Email](@ref EmailMd)
+		<td>[IEmail](@ref Sphyrnidae.Common.EmailUtilities.Interfaces.IEmail)
+		<td>[EmailMock](@ref Sphyrnidae.Common.EmailUtilities.EmailMock)
+		<td>[DotNetEmail](@ref Sphyrnidae.Common.EmailUtilities.DotNetEmail)
+		<td>[Email](@ref Sphyrnidae.Common.EmailUtilities.Email)
+		<td>[EmailBase](@ref Sphyrnidae.Common.EmailUtilities.EmailBase): Content generation
+	<tr>
+		<td>[Encryption](@ref EncryptionMd)
+		<td>[IEncryption](@ref Sphyrnidae.Common.Encryption.IEncryption)
+		<td>[EncryptionNone](@ref Sphyrnidae.Common.Encryption.EncryptionNone)
+		<td>[EncryptionDispatcher](@ref Sphyrnidae.Common.Encryption.EncryptionDispatcher) (Default)
+		<br />[EncryptionStrong](@ref Sphyrnidae.Common.Encryption.Algorithms.EncryptionStrong)
+		<br />[EncryptionWeak](@ref Sphyrnidae.Common.Encryption.Algorithms.EncryptionWeak)
+		<br />[EncryptionNormal](@ref Sphyrnidae.Common.Encryption.Algorithms.EncryptionNormal)
+		<br />[EncryptionOld](@ref Sphyrnidae.Common.Encryption.Algorithms.EncryptionOld)
+		<td>[EncryptionExtensions](@ref Sphyrnidae.Common.Encryption.EncryptionExtensions)
+		<td>Wrapper class is a string extension method
+	<tr>
+		<td>[Environmental Settings](@ref EnvironmentMd)
+		<td>[IEnvironmentSettings](@ref Sphyrnidae.Common.Environment.IEnvironmentSettings)
+		<td>[EnvironmentalSettingsMock](@ref Sphyrnidae.Common.Environment.EnvironmentalSettingsMock)
+		<td>[EnvironmentalSettings](@ref Sphyrnidae.Common.Environment.EnvironmentalSettings)
+		<td>[SettingsEnvironmental](@ref Sphyrnidae.Common.Environment.SettingsEnvironmental)
+		<td>
+	<tr>
+		<td>[Feature Toggles](@ref FeatureToggleMd)
+		<td>[IFeatureToggleSettings](@ref Sphyrnidae.Common.FeatureToggle.Interfaces.IFeatureToggleSettings)
+		<td>[FeatureToggleSettingsDefault](@ref Sphyrnidae.Common.FeatureToggle.FeatureToggleSettingsDefault)
+		<td>[FeatureToggleSettings](@ref Sphyrnidae.Common.FeatureToggle.FeatureToggleSettings)
+		<td>[SettingsFeatureToggle](@ref Sphyrnidae.Common.FeatureToggle.SettingsFeatureToggle)
+		<td>The implementation is an abstract class, so you should provide your own implementation
+	<tr>
+		<td>[Http Client](@ref HttpClientMd)
+		<td>[IHttpClientSettings](@ref Sphyrnidae.Common.HttpClient.IHttpClientSettings)
+		<td>[HttpClientSettingsMock](@ref Sphyrnidae.Common.HttpClient.HttpClientSettingsMock)
+		<td>[HttpClientSettings](@ref Sphyrnidae.Common.HttpClient.HttpClientSettings)
+		<td>
+		<td>
+	<tr>
+		<td>[Http Data](@ref HttpDataMd)
+		<td>[IHttpData](@ref Sphyrnidae.Common.HttpData.IHttpData)
+		<td>[HttpDataMock](@ref Sphyrnidae.Common.HttpData.HttpDataMock)
+		<td>[HttpData](@ref Sphyrnidae.Common.HttpData.HttpData)
+		<td>
+		<td>
+	<tr>
+		<td>[Identity / Authentication](@ref AuthenticationMd)
+		<td>[IIdentityHelper](@ref Sphyrnidae.Common.Authentication.Helper.IIdentityHelper)
+		<td>[BasicIdentity](@ref Sphyrnidae.Common.Authentication.Identity.BasicIdentity)
+		<td>[BasicIdentity](@ref Sphyrnidae.Common.Authentication.Identity.BasicIdentity)
+		<td>
+		<td>
+	<tr>
+		<td>[Logging](@ref LoggingMd)
+		<td>[ILogger](@ref Sphyrnidae.Common.Logging.Interfaces.ILogger)
+		<td>[NonLogger](@ref Sphyrnidae.Common.Logging.NonLogger)
+		<td>[Logger](@ref Sphyrnidae.Common.Logging.Logger)
+		<td>
+		<td>
+	<tr>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+	<tr>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+	<tr>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+	<tr>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+	<tr>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+		<td>
+</table>
 
 
-## Base Classes {#BaseClasses}
+## Base Classes {#OverviewBaseClassesMd}
+The following are all base classes available for your consumption.
+These should always be inherited from because they provide some automatic "wiring" up of things like logging.
 
-
-Utilities:
-
-For the most part, this project is generic.
-However, the following items aren't quite generic, so you may need to alter for your use:
-
-Models/ApiResponseObject: We are actually returning an HTTP 200 every time, with this as the structure
-Extensions/HttpResponseExtensions.WriteResponse()
-Models/SphyrnidaeIdentity: Will have whatever fields you need
-
-Models/SphyrnidaeFeatureToggle: If you have additional properties/logic, this can be updated (and the implementation of IFeatureToggle should be updated too)
-Models/SphyrnidaeUserPreference: If you have additional properties/logic, this can be updated (and the implementation of IUserPreferences should be updated too)
-Models/SphyrnidaeVariable: If you have additional properties/logic, this can be updated (and the implementation of IVariableSettings should be updated too)
-
-Logging:
-For the most part, this project is generic.
-However, the following items aren't quite generic, so you may need to alter for your use:
-
-LogInformation/BaseInformation:
-"User" property is set from the Identity
-"Customer" property is set from the Identity
-These may wish to be pulled from other places, or you may wish to not log them, or log other things.
-
-Would also need to update similar things in:
-Models/LogInsert
-Models/LogUpdate
-BaseLogger.cs
-
-
-# Installation
-## Internal Nuget Feed Url
-To install a nuget package into your solution, you will first need to reference our internal TFS Nuget feed. Current URL is:<br />
-https://use1a-tfs.visualvault.com/tfs/auersoft/_packaging/VisualVault/nuget/v3/index.json
-
-To access current URL, go through TFS => Artifacts => Connect to feed => Package source URL
-
-<br />
-
-## Visual Studio Nuget Feed
-Inside visual studio, select Tools => Options => Nuget Package Manager => Package Sources<br />
-Name: "VisualVault" (You can call this anything you want, but "VisualVault" makes the most sense)<br />
-Source: Paste in the package source URL from above.<br />
-Click Update => OK
-
-<br />
-
-## Install in application
-Inside of visual studio, you can right-click on 'Dependencies' inside your project, then select Manage Nuget Packages...<br />
-Change the package source to be "VisualVault" (or whatever you named it above).<br />
-Under 'Browse' tab, you should see all the packages listed.<br />
-You can select any that you'd like/need, and then press the 'Install' button.
-
-If you'd like to install all packages, then you can select the VisualVault.WebApi.Core package.
-
-<br />
-
-# Packages
-## Overview
-The nuget packages are a collection of capabilities that are common to the entire suite of applications.<br />
-Each nuget package generally builds upon the previous package to provide additional capabilities.<br />
-Additionally, most packages are built with .net Standard, meaning they can be used in .net Framework, or in .net Core.<br />
-The packages that are .net Core specific have a ".Core" extension in the name - and are only available in a .net Core application.
-
-If you're not sure where to start, go [here](@ref WebApiCoreMd).
-
-## Listing
-[Utilities](@ref UtilitiesMd)
-This is a collection of extension methods, some share models, interfaces, and static wrappers for the interfaces.
-
-[Utilities.Core](@ref UtilitiesCoreMd)
-This is additional utility functions that are specific to .net Core.
-
-[Logging](@ref LoggingMd)
-This is a logging framework similar to other frameworks, but with a great deal of additional capability. Many components in these nuget packages utilize this logging framework.
-
-[Logging.Core](@ref LoggingCoreMd)
-This is some .net Core specific extension methods to the logging framework.
-
-[Dal](@ref DalMd)
-This is a data access layer (DAL) for connecting to databases, specifically implemented for Sql Server.
-
-[Implementations.Common](@ref ImplementationsCommonMd)
-The [Implementations](@ref VisualVault.Implementations) namespace is where all of the [services](@ref Services) are implemented. This package contains generic implementations (non-VisualVault and non-Core). Eg. These could be used by anyone.
-
-[Implementations](@ref ImplementationsMd)
-The [Implementations](@ref VisualVault.Implementations) namespace is where all of the [services](@ref Services) are implemented. This package contains VisualVault-specific implementations. Eg. Can not be used outside of the company.
-
-[Implementations.Core](@ref ImplementationsCoreMd)
-The [Implementations](@ref VisualVault.Implementations) namespace is where all of the [services](@ref Services) are implemented. This package contains generic implementations that are .net Core-specific implementations. Eg. These could be used by anyone.
-
-[WebApi](@ref WebApiMd)
-This is common methods that should be used by any Api implementation.
-
-[WebApi.Core](@ref WebApiCoreMd)
-This provides all of the capabilities of these packages in a single place for consumption by a .net Core application.
-
-[SharedEntities](@ref SharedEntitiesMd)
-This is meant to store any common business logic across multiple applications.
-
-<i>The complete listing with versions and dependencies can be found in the development shared folder => Applications and Settings.xlsx => Nuget tab.</i>
+It's important to know the naming conventions used for designing your API's.
+This basically assumes that you have a layered architecture with each layer having a defined responsibility and inputs/outputs.
+Here are the layers that are portrayed by these base classes:
+<ol>
+	<li>[BaseApi](@ref Sphyrnidae.Common.Api.BaseClasses.BaseApi) [See [Api](@ref ApiMd) for more information): All controllers should inherit from this class.
+	A controller is solely responsible for retrieval of request objects and populating the response.
+	A controller may be versioned if the request/response structure changes for an endpoint.
+	Any business logic should go in the "Engine" layer.
+	<li>[BaseEngine](@ref Sphyrnidae.Common.Api.BaseClasses.BaseEngine): All engines should inherit from this class.
+	An engine is responsible for performing the main business logic for the API endpoint.
+	There should be a 1:1 mapping between a controller action and an engine method (this could be M:1 with versioning).
+	The engine will work with all the other layers to get data, and then perform the proper business logic to ultimately return a business object back to the controller's action.
+	<li>[BaseRepo](@ref Sphyrnidae.Common.Dal.BaseRepo) [See [Data Access Layer](@ref DalMd) for more information]: All database repositoris should inherit from this class.
+	A repo is responsible for CRUD operations against a repository (eg. database, file sytem, etc).
+	It is best practice to usually have a repository class per database table.
+	<li>[WebServiceBase](@ref Sphyrnidae.Common.WebServices.WebServiceBase) [See [Web Services](@ref WebServiceMd) for more information]: All web services should inherit from this class.
+	A web service is a call to another system (could be SOA, microservices, or an external system).
+	Each system/API that you need to access should be it's own web service class.
+	<li>Service layer (no base class): A service layer is a class that does one of the following things:
+		<ol>
+			<li>Wrapper around a repository class (eg. for caching)
+			<li>Wrapper around a web service class (eg. for caching or parsing of the response)
+			<li>Performs common business logic (eg. can be shared across multiple engines)
+		</ol>
+	<li>[EmailBase](@ref Sphyrnidae.Common.EmailUtilities.EmailBase): You can inherit from this class to define a system email.
+	This e-mail will be sent to the current user (logged in Identity).
+	You will only need to override the [Subject](@ref Sphyrnidae.Common.EmailUtilities.EmailBase.Subject) and [Content](@ref Sphyrnidae.Common.EmailUtilities.EmailBase.Content).
+	You may also wish to have inherit and create your own base class which replaces the [Shell](@ref Sphyrnidae.Common.EmailUtilities.EmailBase.Shell)
+	<li>[EncryptionAlgorithm](@ref Sphyrnidae.Common.Encryption.Algorithms.EncryptionAlgorithm): Any algorithms you wish to register for [encryption](@ref EncryptionMd) should inherit from this class.
+	This is only used when using the [EncryptionDispatcher](@ref Sphyrnidae.Common.Encryption.EncryptionDispatcher) implementation of the [IEncryption](@ref Sphyrnidae.Common.Encryption.IEncryption) interface.
+	Alternatively, if you develop your own implementation and wish to use this same logic, you could reuse this base class.
+</ol>

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('interface_sphyrnidae_1_1_common_1_1_lo
 </div><!--header-->
 <div class="contents">
 
-<p> 
+<p><a class="el" href="namespace_sphyrnidae_1_1_common.html">Common</a> information that will be accessed to be logged  
  <a href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Sphyrnidae.Common.Logging.Interfaces.ILoggerInformation:</div>
@@ -115,20 +115,24 @@ Properties</h2></td></tr>
 <tr class="memitem:a11f58a6048248e4a65be41dee38a5d36"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a11f58a6048248e4a65be41dee38a5d36">LoggingOrder</a><code> [get, set]</code></td></tr>
 <tr class="memdesc:a11f58a6048248e4a65be41dee38a5d36"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current logging order for the current application  <a href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a11f58a6048248e4a65be41dee38a5d36">More...</a><br /></td></tr>
 <tr class="separator:a11f58a6048248e4a65be41dee38a5d36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a355b452e6bcf6a28f5dbff7b815d396a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sphyrnidae_1_1_common_1_1_authentication_1_1_sphyrnidae_identity.html">SphyrnidaeIdentity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a355b452e6bcf6a28f5dbff7b815d396a">Identity</a><code> [get]</code></td></tr>
-<tr class="memdesc:a355b452e6bcf6a28f5dbff7b815d396a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identity of the user executing the call (can be null, but certain logging properties will also be null)  <a href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a355b452e6bcf6a28f5dbff7b815d396a">More...</a><br /></td></tr>
-<tr class="separator:a355b452e6bcf6a28f5dbff7b815d396a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a717aa732fd42d21b4181fb30eceb02da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_base_identity.html">BaseIdentity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a717aa732fd42d21b4181fb30eceb02da">Identity</a><code> [get]</code></td></tr>
+<tr class="memdesc:a717aa732fd42d21b4181fb30eceb02da"><td class="mdescLeft">&#160;</td><td class="mdescRight">The identity of the user executing the call (can be null, but certain logging properties will also be null)  <a href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a717aa732fd42d21b4181fb30eceb02da">More...</a><br /></td></tr>
+<tr class="separator:a717aa732fd42d21b4181fb30eceb02da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaae8ecae1ceed10325a5001e34103a67"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#aaae8ecae1ceed10325a5001e34103a67">SessionId</a><code> [get]</code></td></tr>
 <tr class="memdesc:aaae8ecae1ceed10325a5001e34103a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">The ID associated with a group of calls  <a href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#aaae8ecae1ceed10325a5001e34103a67">More...</a><br /></td></tr>
 <tr class="separator:aaae8ecae1ceed10325a5001e34103a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe898ce00d00deec86e378c6965bb5df"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#afe898ce00d00deec86e378c6965bb5df">Method</a><code> [get]</code></td></tr>
 <tr class="memdesc:afe898ce00d00deec86e378c6965bb5df"><td class="mdescLeft">&#160;</td><td class="mdescRight">The method being executed (Eg. POST /api/v1/MyRoute)  <a href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#afe898ce00d00deec86e378c6965bb5df">More...</a><br /></td></tr>
 <tr class="separator:afe898ce00d00deec86e378c6965bb5df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d738c9a7dcbb7ddd86b76daaf419526"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a4d738c9a7dcbb7ddd86b76daaf419526">StaticProperties</a><code> [get]</code></td></tr>
+<tr class="memdesc:a4d738c9a7dcbb7ddd86b76daaf419526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Any custom additional properties that will be saved as options to be logged  <a href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_information.html#a4d738c9a7dcbb7ddd86b76daaf419526">More...</a><br /></td></tr>
+<tr class="separator:a4d738c9a7dcbb7ddd86b76daaf419526"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"></div><h2 class="groupheader">Property Documentation</h2>
-<a id="a355b452e6bcf6a28f5dbff7b815d396a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a355b452e6bcf6a28f5dbff7b815d396a">&#9670;&nbsp;</a></span>Identity</h2>
+<div class="textblock"><p><a class="el" href="namespace_sphyrnidae_1_1_common.html">Common</a> information that will be accessed to be logged </p>
+</div><h2 class="groupheader">Property Documentation</h2>
+<a id="a717aa732fd42d21b4181fb30eceb02da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a717aa732fd42d21b4181fb30eceb02da">&#9670;&nbsp;</a></span>Identity</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -137,7 +141,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_sphyrnidae_1_1_common_1_1_authentication_1_1_sphyrnidae_identity.html">SphyrnidaeIdentity</a> Sphyrnidae.Common.Logging.Interfaces.ILoggerInformation.Identity</td>
+          <td class="memname"><a class="el" href="class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_base_identity.html">BaseIdentity</a> Sphyrnidae.Common.Logging.Interfaces.ILoggerInformation.Identity</td>
         </tr>
       </table>
   </td>
@@ -268,6 +272,30 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>The ID associated with a group of calls </p>
+
+</div>
+</div>
+<a id="a4d738c9a7dcbb7ddd86b76daaf419526"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d738c9a7dcbb7ddd86b76daaf419526">&#9670;&nbsp;</a></span>StaticProperties</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt;string, string&gt; Sphyrnidae.Common.Logging.Interfaces.ILoggerInformation.StaticProperties</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Any custom additional properties that will be saved as options to be logged </p>
 
 </div>
 </div>

@@ -7,7 +7,7 @@ using Sphyrnidae.Common.Serialize;
 
 namespace Sphyrnidae.Common.Api.ServiceRegistration
 {
-    internal class HealthCheckHelper
+    public static class HealthCheckHelper
     {
         public static string Url { get; set; } = "/hc";
 

@@ -6,8 +6,7 @@ using System.Net.Mime;
 using System.Threading.Tasks;
 using Sphyrnidae.Common.EmailUtilities.Interfaces;
 using Sphyrnidae.Common.EmailUtilities.Models;
-using Sphyrnidae.Common.EncryptionImplementations;
-using Sphyrnidae.Common.EncryptionImplementations.Interfaces;
+using Sphyrnidae.Common.Encryption;
 using Sphyrnidae.Common.Extensions;
 
 namespace Sphyrnidae.Common.EmailUtilities
@@ -15,12 +14,19 @@ namespace Sphyrnidae.Common.EmailUtilities
     /// <inheritdoc />
     public class DotNetEmail : IEmail
     {
+        private IEmailSettings Settings { get; }
+        private IDotNetEmailSettings DotNetSettings { get; }
         private IEncryption Encryption { get; }
-        public DotNetEmail(IEncryption encryption) => Encryption = encryption;
-
-        public async Task<bool> SendAsync(IEmailServices services, EmailType type, IEnumerable<string> to, IEnumerable<string> cc, string subject, string content)
+        public DotNetEmail(IEmailSettings settings, IDotNetEmailSettings dotNetSettings, IEncryption encryption)
         {
-            var emailInformation = EmailHelper.ToEmailItems(services.Settings, type, to, cc, subject, content);
+            Settings = settings;
+            DotNetSettings = dotNetSettings;
+            Encryption = encryption;
+        }
+
+        public async Task<bool> SendAsync(EmailType type, IEnumerable<string> to, IEnumerable<string> cc, string subject, string content)
+        {
+            var emailInformation = EmailHelper.ToEmailItems(Settings, type, to, cc, subject, content);
 
             var msg = new MailMessage
             {
@@ -41,18 +47,18 @@ namespace Sphyrnidae.Common.EmailUtilities
             using var client = new SmtpClient
             {
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                EnableSsl = services.DotNetSettings.EnableSsl
+                EnableSsl = DotNetSettings.EnableSsl
             };
 
-            var host = services.DotNetSettings.Host;
+            var host = DotNetSettings.Host;
             if (!string.IsNullOrWhiteSpace(host))
                 client.Host = host;
 
-            var port = services.DotNetSettings.Port;
+            var port = DotNetSettings.Port;
             if (port.HasValue && port.Value != 0)
                 client.Port = port.Value;
 
-            var password = services.DotNetSettings.Password;
+            var password = DotNetSettings.Password;
             if (!string.IsNullOrWhiteSpace(password))
             {
                 client.UseDefaultCredentials = false;

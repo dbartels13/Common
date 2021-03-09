@@ -45,6 +45,7 @@ var namespace_sphyrnidae_1_1_common_1_1_dynamic_sql =
     ] ],
     [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces.html", "namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces" ],
     [ "Models", "namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_models.html", "namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_models" ],
+    [ "DynamicMySqlRepo", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_my_sql_repo.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_my_sql_repo" ],
     [ "DynamicSqlBuilder", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_builder.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_builder" ],
     [ "DynamicSqlServerRepo", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_server_repo.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_server_repo" ]
 ];

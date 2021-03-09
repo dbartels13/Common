@@ -16,6 +16,14 @@ namespace Sphyrnidae.Common.Logging.Loggers
         public abstract string Name { get; }
 
         /// <summary>
+        /// If 'identity' custom items for the logging type should be included
+        /// </summary>
+        public abstract bool IncludeIdentity { get; }
+        /// <summary>
+        /// If 'static' custom items for the logging type should be included
+        /// </summary>
+        public abstract bool IncludeStatic { get; }
+        /// <summary>
         /// If 'high' custom items for the logging type should be included
         /// </summary>
         public abstract bool IncludeHigh { get; }
@@ -72,12 +80,19 @@ namespace Sphyrnidae.Common.Logging.Loggers
                 RequestId = info.RequestId,
                 Session = info.Session,
                 UserId = info.UserId ?? 0,
-                CustomerId = info.CustomerId ?? 0,
                 Message = info.Message.ShortenWithEllipses(maxLength),
                 Category = info.Category.ShortenWithEllipses(maxLength),
                 Machine = info.Machine,
                 Application = info.Application
             };
+
+            if (IncludeIdentity)
+                foreach (var (key, value) in info.IdentityProperties)
+                    model.Other.Add(key, value.ShortenWithEllipses(maxLength));
+
+            if (IncludeStatic)
+                foreach (var (key, value) in info.StaticProperties)
+                    model.Other.Add(key, value.ShortenWithEllipses(maxLength));
 
             if (IncludeHigh)
                 foreach (var (key, value) in info.HighProperties)

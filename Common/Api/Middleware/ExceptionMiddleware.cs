@@ -3,10 +3,10 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Sphyrnidae.Common.Api.Models;
+using Sphyrnidae.Common.Api.Responses;
 using Sphyrnidae.Common.Extensions;
 using Sphyrnidae.Common.Logging.Interfaces;
 using Sphyrnidae.Common.Serialize;
-using Sphyrnidae.Common.SphyrnidaeApiResponse;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Api.Middleware
@@ -20,7 +20,7 @@ namespace Sphyrnidae.Common.Api.Middleware
 
         public ExceptionMiddleware(RequestDelegate next) => Next = next;
 
-        public async Task Invoke(HttpContext context, ILogger logger)
+        public async Task Invoke(HttpContext context, ILogger logger, IApiResponse apiResponse)
         {
             var info = await logger.MiddlewareEntry("Exception");
 
@@ -39,7 +39,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 await ExceptionResponse(
                     response,
                     originalBody,
-                    ApiResponse.InternalServerError(ex)
+                    ApiResponse.InternalServerError(ex).ConvertToOther(apiResponse)
                 );
 
                 await logger.MiddlewareExit(info);
@@ -51,7 +51,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 await ExceptionResponse(
                     response,
                     originalBody,
-                    ApiResponse.InternalServerError(guid)
+                    ApiResponse.InternalServerError(guid).ConvertToOther(apiResponse)
                 );
 
                 await logger.MiddlewareExit(info);
@@ -66,7 +66,7 @@ namespace Sphyrnidae.Common.Api.Middleware
             await logger.MiddlewareExit(info);
         }
 
-        private static async Task ExceptionResponse(HttpResponse response, Stream originalBody, ApiResponseObject responseObj)
+        private static async Task ExceptionResponse(HttpResponse response, Stream originalBody, IApiResponse responseObj)
         {
             response.Body = originalBody;
             await response.WriteResponseAsync(responseObj, SerializationSettings.Default);

@@ -9,7 +9,7 @@ var class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo =
     [ "GetListSQLAsync< T >", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#aa1ab2698e92ed7b22aac85751a356ca0", null ],
     [ "GetSPAsync< T >", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#a77b2334a128d2729405ece8c771feb97", null ],
     [ "GetSQLAsync< T >", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#a44e50e7aef0ec880d63421e71affc95b", null ],
-    [ "HandleException", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#a02327dfa314688087de243778089c668", null ],
+    [ "HandleException", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#a8920aabe8a1047e905ef53305bdd0e44", null ],
     [ "InsertAsync", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#ad81c5cc5983255662bfe82d6af0942d3", null ],
     [ "InsertAsync", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#a53de08f817ea1ccc4961b630c0dab657", null ],
     [ "InsertTrappingExceptionsAsync", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#afad33f96a73c22f54a6a23e0796424a7", null ],

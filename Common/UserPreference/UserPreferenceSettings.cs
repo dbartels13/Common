@@ -4,7 +4,7 @@ using Sphyrnidae.Common.UserPreference.Interfaces;
 
 namespace Sphyrnidae.Common.UserPreference
 {
-    public abstract class UserPreferenceSettings : BaseLookupSetting<SphyrnidaeUserPreference>, IUserPreferenceSettings
+    public abstract class UserPreferenceSettings : BaseLookupSetting<UserPreferenceSetting>, IUserPreferenceSettings
     {
         public override string Key => "UserPreferenceSettings";
 

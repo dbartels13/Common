@@ -7,6 +7,7 @@ var annotated_dup =
         ] ],
         [ "Alerts", "namespace_sphyrnidae_1_1_common_1_1_alerts.html", [
           [ "Alert", "class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html", "class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert" ],
+          [ "AlertNone", "class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert_none.html", "class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert_none" ],
           [ "IAlert", "interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html", "interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert" ]
         ] ],
         [ "Api", "namespace_sphyrnidae_1_1_common_1_1_api.html", [
@@ -21,10 +22,6 @@ var annotated_dup =
             [ "BaseApi", "class_sphyrnidae_1_1_common_1_1_api_1_1_base_classes_1_1_base_api.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_base_classes_1_1_base_api" ],
             [ "BaseEngine", "class_sphyrnidae_1_1_common_1_1_api_1_1_base_classes_1_1_base_engine.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_base_classes_1_1_base_engine" ]
           ] ],
-          [ "DefaultIdentity", "namespace_sphyrnidae_1_1_common_1_1_api_1_1_default_identity.html", [
-            [ "IDefaultIdentity", "interface_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_i_default_identity.html", "interface_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_i_default_identity" ],
-            [ "SphyrnidaeDefaultIdentity", "class_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_sphyrnidae_default_identity.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_sphyrnidae_default_identity" ]
-          ] ],
           [ "Middleware", "namespace_sphyrnidae_1_1_common_1_1_api_1_1_middleware.html", [
             [ "ApiLoggingMiddleware", "class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_api_logging_middleware.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_api_logging_middleware" ],
             [ "ApplicationBuilderExtensions", "class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_application_builder_extensions.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_application_builder_extensions" ],
@@ -37,9 +34,14 @@ var annotated_dup =
             [ "UserException", "class_sphyrnidae_1_1_common_1_1_api_1_1_models_1_1_user_exception.html", null ]
           ] ],
           [ "Responses", "namespace_sphyrnidae_1_1_common_1_1_api_1_1_responses.html", [
-            [ "GuidResponse", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_guid_response.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_guid_response" ],
-            [ "NumResponse", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_num_response.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_num_response" ],
-            [ "StringResponse", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_string_response.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_string_response" ]
+            [ "Wrappers", "namespace_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_wrappers.html", [
+              [ "GuidResponse", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_wrappers_1_1_guid_response.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_wrappers_1_1_guid_response" ],
+              [ "NumResponse", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_wrappers_1_1_num_response.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_wrappers_1_1_num_response" ],
+              [ "StringResponse", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_wrappers_1_1_string_response.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_wrappers_1_1_string_response" ]
+            ] ],
+            [ "ApiResponse", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response" ],
+            [ "ApiResponseStandard", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response_standard.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response_standard" ],
+            [ "IApiResponse", "interface_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_i_api_response.html", "interface_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_i_api_response" ]
           ] ],
           [ "ServiceRegistration", "namespace_sphyrnidae_1_1_common_1_1_api_1_1_service_registration.html", [
             [ "Models", "namespace_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_models.html", [
@@ -49,7 +51,11 @@ var annotated_dup =
             [ "ApiHelper", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_api_helper.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_api_helper" ],
             [ "CacheHelper", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_cache_helper.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_cache_helper" ],
             [ "CorsHelper", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_cors_helper.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_cors_helper" ],
-            [ "SphyrnidaeServiceRegistration", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_sphyrnidae_service_registration.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_sphyrnidae_service_registration" ]
+            [ "HealthCheckHelper", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_health_check_helper.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_health_check_helper" ],
+            [ "PipelineHelper", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_pipeline_helper.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_pipeline_helper" ],
+            [ "SignalRHelper", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_signal_r_helper.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_signal_r_helper" ],
+            [ "SphyrnidaeServiceRegistration", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_sphyrnidae_service_registration.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_sphyrnidae_service_registration" ],
+            [ "SwaggerHelper", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_swagger_helper.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_swagger_helper" ]
           ] ],
           [ "Constants", "class_sphyrnidae_1_1_common_1_1_api_1_1_constants.html", [
             [ "ApiToApi", "class_sphyrnidae_1_1_common_1_1_api_1_1_constants_1_1_api_to_api.html", "class_sphyrnidae_1_1_common_1_1_api_1_1_constants_1_1_api_to_api" ],
@@ -63,17 +69,14 @@ var annotated_dup =
           [ "SphyrnidaeApplicationSettings", "class_sphyrnidae_1_1_common_1_1_application_1_1_sphyrnidae_application_settings.html", "class_sphyrnidae_1_1_common_1_1_application_1_1_sphyrnidae_application_settings" ]
         ] ],
         [ "Authentication", "namespace_sphyrnidae_1_1_common_1_1_authentication.html", [
-          [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces.html", [
-            [ "IIdentityWrapper", "interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_identity_wrapper.html", "interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_identity_wrapper" ],
-            [ "ITokenSettings", "interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_token_settings.html", "interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_token_settings" ]
+          [ "Helper", "namespace_sphyrnidae_1_1_common_1_1_authentication_1_1_helper.html", [
+            [ "IdentityHelper", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_identity_helper.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_identity_helper" ],
+            [ "IIdentityHelper", "interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html", "interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper" ]
           ] ],
-          [ "IdentityHelper", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_helper.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_helper" ],
-          [ "IdentityWrapper", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_wrapper.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_wrapper" ],
-          [ "IdentityWrapperMock", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_wrapper_mock.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_wrapper_mock" ],
-          [ "SphyrnidaeIdentity", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_sphyrnidae_identity.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_sphyrnidae_identity" ],
-          [ "SphyrnidaeTokenSettings", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_sphyrnidae_token_settings.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_sphyrnidae_token_settings" ],
-          [ "TokenSettings", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_token_settings.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_token_settings" ],
-          [ "TokenSettingsMock", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_token_settings_mock.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_token_settings_mock" ]
+          [ "Identity", "namespace_sphyrnidae_1_1_common_1_1_authentication_1_1_identity.html", [
+            [ "BaseIdentity", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_base_identity.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_base_identity" ],
+            [ "BasicIdentity", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_basic_identity.html", "class_sphyrnidae_1_1_common_1_1_authentication_1_1_identity_1_1_basic_identity" ]
+          ] ]
         ] ],
         [ "Cache", "namespace_sphyrnidae_1_1_common_1_1_cache.html", [
           [ "Models", "namespace_sphyrnidae_1_1_common_1_1_cache_1_1_models.html", [
@@ -95,12 +98,14 @@ var annotated_dup =
           ] ],
           [ "BaseRepo", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html", "class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo" ],
           [ "MySqlRepo", "class_sphyrnidae_1_1_common_1_1_dal_1_1_my_sql_repo.html", "class_sphyrnidae_1_1_common_1_1_dal_1_1_my_sql_repo" ],
+          [ "MySqlTransaction", "class_sphyrnidae_1_1_common_1_1_dal_1_1_my_sql_transaction.html", null ],
           [ "SqlServerRepo", "class_sphyrnidae_1_1_common_1_1_dal_1_1_sql_server_repo.html", "class_sphyrnidae_1_1_common_1_1_dal_1_1_sql_server_repo" ],
           [ "SqlTransaction", "class_sphyrnidae_1_1_common_1_1_dal_1_1_sql_transaction.html", null ],
           [ "Transaction", "class_sphyrnidae_1_1_common_1_1_dal_1_1_transaction.html", "class_sphyrnidae_1_1_common_1_1_dal_1_1_transaction" ]
         ] ],
         [ "DynamicSql", "namespace_sphyrnidae_1_1_common_1_1_dynamic_sql.html", [
           [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces.html", [
+            [ "IDynamicMySqlRepo", "interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_my_sql_repo.html", "interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_my_sql_repo" ],
             [ "IDynamicSqlServerRepo", "interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_sql_server_repo.html", "interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_sql_server_repo" ]
           ] ],
           [ "Models", "namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_models.html", [
@@ -112,6 +117,7 @@ var annotated_dup =
             [ "SqlBuilderObject", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_models_1_1_sql_builder_object.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_models_1_1_sql_builder_object" ],
             [ "Table", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_models_1_1_table.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_models_1_1_table" ]
           ] ],
+          [ "DynamicMySqlRepo", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_my_sql_repo.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_my_sql_repo" ],
           [ "DynamicSqlBuilder", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_builder.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_builder" ],
           [ "DynamicSqlServerRepo", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_server_repo.html", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_server_repo" ]
         ] ],
@@ -120,41 +126,41 @@ var annotated_dup =
             [ "IDotNetEmailSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_dot_net_email_settings.html", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_dot_net_email_settings" ],
             [ "IEmail", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email" ],
             [ "IEmailDefaultSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_default_settings.html", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_default_settings" ],
-            [ "IEmailServices", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_services.html", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_services" ],
             [ "IEmailSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings.html", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings" ]
           ] ],
           [ "DotNetEmail", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email" ],
           [ "Email", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email" ],
           [ "EmailBase", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base" ],
           [ "EmailMock", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock" ],
-          [ "EmailServices", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_services.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_services" ],
           [ "SphyrnidaeDotNetEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_dot_net_email_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_dot_net_email_settings" ],
           [ "SphyrnidaeEmailDefaultSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_default_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_default_settings" ],
           [ "SphyrnidaeEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_settings" ]
         ] ],
-        [ "EncryptionImplementations", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations.html", [
-          [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces.html", [
-            [ "IEncryption", "interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption.html", "interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption" ],
-            [ "IEncryptionImplementations", "interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption_implementations.html", "interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption_implementations" ],
-            [ "IEncryptionKeyManager", "interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption_key_manager.html", "interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption_key_manager" ]
+        [ "Encryption", "namespace_sphyrnidae_1_1_common_1_1_encryption.html", [
+          [ "Algorithms", "namespace_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms.html", [
+            [ "EncryptionAlgorithm", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_algorithm.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_algorithm" ],
+            [ "EncryptionNormal", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_normal.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_normal" ],
+            [ "EncryptionOld", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_old.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_old" ],
+            [ "EncryptionStrong", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_strong.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_strong" ],
+            [ "EncryptionWeak", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_weak.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_weak" ],
+            [ "IEncryptionAlgorithms", "interface_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_i_encryption_algorithms.html", "interface_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_i_encryption_algorithms" ],
+            [ "SphyrnidaeEncryptionAlgorithms", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_sphyrnidae_encryption_algorithms.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_sphyrnidae_encryption_algorithms" ]
           ] ],
-          [ "KeyManager", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager.html", [
-            [ "EncryptionKeyManager", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager_1_1_encryption_key_manager.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager_1_1_encryption_key_manager" ]
+          [ "KeyManager", "namespace_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager.html", [
+            [ "Models", "namespace_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_models.html", [
+              [ "EncryptionKey", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_models_1_1_encryption_key.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_models_1_1_encryption_key" ],
+              [ "FoundEncryptionKey", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_models_1_1_found_encryption_key.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_models_1_1_found_encryption_key" ]
+            ] ],
+            [ "EncryptionKeyManager", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_encryption_key_manager.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_encryption_key_manager" ],
+            [ "IEncryptionKeyManager", "interface_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_i_encryption_key_manager.html", "interface_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_i_encryption_key_manager" ]
           ] ],
-          [ "Models", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models.html", [
-            [ "DecryptionResponse", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models_1_1_decryption_response.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models_1_1_decryption_response" ],
-            [ "EncryptionKey", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models_1_1_encryption_key.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models_1_1_encryption_key" ],
-            [ "FoundEncryptionKey", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models_1_1_found_encryption_key.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models_1_1_found_encryption_key" ]
+          [ "Models", "namespace_sphyrnidae_1_1_common_1_1_encryption_1_1_models.html", [
+            [ "DecryptionResponse", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_models_1_1_decryption_response.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_models_1_1_decryption_response" ]
           ] ],
-          [ "Encryption", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption" ],
-          [ "EncryptionDispatcher", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_dispatcher.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_dispatcher" ],
-          [ "EncryptionImplementation", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_implementation.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_implementation" ],
-          [ "EncryptionNone", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_none.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_none" ],
-          [ "EncryptionNormal", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_normal.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_normal" ],
-          [ "EncryptionOld", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_old.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_old" ],
-          [ "EncryptionStrong", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_strong.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_strong" ],
-          [ "EncryptionWeak", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_weak.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_weak" ],
-          [ "SphyrnidaeEncryptionImplementations", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_sphyrnidae_encryption_implementations.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_sphyrnidae_encryption_implementations" ]
+          [ "EncryptionDispatcher", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_dispatcher.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_dispatcher" ],
+          [ "EncryptionExtensions", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_extensions.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_extensions" ],
+          [ "EncryptionNone", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_none.html", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_none" ],
+          [ "IEncryption", "interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html", "interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption" ]
         ] ],
         [ "Environment", "namespace_sphyrnidae_1_1_common_1_1_environment.html", [
           [ "EnvironmentalSettings", "class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings.html", "class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings" ],
@@ -188,11 +194,10 @@ var annotated_dup =
             [ "IFeatureToggleSettings", "interface_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_interfaces_1_1_i_feature_toggle_settings.html", null ]
           ] ],
           [ "FeatureToggleServices", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_services.html", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_services" ],
+          [ "FeatureToggleSetting", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_setting.html", null ],
           [ "FeatureToggleSettings", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings.html", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings" ],
-          [ "FeatureToggleSettingsSettingsMock", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings_settings_mock.html", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings_settings_mock" ],
-          [ "SettingsFeatureToggle", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_settings_feature_toggle.html", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_settings_feature_toggle" ],
-          [ "SphyrnidaeFeatureToggle", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_sphyrnidae_feature_toggle.html", null ],
-          [ "SphyrnidaeFeatureToggleSettings", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_sphyrnidae_feature_toggle_settings.html", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_sphyrnidae_feature_toggle_settings" ]
+          [ "FeatureToggleSettingsDefault", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings_default.html", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_feature_toggle_settings_default" ],
+          [ "SettingsFeatureToggle", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_settings_feature_toggle.html", "class_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_settings_feature_toggle" ]
         ] ],
         [ "HttpClient", "namespace_sphyrnidae_1_1_common_1_1_http_client.html", [
           [ "HttpClientSettings", "class_sphyrnidae_1_1_common_1_1_http_client_1_1_http_client_settings.html", "class_sphyrnidae_1_1_common_1_1_http_client_1_1_http_client_settings" ],
@@ -205,6 +210,10 @@ var annotated_dup =
           [ "IHttpData", "interface_sphyrnidae_1_1_common_1_1_http_data_1_1_i_http_data.html", "interface_sphyrnidae_1_1_common_1_1_http_data_1_1_i_http_data" ]
         ] ],
         [ "Logging", "namespace_sphyrnidae_1_1_common_1_1_logging.html", [
+          [ "Configuration", "namespace_sphyrnidae_1_1_common_1_1_logging_1_1_configuration.html", [
+            [ "LoggerConfiguration", "class_sphyrnidae_1_1_common_1_1_logging_1_1_configuration_1_1_logger_configuration.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_configuration_1_1_logger_configuration" ],
+            [ "MockLoggerConfiguration", "class_sphyrnidae_1_1_common_1_1_logging_1_1_configuration_1_1_mock_logger_configuration.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_configuration_1_1_mock_logger_configuration" ]
+          ] ],
           [ "Information", "namespace_sphyrnidae_1_1_common_1_1_logging_1_1_information.html", [
             [ "ApiInformation", "class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_api_information.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_api_information" ],
             [ "AttributeInformation", "class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_attribute_information.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_attribute_information" ],
@@ -241,21 +250,18 @@ var annotated_dup =
               [ "LogUpdate", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_models_1_1_log_update.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_models_1_1_log_update" ]
             ] ],
             [ "BaseLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_base_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_base_logger" ],
-            [ "DatabaseLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_database_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_database_logger" ],
             [ "DebugLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_debug_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_debug_logger" ],
             [ "EmailLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger" ],
             [ "FileLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_file_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_file_logger" ],
-            [ "Log4NetLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_log4_net_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_log4_net_logger" ]
+            [ "Log4NetLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_log4_net_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_log4_net_logger" ],
+            [ "LoggersNone", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_loggers_none.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_loggers_none" ]
           ] ],
           [ "Models", "namespace_sphyrnidae_1_1_common_1_1_logging_1_1_models.html", [
             [ "HttpResponseInfo", "class_sphyrnidae_1_1_common_1_1_logging_1_1_models_1_1_http_response_info.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_models_1_1_http_response_info" ]
           ] ],
           [ "Logger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_logger" ],
-          [ "LoggerConfiguration", "class_sphyrnidae_1_1_common_1_1_logging_1_1_logger_configuration.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_logger_configuration" ],
           [ "LoggerInformation", "class_sphyrnidae_1_1_common_1_1_logging_1_1_logger_information.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_logger_information" ],
-          [ "NonLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_non_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_non_logger" ],
-          [ "SphyrnidaeLoggerConfiguration", "class_sphyrnidae_1_1_common_1_1_logging_1_1_sphyrnidae_logger_configuration.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_sphyrnidae_logger_configuration" ],
-          [ "SphyrnidaeLoggers", "class_sphyrnidae_1_1_common_1_1_logging_1_1_sphyrnidae_loggers.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_sphyrnidae_loggers" ]
+          [ "NonLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_non_logger.html", "class_sphyrnidae_1_1_common_1_1_logging_1_1_non_logger" ]
         ] ],
         [ "Lookup", "namespace_sphyrnidae_1_1_common_1_1_lookup.html", [
           [ "BaseLookupSetting", "class_sphyrnidae_1_1_common_1_1_lookup_1_1_base_lookup_setting.html", "class_sphyrnidae_1_1_common_1_1_lookup_1_1_base_lookup_setting" ],
@@ -273,13 +279,6 @@ var annotated_dup =
         [ "Paths", "namespace_sphyrnidae_1_1_common_1_1_paths.html", [
           [ "RelativePathBuilder", "class_sphyrnidae_1_1_common_1_1_paths_1_1_relative_path_builder.html", "class_sphyrnidae_1_1_common_1_1_paths_1_1_relative_path_builder" ],
           [ "UrlBuilder", "class_sphyrnidae_1_1_common_1_1_paths_1_1_url_builder.html", "class_sphyrnidae_1_1_common_1_1_paths_1_1_url_builder" ]
-        ] ],
-        [ "Repos", "namespace_sphyrnidae_1_1_common_1_1_repos.html", [
-          [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_repos_1_1_interfaces.html", [
-            [ "ILogRepo", "interface_sphyrnidae_1_1_common_1_1_repos_1_1_interfaces_1_1_i_log_repo.html", "interface_sphyrnidae_1_1_common_1_1_repos_1_1_interfaces_1_1_i_log_repo" ]
-          ] ],
-          [ "LogRepo", "class_sphyrnidae_1_1_common_1_1_repos_1_1_log_repo.html", "class_sphyrnidae_1_1_common_1_1_repos_1_1_log_repo" ],
-          [ "SphyrnidaeRepo", "class_sphyrnidae_1_1_common_1_1_repos_1_1_sphyrnidae_repo.html", "class_sphyrnidae_1_1_common_1_1_repos_1_1_sphyrnidae_repo" ]
         ] ],
         [ "RequestData", "namespace_sphyrnidae_1_1_common_1_1_request_data.html", [
           [ "IRequestData", "interface_sphyrnidae_1_1_common_1_1_request_data_1_1_i_request_data.html", "interface_sphyrnidae_1_1_common_1_1_request_data_1_1_i_request_data" ],
@@ -303,24 +302,16 @@ var annotated_dup =
           [ "SignalRHub", "class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r_hub.html", "class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r_hub" ],
           [ "SignalRMock", "class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r_mock.html", "class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r_mock" ]
         ] ],
-        [ "SphyrnidaeApiResponse", "namespace_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response.html", [
-          [ "ApiResponse", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response.html", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response" ],
-          [ "ApiResponseBase", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response_base.html", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response_base" ],
-          [ "ApiResponseObject", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response_object.html", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response_object" ],
-          [ "ApiResponseWeb", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response_web.html", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_api_response_web" ],
-          [ "SphyrnidaeResponse", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_sphyrnidae_response.html", "class_sphyrnidae_1_1_common_1_1_sphyrnidae_api_response_1_1_sphyrnidae_response" ]
-        ] ],
         [ "UserPreference", "namespace_sphyrnidae_1_1_common_1_1_user_preference.html", [
           [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_user_preference_1_1_interfaces.html", [
             [ "IUserPreferenceServices", "interface_sphyrnidae_1_1_common_1_1_user_preference_1_1_interfaces_1_1_i_user_preference_services.html", null ],
             [ "IUserPreferenceSettings", "interface_sphyrnidae_1_1_common_1_1_user_preference_1_1_interfaces_1_1_i_user_preference_settings.html", "interface_sphyrnidae_1_1_common_1_1_user_preference_1_1_interfaces_1_1_i_user_preference_settings" ]
           ] ],
           [ "SettingsUserPreference", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_settings_user_preference.html", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_settings_user_preference" ],
-          [ "SphyrnidaeUserPreference", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_sphyrnidae_user_preference.html", null ],
-          [ "SphyrnidaeUserPreferenceSettings", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_sphyrnidae_user_preference_settings.html", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_sphyrnidae_user_preference_settings" ],
           [ "UserPreferenceServices", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_services.html", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_services" ],
+          [ "UserPreferenceSetting", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_setting.html", null ],
           [ "UserPreferenceSettings", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings.html", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings" ],
-          [ "UserPreferenceSettingsMock", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings_mock.html", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings_mock" ]
+          [ "UserPreferenceSettingsDefault", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings_default.html", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings_default" ]
         ] ],
         [ "Utilities", "namespace_sphyrnidae_1_1_common_1_1_utilities.html", [
           [ "Claims", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_claims.html", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_claims" ],
@@ -335,11 +326,10 @@ var annotated_dup =
             [ "IVariableSettings", "interface_sphyrnidae_1_1_common_1_1_variable_1_1_interfaces_1_1_i_variable_settings.html", null ]
           ] ],
           [ "SettingsVariable", "class_sphyrnidae_1_1_common_1_1_variable_1_1_settings_variable.html", null ],
-          [ "SphyrnidaeVariable", "class_sphyrnidae_1_1_common_1_1_variable_1_1_sphyrnidae_variable.html", null ],
-          [ "SphyrnidaeVariableSettings", "class_sphyrnidae_1_1_common_1_1_variable_1_1_sphyrnidae_variable_settings.html", "class_sphyrnidae_1_1_common_1_1_variable_1_1_sphyrnidae_variable_settings" ],
           [ "VariableServices", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_services.html", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_services" ],
+          [ "VariableSetting", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_setting.html", null ],
           [ "VariableSettings", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings.html", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings" ],
-          [ "VariableSettingsMock", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_mock.html", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_mock" ]
+          [ "VariableSettingsDefault", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_default.html", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_default" ]
         ] ],
         [ "WebServices", "namespace_sphyrnidae_1_1_common_1_1_web_services.html", [
           [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces.html", [
@@ -348,13 +338,10 @@ var annotated_dup =
             [ "IUserPreferenceWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_user_preference_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_user_preference_web_service" ],
             [ "IVariableWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_variable_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_variable_web_service" ]
           ] ],
-          [ "Models", "namespace_sphyrnidae_1_1_common_1_1_web_services_1_1_models.html", [
-            [ "UserPreferencesRequest", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_models_1_1_user_preferences_request.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_models_1_1_user_preferences_request" ]
-          ] ],
-          [ "ApiAuthenticationWebService", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_web_service.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_web_service" ],
-          [ "FeatureToggleWebService", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_feature_toggle_web_service.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_feature_toggle_web_service" ],
-          [ "UserPreferenceWebService", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_user_preference_web_service.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_user_preference_web_service" ],
-          [ "VariableWebService", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service" ],
+          [ "ApiAuthenticationWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_web_service_mock" ],
+          [ "FeatureToggleWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_feature_toggle_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_feature_toggle_web_service_mock" ],
+          [ "UserPreferenceWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_user_preference_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_user_preference_web_service_mock" ],
+          [ "VariableWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service_mock" ],
           [ "WebServiceBase", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base" ]
         ] ],
         [ "BinaryList", "class_sphyrnidae_1_1_common_1_1_binary_list.html", "class_sphyrnidae_1_1_common_1_1_binary_list" ],

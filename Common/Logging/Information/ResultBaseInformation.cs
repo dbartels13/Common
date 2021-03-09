@@ -7,7 +7,6 @@ using Sphyrnidae.Common.Application;
 using Sphyrnidae.Common.Extensions;
 using Sphyrnidae.Common.Logging.Interfaces;
 using Sphyrnidae.Common.Serialize;
-using Sphyrnidae.Common.SphyrnidaeApiResponse;
 using Sphyrnidae.Common.Utilities;
 
 namespace Sphyrnidae.Common.Logging.Information
@@ -58,18 +57,6 @@ namespace Sphyrnidae.Common.Logging.Information
         {
             base.UpdateProperties(config);
 
-            // Use the internal object if it's in that format
-            var apiResponse = SafeTry.IgnoreException(() => _result.DeserializeJson<ApiResponseObject>());
-            if (apiResponse.IsPopulated() && apiResponse.Code != 0)
-            {
-                StatusCode = apiResponse.Code;
-
-                // We could have both errors and a response object. We will just pick 1 (error first)
-                _result = apiResponse.Error.IsPopulated()
-                    ? apiResponse.Error.SerializeJson()
-                    : apiResponse.Body?.SerializeJson();
-            }
-
             if (StatusCode == 0)
                 return;
 
@@ -80,7 +67,7 @@ namespace Sphyrnidae.Common.Logging.Information
 
             SetResponse();
             var hideKeys = config.HideKeys();
-            HighProperties.Add(ResultKey, Response.AsString(hideKeys));
+            MedProperties.Add(ResultKey, Response.AsString(hideKeys));
         }
 
         private void SetResponse() => Response ??= _result.ToNameValueCollection();

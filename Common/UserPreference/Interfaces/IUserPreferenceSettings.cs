@@ -6,7 +6,7 @@ namespace Sphyrnidae.Common.UserPreference.Interfaces
     /// <summary>
     /// User Preferences
     /// </summary>
-    public interface IUserPreferenceSettings : ILookupSettings<SphyrnidaeUserPreference>
+    public interface IUserPreferenceSettings : ILookupSettings<UserPreferenceSetting>
     {
         /// <summary>
         /// Creates a new user preference

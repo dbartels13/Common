@@ -8,5 +8,6 @@ namespace Sphyrnidae.Common.Application
         public string Description => "No Description Available";
         public string ContactName => "Developer";
         public string ContactEmail => "foo@foo.com";
+        public string Environment => "localhost";
     }
 }

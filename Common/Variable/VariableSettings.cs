@@ -4,7 +4,7 @@ using Sphyrnidae.Common.Variable.Interfaces;
 
 namespace Sphyrnidae.Common.Variable
 {
-    public abstract class VariableSettings : BaseLookupSetting<SphyrnidaeVariable>, IVariableSettings
+    public abstract class VariableSettings : BaseLookupSetting<VariableSetting>, IVariableSettings
     {
         public override string Key { get; } = "VariableSettings";
 

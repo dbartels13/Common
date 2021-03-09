@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
-	<Title>SphyrnidaeTech Common Code</Title>
+    <PackageId>Sphyrnidae.Common</PackageId>
+    <Title>SphyrnidaeTech Common Code</Title>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>Sphyrnidae.Common</AssemblyName>
     <RootNamespace>Sphyrnidae.Common</RootNamespace>
-    <Version>2.0.0</Version>
+    <Version>2.0.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Doug Bartels</Authors>
     <Company>SphyrnidaeTech</Company>
@@ -13,7 +13,7 @@
     <Description>Sphyrnidae Common/Shared Code</Description>
     <Copyright>©2021 SphyrnidaeTech</Copyright>
     <PackageTags>Sphyrnidae SphyrnidaeTech Common Shared</PackageTags>
-    <PackageReleaseNotes>Initial Creation against .net Core</PackageReleaseNotes>
+    <PackageReleaseNotes>Some minor updates and lots of documentation</PackageReleaseNotes>
     <IsPackable>true</IsPackable>
     <LangVersion>8</LangVersion>
     <OutputType>Library</OutputType>
@@ -26,11 +26,11 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.78" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.11" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.11" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="3.1.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.12" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="3.1.12" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" Version="3.1.12" />
     <PackageReference Include="MySql.Data" Version="8.0.23" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.0.7" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 

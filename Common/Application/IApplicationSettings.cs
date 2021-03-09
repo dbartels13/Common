@@ -25,5 +25,11 @@
         /// </summary>
         /// <remarks>This should be a valid email address, but no validation is done here (done in swagger)</remarks>
         string ContactEmail { get; }
+
+        /// <summary>
+        /// The name of the current environment
+        /// </summary>
+        /// <remarks>You should pull this from IWebHostEnvironment.EnvironmentName</remarks>
+        string Environment { get; }
     }
 }

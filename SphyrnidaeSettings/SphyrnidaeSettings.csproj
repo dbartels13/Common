@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <PackageId>Sphyrnidae.Settings</PackageId>
+    <Title>SphyrnidaeTech Settings</Title>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Sphyrnidae.Settings</AssemblyName>
+    <RootNamespace>Sphyrnidae.Settings</RootNamespace>
+    <Version>1.0.0</Version>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Doug Bartels</Authors>
+    <Company>SphyrnidaeTech</Company>
+    <Product>SphyrnidaeTech</Product>
+    <Description>Settings/overrides specific for development in SphyrnidaeTech</Description>
+    <Copyright>©2021 SphyrnidaeTech</Copyright>
+    <PackageTags>Sphyrnidae SphyrnidaeTech Common Settings</PackageTags>
+    <PackageReleaseNotes>Initial release - removed these from the 'common' library</PackageReleaseNotes>
+    <IsPackable>true</IsPackable>
+    <LangVersion>8</LangVersion>
+    <OutputType>Library</OutputType>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseFile>SphyrnidaeTechLicense.txt</PackageLicenseFile>
+    <PackageProjectUrl>https://dbartels13.github.io/Common/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/dbartels13/Common</RepositoryUrl>
+    <RepositoryType>GitHub</RepositoryType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="SphyrnidaeTechLicense.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
+
+</Project>

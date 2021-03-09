@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics;
 using Sphyrnidae.Common.Application;
+using Sphyrnidae.Common.Extensions;
 using Sphyrnidae.Common.Logging.Interfaces;
 
 namespace Sphyrnidae.Common.Logging.Information
@@ -23,7 +24,11 @@ namespace Sphyrnidae.Common.Logging.Information
         public virtual void Initialize(string attributeName, Dictionary<string, string> parameters)
         {
             InitializeResult(TraceEventType.Verbose, attributeName);
-            MedProperties = parameters ?? MedProperties;
+            if (parameters.IsPopulated())
+            {
+                foreach (var (key, val) in parameters)
+                    MedProperties.Add(key, val);
+            }
         }
     }
 }

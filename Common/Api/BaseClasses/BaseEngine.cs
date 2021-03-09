@@ -1,5 +1,5 @@
-﻿using Sphyrnidae.Common.Authentication;
-using Sphyrnidae.Common.Authentication.Interfaces;
+﻿using Sphyrnidae.Common.Authentication.Helper;
+using Sphyrnidae.Common.Authentication.Identity;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Api.BaseClasses
@@ -9,7 +9,7 @@ namespace Sphyrnidae.Common.Api.BaseClasses
     /// </summary>
     public abstract class BaseEngine
     {
-        protected SphyrnidaeIdentity Identity { get; }
-        protected BaseEngine(IIdentityWrapper identity) => Identity = identity.Current;
+        protected BaseIdentity Identity { get; }
+        protected BaseEngine(IIdentityHelper identity) => Identity = identity.Current;
     }
 }

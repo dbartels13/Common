@@ -2,13 +2,13 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Sphyrnidae.Common.Api.Attributes;
+using Sphyrnidae.Common.Api.Responses;
 using Sphyrnidae.Common.Environment;
 using Sphyrnidae.Common.Extensions;
 using Sphyrnidae.Common.HttpData;
 using Sphyrnidae.Common.Logging.Interfaces;
 using Sphyrnidae.Common.RequestData;
 using Sphyrnidae.Common.Serialize;
-using Sphyrnidae.Common.SphyrnidaeApiResponse;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Api.Middleware
@@ -28,7 +28,8 @@ namespace Sphyrnidae.Common.Api.Middleware
             IRequestData request,
             ILoggerConfiguration config,
             IEnvironmentSettings env,
-            ILogger logger)
+            ILogger logger,
+            IApiResponse apiResponse)
         {
             // No logging in this one
             /*
@@ -45,7 +46,7 @@ namespace Sphyrnidae.Common.Api.Middleware
             if (requireHttps && !context.Request.IsHttps)
             {
                 await logger.Log(TraceEventType.Warning, "Non-Https request received", "HTTPS");
-                await context.Response.WriteResponseAsync(ApiResponse.HttpsRequired(), SerializationSettings.Default);
+                await context.Response.WriteResponseAsync(ApiResponse.HttpsRequired().ConvertToOther(apiResponse), SerializationSettings.Default);
                 return;
             }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Sphyrnidae.Common.Application;
 using Sphyrnidae.Common.EmailUtilities;
 using Sphyrnidae.Common.EmailUtilities.Interfaces;
 using Sphyrnidae.Common.EmailUtilities.Models;
@@ -232,63 +233,67 @@ namespace Sphyrnidae.Common.Utilities
         /// Ensures that any exceptions thrown by the containing asynchronous method will be e-mailed and code will resume past this block
         /// </summary>
         /// <typeparam name="T">The return type of the function</typeparam>
-        /// <param name="services">The collection of email services</param>
+        /// <param name="email">The implementation of the IEmail interface</param>
+        /// <param name="app">The implementation of the IApplicationSettings interface</param>
         /// <param name="method">The asynchronous method to execute which will have it's exceptions emailed</param>
         /// <param name="defaultValue">
         /// If an exception is thrown, this will be returned instead.
         /// Default = default(t). Eg. null for most classes
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
-        public static async Task<T> EmailException<T>(IEmailServices services, Func<Task<T>> method, T defaultValue = default)
-            => await OnException(method, async ex => await EmailExceptionError(services, ex, defaultValue));
+        public static async Task<T> EmailException<T>(IEmail email, IApplicationSettings app, Func<Task<T>> method, T defaultValue = default)
+            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, defaultValue));
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be e-mailed and code will resume past this block
         /// </summary>
         /// <typeparam name="T">The return type of the function</typeparam>
-        /// <param name="services">The collection of email services</param>
+        /// <param name="email">The implementation of the IEmail interface</param>
+        /// <param name="app">The implementation of the IApplicationSettings interface</param>
         /// <param name="method">The method to execute which will have it's exceptions emailed</param>
         /// <param name="defaultValue">
         /// If an exception is thrown, this will be returned instead.
         /// Default = default(t). Eg. null for most classes
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
-        public static async Task<T> EmailException<T>(IEmailServices services, Func<T> method, T defaultValue = default)
-            => await OnException(method, async ex => await EmailExceptionError(services, ex, defaultValue));
+        public static async Task<T> EmailException<T>(IEmail email, IApplicationSettings app, Func<T> method, T defaultValue = default)
+            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, defaultValue));
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing asynchronous method will be e-mailed and code will resume past this block
         /// </summary>
-        /// <param name="services">The collection of email services</param>
+        /// <param name="email">The implementation of the IEmail interface</param>
+        /// <param name="app">The implementation of the IApplicationSettings interface</param>
         /// <param name="method">The asynchronous method to execute which will have it's exceptions emailed</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
-        public static async Task<bool> EmailException(IEmailServices services, Func<Task> method)
-            => await OnException(method, async ex => await EmailExceptionError(services, ex, false));
+        public static async Task<bool> EmailException(IEmail email, IApplicationSettings app, Func<Task> method)
+            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, false));
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be e-mailed and code will resume past this block
         /// </summary>
-        /// <param name="services">The collection of email services</param>
+        /// <param name="email">The implementation of the IEmail interface</param>
+        /// <param name="app">The implementation of the IApplicationSettings interface</param>
         /// <param name="method">The method to execute which will have it's exceptions emailed</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
-        public static async Task<bool> EmailException(IEmailServices services, Action method)
-            => await OnException(method, async ex => await EmailExceptionError(services, ex, false));
+        public static async Task<bool> EmailException(IEmail email, IApplicationSettings app, Action method)
+            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, false));
 
-        private static async Task<T> EmailExceptionError<T>(IEmailServices services, Exception ex, T returnValue)
+        private static async Task<T> EmailExceptionError<T>(IEmail email, IApplicationSettings app, Exception ex, T returnValue)
         {
-            var subject = IgnoreException(() => EmailSubject(services), "Unknown Hidden Exception");
+            var subject = IgnoreException(() => EmailSubject(app), "Unknown Hidden Exception");
             var exceptionMessage = IgnoreException(ex.GetFullMessage, "Can't get full exception message");
             var message = IgnoreException(() => EmailContent(ex, exceptionMessage), exceptionMessage);
 
-            await IgnoreException(async () => await Email.SendAsync(services, EmailType.HiddenException, subject, message));
+            await IgnoreException(async () => await Email.SendAsync(email, EmailType.HiddenException, subject, message));
             return returnValue;
         }
 
-        private static string EmailSubject(IEmailServices services)
+        private static string EmailSubject(IApplicationSettings app)
         {
             var machine = System.Environment.MachineName;
-            var envName = services.WebHost.EnvironmentName;
-            return $"{machine} ({envName}): {services.App.Name}; Hidden Exception Occurred";
+            var envName = app.Environment;
+            return $"{machine} ({envName}): {app.Name}; Hidden Exception Occurred";
         }
 
         private static string EmailContent(Exception ex, string exceptionMessage)
@@ -318,9 +323,9 @@ namespace Sphyrnidae.Common.Utilities
         public static async Task<T> LogException<T>(ILogger logger, Func<Task<T>> method, T defaultValue = default)
             => await OnException(
                 method,
-                ex =>
+                async ex =>
                 {
-                    logger.HiddenException(ex);
+                    await logger.HiddenException(ex);
                     return defaultValue;
                 });
 
@@ -336,12 +341,12 @@ namespace Sphyrnidae.Common.Utilities
         /// Default = default(t). Eg. null for most classes
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
-        public static T LogException<T>(ILogger logger, Func<T> method, T defaultValue = default)
-            => OnException(
+        public static async Task<T> LogException<T>(ILogger logger, Func<T> method, T defaultValue = default)
+            => await OnException(
                 method,
-                ex =>
+                async ex =>
                 {
-                    logger.HiddenException(ex);
+                    await logger.HiddenException(ex);
                     return defaultValue;
                 });
 
@@ -355,9 +360,9 @@ namespace Sphyrnidae.Common.Utilities
         public static async Task<bool> LogException(ILogger logger, Func<Task> method)
             => await OnException(
                 method,
-                ex =>
+                async ex =>
                 {
-                    logger.HiddenException(ex);
+                    await logger.HiddenException(ex);
                     return false;
                 });
 
@@ -368,12 +373,12 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="logger">The implementation of the ILogger interface</param>
         /// <param name="method">The method to execute which will have it's exceptions ignored</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
-        public static bool LogException(ILogger logger, Action method)
-            => OnException(
+        public static async Task<bool> LogException(ILogger logger, Action method)
+            => await OnException(
                 method,
-                ex =>
+                async ex =>
                 {
-                    logger.HiddenException(ex);
+                    await logger.HiddenException(ex);
                     return false;
                 });
         #endregion

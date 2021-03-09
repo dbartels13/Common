@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -88,7 +88,86 @@ $(document).ready(function(){initNavTree('_setup_md.html',''); initResizable(); 
 <div class="title">API Setup </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_C__Users_dougb_Desktop_Sphyrnidae_New_Common_Common_Setup"></a>How to setup the project </p>
+<div class="textblock"><p><a class="anchor" id="md_C__Users_dougb_Desktop_Sphyrnidae_New_Common_Common_Setup"></a> To install and successfully use this nuget package, please do the following:</p>
+<ol>
+<li>
+Create a .net core 3.1 application (no other versions currently supported) </li>
+<li>
+Install the nuget package <a href="https://www.nuget.org/packages/Sphyrnidae.Common" target="blank">Sphyrnidae.Common</a> - eg. Install-Package <a class="el" href="namespace_sphyrnidae_1_1_common.html">Sphyrnidae.Common</a> </li>
+<li>
+Create a folder in your project called "Settings" (or "Implementations" or "Overrides" or whatever makes sense) </li>
+<li>
+Project-specific implementations (to be placed inside this folder): <ol>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html">IApplicationSettings</a>: see <a class="el" href="_application_md.html">Application</a> for more information. Call this class &lt;project&gt;ApplicationSettings </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_interfaces_1_1_i_feature_toggle_settings.html">IFeatureToggleSettings</a>: see <a class="el" href="_feature_toggle_md.html">Feature Toggle</a> for more information </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_user_preference_1_1_interfaces_1_1_i_user_preference_settings.html">IUserPreferenceSettings</a>: see User Preferences for more information </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_variable_1_1_interfaces_1_1_i_variable_settings.html">IVariableSettings</a>: see Variables for more information </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_configuration.html">ILoggerConfiguration</a>: see <a class="el" href="_logging_md.html#LoggingConfigurationsMd">Logging Configurations</a> for more information </li>
+</ol>
+</li>
+<li>
+Update the program.cs class to include environmental variables: CreateHostBuilder() =&gt; Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =&gt; { webBuilder.UseStartup&lt;Startup&gt;(); }).ConfigureAppConfiguration((hostingContext, config) =&gt; { config.AddEnvironmentVariables(); }); </li>
+<li>
+Update your startup.cs class to: <ol>
+<li>
+Inject IConfiguration into the constructor (save this reference off) - will call this "Config" </li>
+<li>
+Instantiate and save off a new instance of <a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_models_1_1_service_configuration.html">ServiceConfiguration</a> - will call this "ServiceConfig" </li>
+<li>
+Register your project-specific implementations in ConfigureServices(): <ol>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html">IApplicationSettings</a> </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_feature_toggle_1_1_interfaces_1_1_i_feature_toggle_settings.html">IFeatureToggleSettings</a> </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_user_preference_1_1_interfaces_1_1_i_user_preference_settings.html">IUserPreferenceSettings</a> </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_variable_1_1_interfaces_1_1_i_variable_settings.html">IVariableSettings</a> </li>
+<li>
+<a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_configuration.html">ILoggerConfiguration</a> </li>
+</ol>
+</li>
+<li>
+Last thing in ConfigureServices() should be the call to services.AddCommonServices() - note that it takes the <a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_models_1_1_service_configuration.html">ServiceConfiguration</a>, as well as 3 other concrete instances: <ol>
+<li>
+var app = new &lt;project&gt;ApplicationSettings() </li>
+<li>
+var env = new <a class="el" href="class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings.html">EnvironmentalSettings</a>(Config) </li>
+<li>
+var http = new <a class="el" href="class_sphyrnidae_1_1_common_1_1_http_client_1_1_http_client_settings.html">HttpClientSettings</a>(null, env) </li>
+</ol>
+</li>
+<li>
+In Configure(), replace the entire configuration/pipeline with a single call to: app.UseServices(ServiceConfig, sp); <ol>
+<li>
+app: injected IApplicationBuilder </li>
+<li>
+ServiceConfig: The saved off <a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_models_1_1_service_configuration.html">ServiceConfiguration</a> </li>
+<li>
+sp: injected IServiceProvider </li>
+</ol>
+</li>
+</ol>
+</li>
+<li>
+In launchSettings.json, ensure the "launchUrl" is configured to be "swagger" </li>
+<li>
+Configure Project Settings: <ol>
+<li>
+Build =&gt; Suppress Warnings: 1701;1702;1591 </li>
+<li>
+Build =&gt; Treat warnings as errors =&gt; Specific warnings: ;NU1605 </li>
+<li>
+Build =&gt; Output =&gt; ENable XML documentations file: obj\Debug\netcoreapp3.1&amp;lt;IApplication.Name&gt; Api.xml </li>
+</ol>
+</li>
+</ol>
+<p>That's the basic setup. As you develop API's, be sure to thoroughly comment them with XML comments. As you look to use other pieces of functionality in this package, there may be additional configurations you'll need to make. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

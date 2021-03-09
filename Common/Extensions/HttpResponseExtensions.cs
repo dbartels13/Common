@@ -4,8 +4,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Sphyrnidae.Common.Api.Responses;
 using Sphyrnidae.Common.Serialize;
-using Sphyrnidae.Common.SphyrnidaeApiResponse;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Extensions
@@ -55,11 +55,12 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="obj">The object to write out</param>
         /// <param name="json">Json serialization settings</param>
         /// <returns></returns>
-        public static async Task WriteResponseAsync(this HttpResponse response, ApiResponseObject obj, JsonSerializerSettings json)
+        public static async Task WriteResponseAsync(this HttpResponse response, IApiResponse obj, JsonSerializerSettings json)
         {
-            response.StatusCode = StatusCodes.Status200OK;
             response.ContentType = MediaTypeNames.Application.Json;
-            await response.WriteAsync(obj.SerializeJson(json));
+            var body = obj.ToResponseBody();
+            response.StatusCode = obj.Code; // Do this after in case ToResponse() altered the Code
+            await response.WriteAsync(body.SerializeJson(json));
         }
     }
 }

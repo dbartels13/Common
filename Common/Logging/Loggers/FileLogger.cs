@@ -18,6 +18,8 @@ namespace Sphyrnidae.Common.Logging.Loggers
     public class FileLogger : BaseLogger
     {
         public override string Name => "File";
+        public override bool IncludeIdentity => true;
+        public override bool IncludeStatic => true;
         public override bool IncludeHigh => true;
         public override bool IncludeMed => true;
         public override bool IncludeLow => false;
@@ -40,7 +42,6 @@ namespace Sphyrnidae.Common.Logging.Loggers
                 info.OrderStr,
                 info.SessionStr(),
                 info.UserStr,
-                info.CustomerStr,
                 info.MessageStr.ShortenWithEllipses(maxLength),
                 info.CategoryStr.ShortenWithEllipses(maxLength)
             };

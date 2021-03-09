@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Sphyrnidae.Common.Alerts;
+using Sphyrnidae.Common.Application;
 using Sphyrnidae.Common.EmailUtilities;
 using Sphyrnidae.Common.EmailUtilities.Interfaces;
 using Sphyrnidae.Common.EmailUtilities.Models;
@@ -30,10 +31,11 @@ namespace Sphyrnidae.Common.Logging
         protected ILoggerConfiguration Config { get; }
         protected ILoggers Loggers { get; }
         protected IServiceProvider Provider { get; }
-        protected IEmailServices EmailServices { get; }
         protected IAlert Alert { get; }
         protected LongRunningInformation LongRunningInfo { get; }
         protected HttpResponseInformation HttpResponseInfo { get; }
+        protected IApplicationSettings App { get; }
+        protected IEmail EmailImpl { get; }
         #endregion
 
         #region Constructor
@@ -45,24 +47,33 @@ namespace Sphyrnidae.Common.Logging
             ILoggerConfiguration config,
             ILoggers loggers,
             IServiceProvider provider,
-            IEmailServices emailServices,
             IAlert alert,
             LongRunningInformation longRunningInfo,
-            HttpResponseInformation httpResponseInfo)
+            HttpResponseInformation httpResponseInfo,
+            IApplicationSettings app,
+            IEmail email
+            )
         {
             Config = config;
             Loggers = loggers;
             Provider = provider;
-            EmailServices = emailServices;
             Alert = alert;
             LongRunningInfo = longRunningInfo;
             HttpResponseInfo = httpResponseInfo;
+            App = app;
+            EmailImpl = email;
         }
         #endregion
 
         #region Main Calls
         #region Generic
-        public virtual async Task Entry(BaseLogInformation info, Action errorAction = null)
+        public virtual async Task Generic(BaseLogInformation info, Action errorAction = null)
+        {
+            if (!EnabledPreCheck(info))
+                return;
+            await DoLog(info, errorAction);
+        }
+        public virtual async Task Entry(TimerBaseInformation info, Action errorAction = null)
         {
             if (!EnabledPreCheck(info))
                 return;
@@ -110,90 +121,69 @@ namespace Sphyrnidae.Common.Logging
         #endregion
 
         #region Custom
-        public virtual async Task Custom(TraceEventType severity, string type, string message, object o = null)
+        public virtual async Task Custom1<T>(T obj, string message = "")
         {
-            var info = ServiceLocator.Get<CustomInformation>(Provider);
-            info.SetType(type);
+            var info = ServiceLocator.Get<CustomInformation1<T>>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
-            info.Initialize(severity, type, message, o);
+            info.Initialize(obj, message);
             await DoLog(info);
         }
-        public virtual async Task Custom1(string message, object o = null)
+        public virtual async Task Custom2<T>(T obj, string message = "")
         {
-            var info = ServiceLocator.Get<CustomInformation1>(Provider);
+            var info = ServiceLocator.Get<CustomInformation2<T>>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
-            info.Initialize(message, o);
+            info.Initialize(obj, message);
             await DoLog(info);
         }
-        public virtual async Task Custom2(string message, object o = null)
+        public virtual async Task Custom3<T>(T obj, string message = "")
         {
-            var info = ServiceLocator.Get<CustomInformation2>(Provider);
+            var info = ServiceLocator.Get<CustomInformation3<T>>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
-            info.Initialize(message, o);
-            await DoLog(info);
-        }
-        public virtual async Task Custom3(string message, object o = null)
-        {
-            var info = ServiceLocator.Get<CustomInformation3>(Provider);
-            if (!EnabledPreCheck(info))
-                return;
-
-            info.Initialize(message, o);
+            info.Initialize(obj, message);
             await DoLog(info);
         }
 
-        public virtual async Task<CustomTimerInformation> CustomTimerStart(TraceEventType severity, string type, string name, object o = null)
+        public virtual async Task<CustomTimerInformation1<T1, T2>> CustomTimer1Start<T1, T2>(T1 obj, string message = "")
         {
-            var info = ServiceLocator.Get<CustomTimerInformation>(Provider);
-            info.SetType(type);
+            var info = ServiceLocator.Get<CustomTimerInformation1<T1, T2>>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
-            info.Initialize(severity, name, o);
+            info.Initialize(obj, message);
             await DoLog(info);
             return info;
         }
-        public virtual async Task<CustomTimerInformation1> CustomTimer1Start(string name, object o = null)
+        public virtual async Task<CustomTimerInformation2<T1, T2>> CustomTimer2Start<T1, T2>(T1 obj, string message = "")
         {
-            var info = ServiceLocator.Get<CustomTimerInformation1>(Provider);
+            var info = ServiceLocator.Get<CustomTimerInformation2<T1, T2>>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
-            info.Initialize(name, o);
+            info.Initialize(obj, message);
             await DoLog(info);
             return info;
         }
-        public virtual async Task<CustomTimerInformation2> CustomTimer2Start(string name, object o = null)
+        public virtual async Task<CustomTimerInformation3<T1, T2>> CustomTimer3Start<T1, T2>(T1 obj, string message = "")
         {
-            var info = ServiceLocator.Get<CustomTimerInformation2>(Provider);
+            var info = ServiceLocator.Get<CustomTimerInformation3<T1, T2>>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
-            info.Initialize(name, o);
-            await DoLog(info);
-            return info;
-        }
-        public virtual async Task<CustomTimerInformation3> CustomTimer3Start(string name, object o = null)
-        {
-            var info = ServiceLocator.Get<CustomTimerInformation3>(Provider);
-            if (!EnabledPreCheck(info))
-                return null;
-
-            info.Initialize(name, o);
+            info.Initialize(obj, message);
             await DoLog(info);
             return info;
         }
 
-        public virtual async Task CustomTimerEnd(CustomTimerInformation info, object o = null)
+        public virtual async Task CustomTimerEnd<T1, T2>(CustomTimerInformation<T1, T2> info, T2 obj)
         {
-            if (o != null && info != null)
-                info.MiscEnd = o;
+            if (info != null && obj != null)
+                info.ObjEnd = obj;
             await DoUpdate(info);
         }
         #endregion
@@ -255,11 +245,11 @@ namespace Sphyrnidae.Common.Logging
         #endregion
 
         #region Web Services
-        public virtual async Task<WebServiceInformation> WebServiceEntry(HttpHeaders headers, string route, string url, string method, object data = null)
+        public virtual async Task<WebServiceInformation> WebServiceEntry(HttpHeaders headers, string name, string url, string method, object data = null)
         {
             // Always do initialization even if not logging since the Order is needed
             var info = ServiceLocator.Get<WebServiceInformation>(Provider);
-            info.Initialize(route, url, method, data);
+            info.Initialize(name, url, method, data);
 
             // Set the order in the request headers
             var httpSettings = ServiceLocator.Get<IHttpClientSettings>(Provider);
@@ -357,12 +347,12 @@ Stack Trace:
 
         private string GetEmailSubjectPrefix(BaseLogInformation info)
         {
-            return $"{System.Environment.MachineName} ({EmailServices.WebHost.EnvironmentName}): {info.Application}; ";
+            return $"{System.Environment.MachineName} ({App.Environment}): {App.Name}; ";
         }
 
         // ReSharper disable once UnusedMethodReturnValue.Local
         private async Task<bool> SendEmail(string subject, string body)
-            => await Email.SendAsync(EmailServices, EmailType.Exception, subject, body);
+            => await Email.SendAsync(EmailImpl, EmailType.Exception, subject, body);
 
         #region Inserts
 
@@ -372,7 +362,8 @@ Stack Trace:
             t.ContinueWith(
                 task =>
                     SafeTry.EmailException(
-                        EmailServices,
+                        EmailImpl,
+                        App,
                         async () =>
                         {
                             // Set properties on the object (ones that aren't set on the constructor that may take a bit)
@@ -400,7 +391,8 @@ Stack Trace:
                 async () =>
                 {
                     var done = await SafeTry.EmailException(
-                        EmailServices,
+                        EmailImpl,
+                        App,
                         async () => await logger.Insert(info, Config.MaxLength(logger.Name))
                     );
                     if (!done)
@@ -420,7 +412,8 @@ Stack Trace:
 
             t.ContinueWith(
                 task => SafeTry.EmailException(
-                    EmailServices,
+                    EmailImpl,
+                    App,
                     async () =>
                     {
                         // Only proceed when the initial logging call has completed as everything below requires information in the set call to be present/done
@@ -496,7 +489,8 @@ Stack Trace:
             => SafeTry.IgnoreException(async () =>
             {
                 var done = await SafeTry.EmailException(
-                    EmailServices,
+                    EmailImpl,
+                    App,
                     async () => await logger.Update(info, Config.MaxLength(logger.Name))
                 );
                 if (!done)

@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['webservicebase_1259',['WebServiceBase',['../class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html',1,'Sphyrnidae::Common::WebServices']]],
-  ['webserviceinformation_1260',['WebServiceInformation',['../class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_web_service_information.html',1,'Sphyrnidae::Common::Logging::Information']]]
+  ['variableservices_1264',['VariableServices',['../class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_services.html',1,'Sphyrnidae::Common::Variable']]],
+  ['variablesetting_1265',['VariableSetting',['../class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_setting.html',1,'Sphyrnidae::Common::Variable']]],
+  ['variablesettings_1266',['VariableSettings',['../class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings.html',1,'Sphyrnidae::Common::Variable']]],
+  ['variablesettingsdefault_1267',['VariableSettingsDefault',['../class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_default.html',1,'Sphyrnidae::Common::Variable']]],
+  ['variablewebservicemock_1268',['VariableWebServiceMock',['../class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service_mock.html',1,'Sphyrnidae::Common::WebServices']]]
 ];

@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -110,10 +110,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a716bfef6483bced8b4ac7d43144b1a31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html#a716bfef6483bced8b4ac7d43144b1a31">Alert</a> (<a class="el" href="interface_sphyrnidae_1_1_common_1_1_variable_1_1_interfaces_1_1_i_variable_services.html">IVariableServices</a> variable)</td></tr>
 <tr class="separator:a716bfef6483bced8b4ac7d43144b1a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b5f6194cf58013e5262af1cd5888c19"><td class="memItemLeft" align="right" valign="top">virtual long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html#a2b5f6194cf58013e5262af1cd5888c19">MaxMilliseconds</a> (string name)</td></tr>
-<tr class="memdesc:a2b5f6194cf58013e5262af1cd5888c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">How to determine how long something is considered to be "long running"  <a href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html#a2b5f6194cf58013e5262af1cd5888c19">More...</a><br /></td></tr>
+<tr class="memdesc:a2b5f6194cf58013e5262af1cd5888c19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Looks up the variable by "name" and determines how long is considered long running (variable value)  <a href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html#a2b5f6194cf58013e5262af1cd5888c19">More...</a><br /></td></tr>
 <tr class="separator:a2b5f6194cf58013e5262af1cd5888c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62a065ab5d942a86c3bfdf9a5ee4b7d4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html#a62a065ab5d942a86c3bfdf9a5ee4b7d4">HttpResponseAlert</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_models_1_1_http_response_info.html">HttpResponseInfo</a> responseInfo)</td></tr>
-<tr class="memdesc:a62a065ab5d942a86c3bfdf9a5ee4b7d4"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_application.html">Application</a> specific request on if this should cause an alert  <a href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html#a62a065ab5d942a86c3bfdf9a5ee4b7d4">More...</a><br /></td></tr>
+<tr class="memdesc:a62a065ab5d942a86c3bfdf9a5ee4b7d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Always responds with 'false' (Will be up to each application/developer to override to customize this)  <a href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html#a62a065ab5d942a86c3bfdf9a5ee4b7d4">More...</a><br /></td></tr>
 <tr class="separator:a62a065ab5d942a86c3bfdf9a5ee4b7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
@@ -167,14 +167,14 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_application.html">Application</a> specific request on if this should cause an alert </p>
+<p>Always responds with 'false' (Will be up to each application/developer to override to customize this) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">responseInfo</td><td>The collected information about the Http Response</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>True if this should cause an alert</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>false</dd></dl>
 
 <p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html#a4c6609d05e8c4f434601c1daa6c519cb">Sphyrnidae.Common.Alerts.IAlert</a>.</p>
 
@@ -204,14 +204,14 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>How to determine how long something is considered to be "long running" </p>
+<p>Looks up the variable by "name" and determines how long is considered long running (variable value) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the item being looked up</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The number of milliseconds something is considered to be long running</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>If variable found, the value of that variable. Otherwise, 0</dd></dl>
 
 <p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html#ad03a0937b3b24666c0bfb7624e70b6c5">Sphyrnidae.Common.Alerts.IAlert</a>.</p>
 

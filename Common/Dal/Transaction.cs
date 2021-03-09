@@ -17,20 +17,20 @@ namespace Sphyrnidae.Common.Dal
     /// </summary>
     public class Transaction<TC> where TC : DbConnection, new()
     {
-        #region Asynchronous Transaction <Func>
+        #region Distributed (Multiple) Database Transaction <Func>
         /// <summary>
-        /// Wrapper for multiple Asynchronous Sql calls within a transaction
+        /// Wrapper for multiple Sql calls across multiple databases within a transaction
         /// </summary>
         /// <remarks>This will use individual connections using a distributed transactions (performance hit)</remarks>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
         /// <param name="logger">The logger for the transaction sequence</param>
         /// <param name="method">The actual SQL calls</param>
         /// <returns>The result from the SQL calls (method) - or possibly default(T) if there was an exception</returns>
-        public static async Task<T> RunAsync<T>(ILogger logger, Func<Task<TransactionResponse<T>>> method)
-            => await RunAsync(logger, method, ExceptionRethrow);
+        public static async Task<T> Distributed<T>(ILogger logger, Func<Task<TransactionResponse<T>>> method)
+            => await Distributed(logger, method, ExceptionRethrow);
 
         /// <summary>
-        /// Wrapper for multiple Asynchronous Sql calls within a transaction
+        /// Wrapper for multiple Sql calls across multiple databases within a transaction
         /// </summary>
         /// <remarks>This will use individual connections using a distributed transactions (performance hit)</remarks>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
@@ -38,11 +38,11 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="method">The actual SQL calls</param>
         /// <param name="defaultValue">Default = Default(T). If an exception is thrown during "method", and it is not rethrowing the exception, this will instead be returned</param>
         /// <returns>The result from the SQL calls (method) - or possibly default(T) if there was an exception</returns>
-        public static async Task<T> RunAsync<T>(ILogger logger, Func<Task<TransactionResponse<T>>> method, T defaultValue)
-            => await RunAsync(logger, method, ExceptionDefaultVal, defaultValue);
+        public static async Task<T> Distributed<T>(ILogger logger, Func<Task<TransactionResponse<T>>> method, T defaultValue)
+            => await Distributed(logger, method, ExceptionDefaultVal, defaultValue);
 
         /// <summary>
-        /// Wrapper for multiple Asynchronous Sql calls within a transaction
+        /// Wrapper for multiple Sql calls across multiple databases within a transaction
         /// </summary>
         /// <remarks>This will use individual connections using a distributed transactions (performance hit)</remarks>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
@@ -51,12 +51,12 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="exceptionMethod">Default = ExceptionRethrow. If an exception is thrown during "method", how will it be handled (besides being rolled back)</param>
         /// <param name="defaultValue">Default = Default(T). If an exception is thrown during "method", and it is not rethrowing the exception, this will instead be returned</param>
         /// <returns>The result from the SQL calls (method) - or possibly default(T) if there was an exception</returns>
-        public static async Task<T> RunAsync<T>(ILogger logger, Func<Task<TransactionResponse<T>>> method,
+        public static async Task<T> Distributed<T>(ILogger logger, Func<Task<TransactionResponse<T>>> method,
             Func<Exception, T, T> exceptionMethod, T defaultValue = default)
         {
             DatabaseInformation info = null;
             if (logger != null)
-                info = await logger.DatabaseEntry("Database Transaction", "Asynchronous Transaction");
+                info = await logger.DatabaseEntry("Database Transaction", "Func Distributed Transaction");
 
             using var scope = new TransactionScope();
             var result = await SafeTry.OnException(
@@ -73,13 +73,11 @@ namespace Sphyrnidae.Common.Dal
                 await logger.DatabaseExit(info);
             return result;
         }
-
         #endregion
 
-        #region Synchronous Transaction <Func>
-
+        #region Single Database Transaction <Func>
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
         /// <param name="logger">The logger for the transaction sequence</param>
@@ -91,7 +89,7 @@ namespace Sphyrnidae.Common.Dal
             => await Run(logger, cnnStr, method, IsolationLevel.ReadCommitted, ExceptionRethrow);
 
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
         /// <param name="logger">The logger for the transaction sequence</param>
@@ -104,7 +102,7 @@ namespace Sphyrnidae.Common.Dal
             => await Run(logger, cnnStr, method, IsolationLevel.ReadCommitted, ExceptionDefaultVal, defaultValue);
 
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
         /// <param name="logger">The logger for the transaction sequence</param>
@@ -117,7 +115,7 @@ namespace Sphyrnidae.Common.Dal
             => await Run(logger, cnnStr, method, isolation, ExceptionRethrow);
 
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
         /// <param name="logger">The logger for the transaction sequence</param>
@@ -131,7 +129,7 @@ namespace Sphyrnidae.Common.Dal
             => await Run(logger, cnnStr, method, isolation, ExceptionDefaultVal, defaultValue);
 
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
         /// <param name="logger">The logger for the transaction sequence</param>
@@ -146,7 +144,7 @@ namespace Sphyrnidae.Common.Dal
             => await Run(logger, cnnStr, method, IsolationLevel.ReadCommitted, exceptionMethod, defaultValue);
 
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <typeparam name="T">Return type of the complete transaction</typeparam>
         /// <param name="logger">The logger for the transaction sequence</param>
@@ -162,9 +160,9 @@ namespace Sphyrnidae.Common.Dal
         {
             DatabaseInformation info = null;
             if (logger != null)
-                info = await logger.DatabaseEntry(cnnStr, "Synchronous Transaction");
+                info = await logger.DatabaseEntry(cnnStr, "Func Transaction");
 
-            await using var cnn = new TC { ConnectionString = cnnStr };
+            await using var cnn = new TC { ConnectionString = $"{cnnStr};MultipleActiveResultSets=True" };
             if (cnn.State != ConnectionState.Open)
                 cnn.Open();
             await using var transaction = await cnn.BeginTransactionAsync(isolation);
@@ -191,22 +189,21 @@ namespace Sphyrnidae.Common.Dal
         }
         #endregion
 
-        #region Asynchronous Transaction <action>
-
+        #region Distributed (Multiple) Database Transaction <action>
         /// <summary>
-        /// Wrapper for multiple Asynchronous Sql calls within a transaction
+        /// Wrapper for multiple Sql calls across multiple databases within a transaction
         /// </summary>
         /// <remarks>This will use individual connections using a distributed transactions (performance hit)</remarks>
         /// <param name="logger">The logger for the transaction sequence</param>
         /// <param name="method">The actual SQL calls</param>
         /// <param name="exceptionMethod">Default = ExceptionRethrow. If an exception is thrown during "method", how will it be handled (besides being rolled back)</param>
         /// <returns>True if the transaction was committed, false if rolled back</returns>
-        public static async Task<bool> RunAsync(ILogger logger, Func<Task<TransactionResponse>> method,
+        public static async Task<bool> Distributed(ILogger logger, Func<Task<TransactionResponse>> method,
             Func<Exception, bool> exceptionMethod = null)
         {
             DatabaseInformation info = null;
             if (logger != null)
-                info = await logger.DatabaseEntry("Database Transaction", "Asynchronous Transaction");
+                info = await logger.DatabaseEntry("Database Transaction", "Action Distributed Transaction");
 
             using var scope = new TransactionScope();
             var success = await SafeTry.OnException(
@@ -223,13 +220,11 @@ namespace Sphyrnidae.Common.Dal
                 await logger.DatabaseExit(info);
             return success;
         }
-
         #endregion
 
-        #region Synchronous Transaction <action>
-
+        #region Single Database Transaction <action>
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <param name="logger">The logger for the transaction sequence</param>
         /// <param name="cnnStr">The connection string to use for all calls within the transaction</param>
@@ -241,7 +236,7 @@ namespace Sphyrnidae.Common.Dal
             => await Run(logger, cnnStr, method, IsolationLevel.ReadCommitted, exceptionMethod ?? ExceptionRethrow);
 
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <param name="logger">The logger for the transaction sequence</param>
         /// <param name="cnnStr">The connection string to use for all calls within the transaction</param>
@@ -253,7 +248,7 @@ namespace Sphyrnidae.Common.Dal
             => await Run(logger, cnnStr, method, isolation, ExceptionRethrow);
 
         /// <summary>
-        /// Wrapper for multiple Sql calls within a transaction
+        /// Wrapper for multiple Sql calls (Single database) within a transaction
         /// </summary>
         /// <param name="logger">The logger for the transaction sequence</param>
         /// <param name="cnnStr">The connection string to use for all calls within the transaction</param>
@@ -267,9 +262,9 @@ namespace Sphyrnidae.Common.Dal
         {
             DatabaseInformation info = null;
             if (logger != null)
-                info = await logger.DatabaseEntry(cnnStr, "Synchronous Transaction");
+                info = await logger.DatabaseEntry(cnnStr, "Action Transaction");
 
-            await using var cnn = new TC { ConnectionString = cnnStr };
+            await using var cnn = new TC { ConnectionString = $"{cnnStr};MultipleActiveResultSets=True" };
             if (cnn.State != ConnectionState.Open)
                 await cnn.OpenAsync();
             await using var transaction = await cnn.BeginTransactionAsync(isolation);
@@ -294,7 +289,6 @@ namespace Sphyrnidae.Common.Dal
                 await logger.DatabaseExit(info);
             return success;
         }
-
         #endregion
 
         #region Exception Methods

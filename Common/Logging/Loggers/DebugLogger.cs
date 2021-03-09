@@ -10,6 +10,8 @@ namespace Sphyrnidae.Common.Logging.Loggers
     public class DebugLogger : BaseLogger
     {
         public override string Name => "Debug";
+        public override bool IncludeIdentity => false;
+        public override bool IncludeStatic => false;
         public override bool IncludeHigh => true;
         public override bool IncludeMed => false;
         public override bool IncludeLow => false;

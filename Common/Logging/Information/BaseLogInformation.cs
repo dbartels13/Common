@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using Sphyrnidae.Common.Application;
-using Sphyrnidae.Common.Authentication;
+using Sphyrnidae.Common.Authentication.Identity;
 using Sphyrnidae.Common.Extensions;
 using Sphyrnidae.Common.Logging.Interfaces;
 using Sphyrnidae.Common.Utilities;
@@ -44,7 +44,7 @@ namespace Sphyrnidae.Common.Logging.Information
         /// Set from identity (or from http)
         /// </summary>
         public int? UserId { get; private set; }
-        public int? CustomerId { get; private set; }
+        public Dictionary<string, string> IdentityProperties { get; private set; }
 
         /// <summary>
         /// Set by the caller/inherited classes
@@ -61,10 +61,11 @@ namespace Sphyrnidae.Common.Logging.Information
         /// <summary>
         /// Set by inherited classes
         /// </summary>
-        public Dictionary<string, string> HighProperties { get; protected set; }
-        public Dictionary<string, string> MedProperties { get; protected set; }
-        public Dictionary<string, string> LowProperties { get; protected set; }
-        public Dictionary<string, string> NotResetProperties { get; protected set; }
+        public Dictionary<string, string> StaticProperties { get; private set; }
+        public Dictionary<string, string> HighProperties { get; private set; }
+        public Dictionary<string, string> MedProperties { get; private set; }
+        public Dictionary<string, string> LowProperties { get; private set; }
+        public Dictionary<string, string> NotResetProperties { get; private set; }
         #endregion
 
         #region Helper Methods
@@ -78,8 +79,7 @@ namespace Sphyrnidae.Common.Logging.Information
         public string SessionStr(string prefix = "") => string.IsNullOrWhiteSpace(Session) ? "" : $"{prefix}Session: {Session}";
 
         public string UserStr => $"User: {UserId ?? 0}";
-        public string CustomerStr => $"Customer: {CustomerId ?? 0}";
-
+        public string GetIdentity(CaseInsensitiveBinaryList<string> hideKeys) => IdentityProperties.ToNameValueCollection().AsString(hideKeys);
 
         public string MessageStr => string.IsNullOrWhiteSpace(Message) ? "" : $"Message: {Message}";
         public string CategoryStr => $"Category: {(string.IsNullOrWhiteSpace(Category) ? "Unknown" : Category)}";
@@ -87,9 +87,10 @@ namespace Sphyrnidae.Common.Logging.Information
         public string MachineStr => $"Server: {(string.IsNullOrWhiteSpace(Machine) ? "Unknown" : Machine)}";
         public string ApplicationStr => $"Application: {(string.IsNullOrWhiteSpace(Application) ? "Unknown" : Application)}";
 
-        public string GetOtherHigh(CaseInsensitiveBinaryList<string> hideKeys) => HighProperties.ToNameValueCollection().AsString(hideKeys);
-        public string GetOtherMed(CaseInsensitiveBinaryList<string> hideKeys) => MedProperties.ToNameValueCollection().AsString(hideKeys);
-        public string GetOtherLow(CaseInsensitiveBinaryList<string> hideKeys) => LowProperties.ToNameValueCollection().AsString(hideKeys);
+        public string GetStatic(CaseInsensitiveBinaryList<string> hideKeys) => StaticProperties.ToNameValueCollection().AsString(hideKeys);
+        public string GetHigh(CaseInsensitiveBinaryList<string> hideKeys) => HighProperties.ToNameValueCollection().AsString(hideKeys);
+        public string GetMed(CaseInsensitiveBinaryList<string> hideKeys) => MedProperties.ToNameValueCollection().AsString(hideKeys);
+        public string GetLow(CaseInsensitiveBinaryList<string> hideKeys) => LowProperties.ToNameValueCollection().AsString(hideKeys);
         #endregion
 
         #region Constructor/Initialization
@@ -99,6 +100,8 @@ namespace Sphyrnidae.Common.Logging.Information
             AppSettings = appSettings;
             Identifier = Guid.NewGuid();
             Timestamp = DateTime.UtcNow;
+            IdentityProperties = new Dictionary<string, string>();
+            StaticProperties = new Dictionary<string, string>();
             HighProperties = new Dictionary<string, string>();
             MedProperties = new Dictionary<string, string>();
             LowProperties = new Dictionary<string, string>();
@@ -112,7 +115,8 @@ namespace Sphyrnidae.Common.Logging.Information
             SetSession();
             var identity = Info.Identity;
             SetUser(identity);
-            SetCustomer(identity);
+            SetIdentityProperties(identity);
+            SetStaticProperties();
         }
         protected void InitializeBase(TraceEventType severity, BaseLogInformation prevInfo)
         {
@@ -120,7 +124,8 @@ namespace Sphyrnidae.Common.Logging.Information
             RequestId = prevInfo.RequestId;
             Session = prevInfo.Session;
             UserId = prevInfo.UserId;
-            CustomerId = prevInfo.CustomerId;
+            IdentityProperties = prevInfo.IdentityProperties;
+            StaticProperties = prevInfo.StaticProperties;
             Machine = prevInfo.Machine; // SetProperties not needed??
             Application = prevInfo.Application;
         }
@@ -157,15 +162,20 @@ namespace Sphyrnidae.Common.Logging.Information
                 Session = SafeTry.IgnoreException(() => Info.SessionId);
         }
 
-        private void SetUser(SphyrnidaeIdentity identity)
+        private void SetUser(BaseIdentity identity)
         {
             if (!UserId.HasValue)
                 UserId = SafeTry.IgnoreException(() => identity?.Id);
         }
-        private void SetCustomer(SphyrnidaeIdentity identity)
+        private void SetIdentityProperties(BaseIdentity identity)
         {
-            if (!CustomerId.HasValue)
-                CustomerId = SafeTry.IgnoreException(() => identity?.CustomerId);
+            if ((IdentityProperties?.Count ?? 0) == 0)
+                IdentityProperties = identity?.GetCustomLoggingProperties() ?? new Dictionary<string, string>();
+        }
+        private void SetStaticProperties()
+        {
+            if ((StaticProperties?.Count ?? 0) == 0)
+                StaticProperties = Info.StaticProperties ?? new Dictionary<string, string>();
         }
         #endregion
 

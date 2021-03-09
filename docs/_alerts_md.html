@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -88,8 +88,53 @@ $(document).ready(function(){initNavTree('_alerts_md.html',''); initResizable();
 <div class="title">Alerts </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_C__Users_dougb_Desktop_Sphyrnidae_New_Common_Common_Alerts_Alerts"></a>Alerts go here </p>
-</div></div><!-- contents -->
+<div class="textblock"><p><a class="anchor" id="md_C__Users_dougb_Desktop_Sphyrnidae_New_Common_Common_Alerts_Alerts"></a> </p>
+<h1><a class="anchor" id="AlertsOverviewMd"></a>
+Overview</h1>
+<p>An alert is a piece of functionality that is built into the default <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a>: <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html">Logger</a>. If you are not using the default logger, than it will be up to you to generate alerts in the system.</p>
+<p>An alert will be triggered whenever:</p><ol type="1">
+<li>Something takes too long - MaxMilliseconds()</li>
+<li>An invalid HTTP response comes back (either from your own API, or from a WebService call) - HttpResponseAlert()</li>
+</ol>
+<p>Using the default <a href="@Sphyrnidae.Common.Logging.Logger">Logger</a>, you should be sure to properly configure how Alerts will be handled in the system (eg. Do you log them, send e-mails, etc?). This is done via the <a href="@Sphyrnidae.Common.Logging.LoggerConfiguration">LoggerConfiguration</a></p>
+<p>Interface: <a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html">IAlert</a></p>
+<p>Mock: <a class="el" href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert_none.html">AlertNone</a></p>
+<p>Default Implementation: <a class="el" href="class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html">Alert</a></p>
+<h1><a class="anchor" id="AlertsWhereUsedMd"></a>
+Where Used</h1>
+<ol type="1">
+<li><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a></li>
+</ol>
+<h1><a class="anchor" id="AlertsExampleMd"></a>
+Examples</h1>
+<pre>
+using <a class="el" href="namespace_sphyrnidae_1_1_common_1_1_logging_1_1_models.html">Sphyrnidae.Common.Logging.Models</a>;
+namespace MyApplication.Alerts
+{
+    public class MyAlert : IAlert
+    {
+        public virtual long MaxMilliseconds(string name)
+            =&gt; name switch
+            {
+                "API-MyApplicationName-GET-/widgets" =&gt; 100,
+                "Database-MyApplicationName-RepoConnectionName-StoredProcedure" =&gt; 200,
+                "WebService-MyApplicationName-POST-NameOfWebServiceEndpoint" =&gt; 300,
+                _ =&gt; 0,
+            };
+
+        public virtual bool HttpResponseAlert(HttpResponseInfo responseInfo)
+        {
+            if (!responseInfo.HttpCode.HasValue || responseInfo.HttpCode.Value &gt;= 200 || responseInfo.HttpCode.Value &lt; 300)
+                return false;
+            if (responseInfo.Type == "API" &amp;&amp; responseInfo.Route == "/widgets" &amp;&amp; responseInfo.HttpMethod == "GET")
+                return true;
+            if (responseInfo.Type == "Web Service" &amp;&amp; responseInfo.Route == "NameOfWebServiceEndpoint" &amp;&amp; responseInfo.HttpMethod == "POST")
+                return true;
+            return false;
+        }
+    }
+}
+</pre> </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->
 <!-- start footer part -->

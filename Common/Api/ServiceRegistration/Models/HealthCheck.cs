@@ -30,8 +30,9 @@ namespace Sphyrnidae.Common.Api.ServiceRegistration.Models
         {
             Status = r.Status.ToString();
             Version = SafeTry.IgnoreException(() =>
-                SettingsEnvironmental.Get(env, "version") ??
-                Assembly.GetEntryAssembly()?.GetName().Version.ToString(), "Unknown");
+                SettingsEnvironmental.Get(env, "version") ?? Assembly.GetEntryAssembly()?.GetName().Version.ToString(),
+                "Unknown"
+            );
             Errors = r.Entries.Select(e => new { key = e.Key, value = e.Value.Status.ToString() });
         }
     }

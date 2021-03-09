@@ -15,7 +15,6 @@ var namespace_sphyrnidae_1_1_common_1_1_email_utilities =
     [ "Email", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email" ],
     [ "EmailBase", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base" ],
     [ "EmailMock", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock" ],
-    [ "EmailServices", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_services.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_services" ],
     [ "SphyrnidaeDotNetEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_dot_net_email_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_dot_net_email_settings" ],
     [ "SphyrnidaeEmailDefaultSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_default_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_default_settings" ],
     [ "SphyrnidaeEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_settings" ]

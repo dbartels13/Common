@@ -1,11 +1,11 @@
 var namespace_sphyrnidae_1_1_common_1_1_encryption_implementations =
 [
+    [ "Algorithms", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_algorithms.html", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_algorithms" ],
     [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces.html", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces" ],
     [ "KeyManager", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager.html", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_key_manager" ],
     [ "Models", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models.html", "namespace_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_models" ],
     [ "Encryption", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption" ],
     [ "EncryptionDispatcher", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_dispatcher.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_dispatcher" ],
-    [ "EncryptionImplementation", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_implementation.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_implementation" ],
     [ "EncryptionNone", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_none.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_none" ],
     [ "EncryptionNormal", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_normal.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_normal" ],
     [ "EncryptionOld", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_old.html", "class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_old" ],

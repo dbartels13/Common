@@ -6,7 +6,7 @@ namespace Sphyrnidae.Common.Variable
     /// <summary>
     /// Wrapper/Helper class around retrieving variables
     /// </summary>
-    public class SettingsVariable : SettingsLookup<IVariableSettings, SphyrnidaeVariable>
+    public class SettingsVariable : SettingsLookup<IVariableSettings, VariableSetting>
     {
     }
 }

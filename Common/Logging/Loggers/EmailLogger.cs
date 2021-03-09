@@ -14,16 +14,18 @@ namespace Sphyrnidae.Common.Logging.Loggers
     public class EmailLogger : BaseLogger
     {
         public override string Name => "Email";
+        public override bool IncludeIdentity => true;
+        public override bool IncludeStatic => true;
         public override bool IncludeHigh => true;
         public override bool IncludeMed => true;
         public override bool IncludeLow => false;
 
         private IWebHostEnvironment Host { get; }
-        private IEmailServices Services { get; }
-        public EmailLogger(IWebHostEnvironment host, IEmailServices services)
+        private IEmail EmailImpl { get; }
+        public EmailLogger(IWebHostEnvironment host, IEmail email)
         {
             Host = host;
-            Services = services;
+            EmailImpl = email;
         }
 
         protected override async Task DoInsert(LogInsert model, BaseLogInformation info, int maxLength)
@@ -44,13 +46,12 @@ Environment: {Host.EnvironmentName}
 {info.OrderStr}
 {info.SessionStr()}
 {info.UserStr}
-{info.CustomerStr}
 {info.MessageStr.ShortenWithEllipses(maxLength)}
 {info.CategoryStr.ShortenWithEllipses(maxLength)}
 {string.Join("\r\n", model.Other)}
 ";
 
-            await Email.SendAsync(Services, EmailType.Logging, subject, body);
+            await Email.SendAsync(EmailImpl, EmailType.Logging, subject, body);
         }
 
         protected override async Task DoUpdate(LogUpdate model, TimerBaseInformation info, int maxLength)
@@ -63,7 +64,7 @@ Environment: {Host.EnvironmentName}
 {string.Join("\r\n", model.Other)}
 ";
 
-            await Email.SendAsync(Services, EmailType.Logging, subject, body);
+            await Email.SendAsync(EmailImpl, EmailType.Logging, subject, body);
         }
     }
 }

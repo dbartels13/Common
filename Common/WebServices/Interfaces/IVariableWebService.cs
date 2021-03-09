@@ -6,6 +6,6 @@ namespace Sphyrnidae.Common.WebServices.Interfaces
 {
     public interface IVariableWebService
     {
-        Task<IEnumerable<SphyrnidaeVariable>> GetAll(string application, int customerId);
+        Task<IEnumerable<VariableSetting>> GetAll(string application, string customerId);
     }
 }

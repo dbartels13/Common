@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Sphyrnidae.Common.Authentication.Interfaces;
+using Sphyrnidae.Common.Authentication.Helper;
 using Sphyrnidae.Common.EmailUtilities.Interfaces;
 // ReSharper disable UnusedMember.Global
 // ReSharper disable StringLiteralTypo
@@ -15,12 +15,12 @@ namespace Sphyrnidae.Common.EmailUtilities
     /// </remarks>
     public abstract class EmailBase
     {
-        protected IEmailServices Services { get; }
-        protected IIdentityWrapper Identity { get; }
-        protected EmailBase(IEmailServices services, IIdentityWrapper identity)
+        protected IIdentityHelper Identity { get; }
+        protected IEmail EmailImpl { get; }
+        protected EmailBase(IIdentityHelper identity, IEmail email)
         {
-            Services = services;
             Identity = identity;
+            EmailImpl = email;
         }
 
         /// <summary>
@@ -70,10 +70,10 @@ namespace Sphyrnidae.Common.EmailUtilities
             var body = Shell.Replace("\n", ""); // Remove everything that would convert to <br>
 
             // There is no proper email overload, so call this directly
-            return await EmailUtilities.Email.SendAsync(Services, Email, Subject, body);
+            return await EmailUtilities.Email.SendAsync(EmailImpl, Email, Subject, body);
         }
 
-        private string Shell => $@"
+        protected virtual string Shell => $@"
 <html>
 <head>
     <title>{Subject}</title>

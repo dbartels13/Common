@@ -6,10 +6,7 @@ namespace Sphyrnidae.Common.Environment
     public class EnvironmentalSettings : IEnvironmentSettings
     {
         protected IConfiguration Config { get; }
-        public EnvironmentalSettings(IConfiguration config)
-        {
-            Config = config;
-        }
+        public EnvironmentalSettings(IConfiguration config) => Config = config;
 
         /// <inheritdoc />
         public virtual string Get(string name) => Config[name];

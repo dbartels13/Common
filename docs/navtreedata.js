@@ -26,11 +26,120 @@ var NAVTREE =
 [
   [ "Sphyrnidae Common Library", "index.html", [
     [ "Overview", "index.html", [
-      [ "Helper Methods", "index.html#HelperMethods", null ],
-      [ "Interface Methods", "index.html#InterfaceMethods", null ],
-      [ "Base Classes", "index.html#BaseClasses", null ]
+      [ "Quick Start", "index.html#OverviewQuickStartMd", null ],
+      [ "Authentication", "index.html#OverviewAuthenticationMd", null ],
+      [ "Helper Methods", "index.html#OverviewHelperMethodsMd", null ],
+      [ "Interface-Based Functionality", "index.html#OverviewInterfaceMethodsMd", null ],
+      [ "Base Classes", "index.html#OverviewBaseClassesMd", null ]
     ] ],
-    [ "Alerts", "_alerts_md.html", null ],
+    [ "Alerts", "_alerts_md.html", [
+      [ "Overview", "_alerts_md.html#AlertsOverviewMd", null ],
+      [ "Where Used", "_alerts_md.html#AlertsWhereUsedMd", null ],
+      [ "Examples", "_alerts_md.html#AlertsExampleMd", null ]
+    ] ],
+    [ "API Methods", "_api_md.html", [
+      [ "Pipeline / Middleware", "_api_md.html#ApiPipelineMd", null ],
+      [ "Service Registration", "_api_md.html#ApiServiceRegistrationMd", null ],
+      [ "Attributes", "_api_md.html#ApiAttributesMd", null ],
+      [ "Authentication", "_api_md.html#AuthenticationMiddlewareMd", null ],
+      [ "Responses", "_api_md.html#ApiResponseMd", null ],
+      [ "Error Handling", "_api_md.html#ApiExceptionsMd", null ],
+      [ "Logging", "_api_md.html#ApiLoggingMd", null ]
+    ] ],
+    [ "Application Settings", "_application_md.html", [
+      [ "Overview", "_application_md.html#ApplicationOverviewMd", null ],
+      [ "Where Used", "_application_md.html#ApplicationWhereUsedMd", null ],
+      [ "Examples", "_application_md.html#ApplicationExampleMd", null ]
+    ] ],
+    [ "Authentication", "_authentication_md.html", [
+      [ "Overview", "_authentication_md.html#AuthenticationOverviewMd", null ],
+      [ "Setup", "_authentication_md.html#AuthenticationSetupMd", null ],
+      [ "JWT Creation", "_authentication_md.html#AuthenticationJwtCreateMd", null ],
+      [ "JWT Consumption", "_authentication_md.html#AuthenticationJwtConsumeMd", null ],
+      [ "Authentication and Authorization", "_authentication_md.html#AuthenticationAuthorizationMd", null ],
+      [ "Refresh Token", "_authentication_md.html#AuthenticationRefreshTokenMd", null ],
+      [ "Examples", "_authentication_md.html#AuthenticationExampleMd", null ]
+    ] ],
+    [ "Binary Lists", "_binary_list_md.html", [
+      [ "Binary List", "_binary_list_md.html#BinaryClassMd", null ],
+      [ "Case Insensitive Binary List", "_binary_list_md.html#CaseInsensitiveBinaryListMd", null ],
+      [ "Where Used", "_binary_list_md.html#BinaryListWhereUsedMd", null ],
+      [ "Examples", "_binary_list_md.html#BinaryListExampleMd", null ]
+    ] ],
+    [ "Caching", "_cache_md.html", [
+      [ "Overview", "_cache_md.html#CacheOverviewMd", null ],
+      [ "Cache Invalidation", "_cache_md.html#CacheInvalidationMd", null ],
+      [ "Where Used", "_cache_md.html#CacheWhereUsedMd", null ],
+      [ "Examples", "_cache_md.html#CacheExampleMd", null ]
+    ] ],
+    [ "Data Access Layer", "_dal_md.html", [
+      [ "Overview", "_dal_md.html#DalOverviewMd", null ],
+      [ "Methods", "_dal_md.html#DalMethodsMd", null ],
+      [ "Implementing a Repo Class", "_dal_md.html#DalImplementationMd", null ],
+      [ "Transactions", "_dal_md.html#DalTransactionsMd", null ],
+      [ "Where Used", "_dal_md.html#DalWhereUsedMd", null ],
+      [ "Examples", "_dal_md.html#DalExampleMd", null ]
+    ] ],
+    [ "Dynamic SQL", "_dynamic_sql_md.html", [
+      [ "Overview", "_dynamic_sql_md.html#DynamicSqlOverviewMd", null ],
+      [ "Generating Dynamic Sql Object", "_dynamic_sql_md.html#DynamicSqlBuilderMd", null ],
+      [ "Executing Sql", "_dynamic_sql_md.html#DynamicSqlExecuteMd", null ],
+      [ "Where Used", "_dynamic_sql_md.html#DynamicSqlWhereUsedMd", null ],
+      [ "Examples", "_dynamic_sql_md.html#DynamicSqlExampleMd", null ]
+    ] ],
+    [ "Email", "_email_md.html", [
+      [ "Overview", "_email_md.html#EmailOverviewMd", null ],
+      [ "Implementation Customizations", "_email_md.html#EmailImplementationMd", null ],
+      [ "Custom Implementation", "_email_md.html#EmailCustomMd", null ],
+      [ "Where Used", "_email_md.html#EmailWhereUsedMd", null ],
+      [ "Examples", "_email_md.html#EmailExampleMd", null ]
+    ] ],
+    [ "Encryption", "_encryption_md.html", [
+      [ "Overview", "_encryption_md.html#EncryptionOverviewMd", null ],
+      [ "Dispatcher", "_encryption_md.html#EncryptionDispatcherMd", null ],
+      [ "Key Lookup", "_encryption_md.html#EncryptionKeysMd", null ],
+      [ "Encryption Algorithms", "_encryption_md.html#EncryptionAlgorithmsMd", null ],
+      [ "Where Used", "_encryption_md.html#EncryptionWhereUsedMd", null ],
+      [ "Examples", "_encryption_md.html#EncryptionExampleMd", null ]
+    ] ],
+    [ "Environmental Settings", "_environment_md.html", [
+      [ "Overview", "_environment_md.html#EnvironmentOverviewMd", null ],
+      [ "Where Used", "_environment_md.html#EnvironmentWhereUsedMd", null ],
+      [ "Examples", "_environment_md.html#EnvironmentExampleMd", null ]
+    ] ],
+    [ "Feature Toggles", "_feature_toggle_md.html", [
+      [ "Overview", "_feature_toggle_md.html#FeatureToggleOverviewMd", null ],
+      [ "Where Used", "_feature_toggle_md.html#FeatureToggleWhereUsedMd", null ],
+      [ "Examples", "_feature_toggle_md.html#FeatureToggleExampleMd", null ]
+    ] ],
+    [ "Http Client", "_http_client_md.html", [
+      [ "Overview", "_http_client_md.html#HttpClientOverviewMd", null ],
+      [ "Examples", "_http_client_md.html#HttpClientExampleMd", null ]
+    ] ],
+    [ "Http Data", "_http_data_md.html", [
+      [ "Overview", "_http_data_md.html#HttpDataOverviewMd", null ],
+      [ "Where Used", "_http_data_md.html#HttpDataWhereUsedMd", null ],
+      [ "Examples", "_http_data_md.html#HttpDataExampleMd", null ]
+    ] ],
+    [ "Logging", "_logging_md.html", [
+      [ "Overview", "_logging_md.html#LoggingOverviewMd", null ],
+      [ "Statements", "_logging_md.html#LoggingStatementsMd", null ],
+      [ "Precheck", "_logging_md.html#LoggingPrecheckMd", null ],
+      [ "Information", "_logging_md.html#LoggingInformationMd", null ],
+      [ "Asynchronous", "_logging_md.html#LoggingAsyncMd", null ],
+      [ "Additional Properties", "_logging_md.html#LoggingAdditionalPropertiesMd", null ],
+      [ "Loggers", "_logging_md.html#LoggingLoggersMd", null ],
+      [ "Update Information", "_logging_md.html#LoggingUpdateInfoMd", null ],
+      [ "Previous Completion", "_logging_md.html#LoggingPreviousCompletionMd", null ],
+      [ "Exception Handling", "_logging_md.html#LoggingExceptionsMd", null ],
+      [ "Configurations", "_logging_md.html#LoggingConfigurationsMd", null ],
+      [ "Customizations", "_logging_md.html#LoggingCustomizationsMd", null ]
+    ] ],
+    [ "Settings", "_settings_md.html", [
+      [ "Overview", "_settings_md.html#SettingsOverviewMd", null ],
+      [ "Where Used", "_settings_md.html#SettingsWhereUsedMd", null ],
+      [ "Examples", "_settings_md.html#SettingsExampleMd", null ]
+    ] ],
     [ "API Setup", "_setup_md.html", null ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ],
@@ -56,14 +165,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_alerts_md.html",
-"class_sphyrnidae_1_1_common_1_1_cache_1_1_models_1_1_cache_options.html#a7f8b194e316b4aa5158d2ad672a27a19",
-"class_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_encryption_normal.html#ad2a6503079acfa4698374c4bc2ef26e3",
-"class_sphyrnidae_1_1_common_1_1_extensions_1_1_string_extensions.html#a81fe16a4299ac98e71635ca19a1f6bb4",
-"class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_result_base_information.html#aebaeec03b52a44d98db2cf85ebf59295",
-"class_sphyrnidae_1_1_common_1_1_lookup_1_1_settings_lookup.html",
-"class_sphyrnidae_1_1_common_1_1_user_preference_1_1_sphyrnidae_user_preference_settings.html#ad37c7a64219c7114a54f24afcee22a73",
-"interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_sql_server_repo.html#a5ecd4b8b3570969620f3bc62eacdca38",
-"namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_enums.html#a5ddb3287d19fa442ef30117aa5cf8d48ab270372be5b4433b4736daaf25e1c74e"
+"class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_models_1_1_service_configuration.html#a42b096e1dec3314ae669ed00425fce34",
+"class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_builder.html#a9c425c6ba39754c3ef15b7b4df436790",
+"class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings.html#a964e7cfa96c6d213cb8d223468bd2f34",
+"class_sphyrnidae_1_1_common_1_1_logging_1_1_configuration_1_1_mock_logger_configuration.html#a91e6f0f54753f7d6773a7cc1f181463e",
+"class_sphyrnidae_1_1_common_1_1_logging_1_1_logger_information.html#af12e5558e3b213b646213815e57163b1",
+"class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r.html#ae63ed047fe0e19611d2c988a9b0b2272",
+"interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html#a107a551f5f15821d39c01b2820f63a4e",
+"namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_enums.html#a1c583b7ca71c1e58b90625391a96cdf5a3a2d5fe857d8f9541136a124c2edec6c"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

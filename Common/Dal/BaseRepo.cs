@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 using Dapper;
+using Sphyrnidae.Common.Api.Responses;
 using Sphyrnidae.Common.Dal.Models;
 using Sphyrnidae.Common.Logging.Interfaces;
-using Sphyrnidae.Common.SphyrnidaeApiResponse;
 using Sphyrnidae.Common.Utilities;
 // ReSharper disable UnusedMember.Global
 
@@ -46,7 +46,7 @@ namespace Sphyrnidae.Common.Dal
         /// If an exception was trapped, this will provide access to the trapped exception for proper responses
         /// </summary>
         /// <returns>The response object based on the exception</returns>
-        public virtual ApiResponseObject HandleException() => null;
+        public virtual ApiResponseStandard HandleException() => null;
 
         /// <summary>
         /// If you need to execute something before the main call

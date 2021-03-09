@@ -12,6 +12,8 @@ namespace Sphyrnidae.Common.Logging.Loggers
     public class Log4NetLogger : BaseLogger
     {
         public override string Name => "Log4Net";
+        public override bool IncludeIdentity => true;
+        public override bool IncludeStatic => true;
         public override bool IncludeHigh => true;
         public override bool IncludeMed => true;
         public override bool IncludeLow => true;

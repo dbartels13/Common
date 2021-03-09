@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -108,11 +108,13 @@ Inheritance diagram for Sphyrnidae.Common.Logging.Logger:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae4e657701025b4e5829d7ebd175386b5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ae4e657701025b4e5829d7ebd175386b5">Logger</a> (<a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_configuration.html">ILoggerConfiguration</a> config, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_loggers.html">ILoggers</a> loggers, IServiceProvider provider, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_services.html">IEmailServices</a> emailServices, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html">IAlert</a> alert, <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_long_running_information.html">LongRunningInformation</a> longRunningInfo, <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_http_response_information.html">HttpResponseInformation</a> httpResponseInfo)</td></tr>
-<tr class="memdesc:ae4e657701025b4e5829d7ebd175386b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Note that I'm only injecting ILoggerConfiguration, and all the others are being looked up via Service Locator. This seemed like an easier pattern to use instead of having a large interface listing into constructor  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ae4e657701025b4e5829d7ebd175386b5">More...</a><br /></td></tr>
-<tr class="separator:ae4e657701025b4e5829d7ebd175386b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a522348428bd7888146d03d0ad354b9ef"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a522348428bd7888146d03d0ad354b9ef">Entry</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html">BaseLogInformation</a> info, Action errorAction=null)</td></tr>
-<tr class="separator:a522348428bd7888146d03d0ad354b9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdfc1780e71520212da222104aa12782"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#afdfc1780e71520212da222104aa12782">Logger</a> (<a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_configuration.html">ILoggerConfiguration</a> config, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_loggers.html">ILoggers</a> loggers, IServiceProvider provider, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html">IAlert</a> alert, <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_long_running_information.html">LongRunningInformation</a> longRunningInfo, <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_http_response_information.html">HttpResponseInformation</a> httpResponseInfo, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html">IApplicationSettings</a> app, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a> email)</td></tr>
+<tr class="memdesc:afdfc1780e71520212da222104aa12782"><td class="mdescLeft">&#160;</td><td class="mdescRight">Note that I'm only injecting ILoggerConfiguration, and all the others are being looked up via Service Locator. This seemed like an easier pattern to use instead of having a large interface listing into constructor  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#afdfc1780e71520212da222104aa12782">More...</a><br /></td></tr>
+<tr class="separator:afdfc1780e71520212da222104aa12782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f51a7926bf9587b2f35ab88f4b8fb97"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a2f51a7926bf9587b2f35ab88f4b8fb97">Generic</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html">BaseLogInformation</a> info, Action errorAction=null)</td></tr>
+<tr class="separator:a2f51a7926bf9587b2f35ab88f4b8fb97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8d016dd8210a1dd000a8442e48f4f32"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ae8d016dd8210a1dd000a8442e48f4f32">Entry</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_timer_base_information.html">TimerBaseInformation</a> info, Action errorAction=null)</td></tr>
+<tr class="separator:ae8d016dd8210a1dd000a8442e48f4f32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab082f9e76391e2bd5b80c0bfdaf2cb5b"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ab082f9e76391e2bd5b80c0bfdaf2cb5b">Exit</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_timer_base_information.html">TimerBaseInformation</a> info, Action errorAction=null)</td></tr>
 <tr class="separator:ab082f9e76391e2bd5b80c0bfdaf2cb5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6c3c873fe9ef874dec2711a8ff5b1c4"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#aa6c3c873fe9ef874dec2711a8ff5b1c4">Log</a> (TraceEventType severity, string message, string category=&quot;&quot;)</td></tr>
@@ -127,33 +129,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2c0b00b0bf55f99f7e393380370869f8"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a2c0b00b0bf55f99f7e393380370869f8">TimerEnd</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_timer_information.html">TimerInformation</a> info)</td></tr>
 <tr class="memdesc:a2c0b00b0bf55f99f7e393380370869f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the actual time an operation lasted (in milliseconds)  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a2c0b00b0bf55f99f7e393380370869f8">More...</a><br /></td></tr>
 <tr class="separator:a2c0b00b0bf55f99f7e393380370869f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d41a0dad6cf047a9b89bb0e7f19e5b7"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a1d41a0dad6cf047a9b89bb0e7f19e5b7">Custom</a> (TraceEventType severity, string type, string message, object o=null)</td></tr>
-<tr class="memdesc:a1d41a0dad6cf047a9b89bb0e7f19e5b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic message with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a1d41a0dad6cf047a9b89bb0e7f19e5b7">More...</a><br /></td></tr>
-<tr class="separator:a1d41a0dad6cf047a9b89bb0e7f19e5b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07aac50473b246f77cacd11ad1bb2251"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a07aac50473b246f77cacd11ad1bb2251">Custom1</a> (string message, object o=null)</td></tr>
-<tr class="memdesc:a07aac50473b246f77cacd11ad1bb2251"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic message with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a07aac50473b246f77cacd11ad1bb2251">More...</a><br /></td></tr>
-<tr class="separator:a07aac50473b246f77cacd11ad1bb2251"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03aa76c2a17ba461b2fb752546026325"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a03aa76c2a17ba461b2fb752546026325">Custom2</a> (string message, object o=null)</td></tr>
-<tr class="memdesc:a03aa76c2a17ba461b2fb752546026325"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic message with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a03aa76c2a17ba461b2fb752546026325">More...</a><br /></td></tr>
-<tr class="separator:a03aa76c2a17ba461b2fb752546026325"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad548043af188802c25cd98eef7bdc5ad"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ad548043af188802c25cd98eef7bdc5ad">Custom3</a> (string message, object o=null)</td></tr>
-<tr class="memdesc:ad548043af188802c25cd98eef7bdc5ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic message with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ad548043af188802c25cd98eef7bdc5ad">More...</a><br /></td></tr>
-<tr class="separator:ad548043af188802c25cd98eef7bdc5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a195022e113220bf96af6c31bcd9588d4"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information.html">CustomTimerInformation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a195022e113220bf96af6c31bcd9588d4">CustomTimerStart</a> (TraceEventType severity, string type, string name, object o=null)</td></tr>
-<tr class="memdesc:a195022e113220bf96af6c31bcd9588d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log a custom timer method with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a195022e113220bf96af6c31bcd9588d4">More...</a><br /></td></tr>
-<tr class="separator:a195022e113220bf96af6c31bcd9588d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac42f007dcabe14744a7be30c0b17ddd8"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information1.html">CustomTimerInformation1</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ac42f007dcabe14744a7be30c0b17ddd8">CustomTimer1Start</a> (string name, object o=null)</td></tr>
-<tr class="memdesc:ac42f007dcabe14744a7be30c0b17ddd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log a custom timer method with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ac42f007dcabe14744a7be30c0b17ddd8">More...</a><br /></td></tr>
-<tr class="separator:ac42f007dcabe14744a7be30c0b17ddd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:add4653c3aa3cc0c21d6b6fed84476103"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information2.html">CustomTimerInformation2</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#add4653c3aa3cc0c21d6b6fed84476103">CustomTimer2Start</a> (string name, object o=null)</td></tr>
-<tr class="memdesc:add4653c3aa3cc0c21d6b6fed84476103"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log a custom timer method with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#add4653c3aa3cc0c21d6b6fed84476103">More...</a><br /></td></tr>
-<tr class="separator:add4653c3aa3cc0c21d6b6fed84476103"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10d1187960d3ef1630658e51fbe12dcd"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information3.html">CustomTimerInformation3</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a10d1187960d3ef1630658e51fbe12dcd">CustomTimer3Start</a> (string name, object o=null)</td></tr>
-<tr class="memdesc:a10d1187960d3ef1630658e51fbe12dcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log a custom timer method with the type set to the category so it can be dis/enabled  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a10d1187960d3ef1630658e51fbe12dcd">More...</a><br /></td></tr>
-<tr class="separator:a10d1187960d3ef1630658e51fbe12dcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74c9bb6d4e30725df5842e58413aec88"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a74c9bb6d4e30725df5842e58413aec88">CustomTimerEnd</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information.html">CustomTimerInformation</a> info, object o=null)</td></tr>
-<tr class="memdesc:a74c9bb6d4e30725df5842e58413aec88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the actual time a customer timer took (in milliseconds)  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a74c9bb6d4e30725df5842e58413aec88">More...</a><br /></td></tr>
-<tr class="separator:a74c9bb6d4e30725df5842e58413aec88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4eeeb1bba70ef3b1f46ba4c6cc288239"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a4eeeb1bba70ef3b1f46ba4c6cc288239">Custom1&lt; T &gt;</a> (T obj, string message=&quot;&quot;)</td></tr>
+<tr class="memdesc:a4eeeb1bba70ef3b1f46ba4c6cc288239"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic object  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a4eeeb1bba70ef3b1f46ba4c6cc288239">More...</a><br /></td></tr>
+<tr class="separator:a4eeeb1bba70ef3b1f46ba4c6cc288239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5a72ac37e20f61739f24e0a6bb5063b"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ad5a72ac37e20f61739f24e0a6bb5063b">Custom2&lt; T &gt;</a> (T obj, string message=&quot;&quot;)</td></tr>
+<tr class="memdesc:ad5a72ac37e20f61739f24e0a6bb5063b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic object  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ad5a72ac37e20f61739f24e0a6bb5063b">More...</a><br /></td></tr>
+<tr class="separator:ad5a72ac37e20f61739f24e0a6bb5063b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1104bd5a156d04db1de2e14b3c618c6e"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a1104bd5a156d04db1de2e14b3c618c6e">Custom3&lt; T &gt;</a> (T obj, string message=&quot;&quot;)</td></tr>
+<tr class="memdesc:a1104bd5a156d04db1de2e14b3c618c6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a generic object  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a1104bd5a156d04db1de2e14b3c618c6e">More...</a><br /></td></tr>
+<tr class="separator:a1104bd5a156d04db1de2e14b3c618c6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33fed9d9efc0257485be97d01c7943d5"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information1.html">CustomTimerInformation1</a>&lt; T1, T2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a33fed9d9efc0257485be97d01c7943d5">CustomTimer1Start&lt; T1, T2 &gt;</a> (T1 obj, string message=&quot;&quot;)</td></tr>
+<tr class="memdesc:a33fed9d9efc0257485be97d01c7943d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log a custom timer object  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a33fed9d9efc0257485be97d01c7943d5">More...</a><br /></td></tr>
+<tr class="separator:a33fed9d9efc0257485be97d01c7943d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a890136ff55366ed1ed4901ba16d164cd"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information2.html">CustomTimerInformation2</a>&lt; T1, T2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a890136ff55366ed1ed4901ba16d164cd">CustomTimer2Start&lt; T1, T2 &gt;</a> (T1 obj, string message=&quot;&quot;)</td></tr>
+<tr class="memdesc:a890136ff55366ed1ed4901ba16d164cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log a custom timer object  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a890136ff55366ed1ed4901ba16d164cd">More...</a><br /></td></tr>
+<tr class="separator:a890136ff55366ed1ed4901ba16d164cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5dbb0d7f91b676f7ee260eec844a669"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information3.html">CustomTimerInformation3</a>&lt; T1, T2 &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ae5dbb0d7f91b676f7ee260eec844a669">CustomTimer3Start&lt; T1, T2 &gt;</a> (T1 obj, string message=&quot;&quot;)</td></tr>
+<tr class="memdesc:ae5dbb0d7f91b676f7ee260eec844a669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log a custom timer object  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ae5dbb0d7f91b676f7ee260eec844a669">More...</a><br /></td></tr>
+<tr class="separator:ae5dbb0d7f91b676f7ee260eec844a669"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee867943199b54c2928410d4e18c9067"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#aee867943199b54c2928410d4e18c9067">CustomTimerEnd&lt; T1, T2 &gt;</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information.html">CustomTimerInformation</a>&lt; T1, T2 &gt; info, T2 obj)</td></tr>
+<tr class="memdesc:aee867943199b54c2928410d4e18c9067"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the actual time a custom timer took (in milliseconds)  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#aee867943199b54c2928410d4e18c9067">More...</a><br /></td></tr>
+<tr class="separator:aee867943199b54c2928410d4e18c9067"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a278618ca7c4be886089c1c412fbda801"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_attribute_information.html">AttributeInformation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a278618ca7c4be886089c1c412fbda801">AttributeEntry</a> (string attributeName, Dictionary&lt; string, string &gt; parameters)</td></tr>
 <tr class="memdesc:a278618ca7c4be886089c1c412fbda801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log an Attribute call  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a278618ca7c4be886089c1c412fbda801">More...</a><br /></td></tr>
 <tr class="separator:a278618ca7c4be886089c1c412fbda801"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -175,9 +171,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3605057e6cd6d35ac2b0f2ae0e44618e"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a3605057e6cd6d35ac2b0f2ae0e44618e">DatabaseExit</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_database_information.html">DatabaseInformation</a> info)</td></tr>
 <tr class="memdesc:a3605057e6cd6d35ac2b0f2ae0e44618e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the actual time the database call took (in milliseconds)  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a3605057e6cd6d35ac2b0f2ae0e44618e">More...</a><br /></td></tr>
 <tr class="separator:a3605057e6cd6d35ac2b0f2ae0e44618e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87029704fc16cbf834c5d2889a21a5cd"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_web_service_information.html">WebServiceInformation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a87029704fc16cbf834c5d2889a21a5cd">WebServiceEntry</a> (HttpHeaders headers, string route, string url, string method, object data=null)</td></tr>
-<tr class="memdesc:a87029704fc16cbf834c5d2889a21a5cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log all configurable information about a web service call  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a87029704fc16cbf834c5d2889a21a5cd">More...</a><br /></td></tr>
-<tr class="separator:a87029704fc16cbf834c5d2889a21a5cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c8728919e564205fa8594332906732f"><td class="memItemLeft" align="right" valign="top">virtual async Task&lt; <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_web_service_information.html">WebServiceInformation</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a3c8728919e564205fa8594332906732f">WebServiceEntry</a> (HttpHeaders headers, string name, string url, string method, object data=null)</td></tr>
+<tr class="memdesc:a3c8728919e564205fa8594332906732f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will log all configurable information about a web service call  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a3c8728919e564205fa8594332906732f">More...</a><br /></td></tr>
+<tr class="separator:a3c8728919e564205fa8594332906732f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f3f701946eef95ef91015c4a9359c82"><td class="memItemLeft" align="right" valign="top">virtual async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a9f3f701946eef95ef91015c4a9359c82">WebServiceExit</a> (<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_web_service_information.html">WebServiceInformation</a> info, int statusCode, string result)</td></tr>
 <tr class="memdesc:a9f3f701946eef95ef91015c4a9359c82"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs the actual time the web service call took (in milliseconds), and optionally the result  <a href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a9f3f701946eef95ef91015c4a9359c82">More...</a><br /></td></tr>
 <tr class="separator:a9f3f701946eef95ef91015c4a9359c82"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -218,21 +214,23 @@ Properties</h2></td></tr>
 <tr class="separator:a924899681138fe69ad050e84d8ac0673"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6e4cbb8a87b4d5ae494ea5e6813d637"><td class="memItemLeft" align="right" valign="top">IServiceProvider&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#af6e4cbb8a87b4d5ae494ea5e6813d637">Provider</a><code> [get]</code></td></tr>
 <tr class="separator:af6e4cbb8a87b4d5ae494ea5e6813d637"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1315d9c8b711335e9d16166d96b37b0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_services.html">IEmailServices</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a1315d9c8b711335e9d16166d96b37b0e">EmailServices</a><code> [get]</code></td></tr>
-<tr class="separator:a1315d9c8b711335e9d16166d96b37b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c4d5f30ef81d204f313a490b7c89548"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html">IAlert</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a3c4d5f30ef81d204f313a490b7c89548">Alert</a><code> [get]</code></td></tr>
 <tr class="separator:a3c4d5f30ef81d204f313a490b7c89548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a894e62795b8d3ac86c31bed4ff8821c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_long_running_information.html">LongRunningInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a894e62795b8d3ac86c31bed4ff8821c8">LongRunningInfo</a><code> [get]</code></td></tr>
 <tr class="separator:a894e62795b8d3ac86c31bed4ff8821c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ef6d1f1720aea7b99054835fde79e22"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_http_response_information.html">HttpResponseInformation</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a0ef6d1f1720aea7b99054835fde79e22">HttpResponseInfo</a><code> [get]</code></td></tr>
 <tr class="separator:a0ef6d1f1720aea7b99054835fde79e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6e7b59a3574a13652d74613a1643801"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html">IApplicationSettings</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ae6e7b59a3574a13652d74613a1643801">App</a><code> [get]</code></td></tr>
+<tr class="separator:ae6e7b59a3574a13652d74613a1643801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5ca63deb28f90c2f4a89a172d25c261"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ac5ca63deb28f90c2f4a89a172d25c261">EmailImpl</a><code> [get]</code></td></tr>
+<tr class="separator:ac5ca63deb28f90c2f4a89a172d25c261"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation of logging </p>
 <p>All calls will be handled asynchronously and the actual logging occurs in this class</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ae4e657701025b4e5829d7ebd175386b5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae4e657701025b4e5829d7ebd175386b5">&#9670;&nbsp;</a></span>Logger()</h2>
+<a id="afdfc1780e71520212da222104aa12782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdfc1780e71520212da222104aa12782">&#9670;&nbsp;</a></span>Logger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -258,12 +256,6 @@ Properties</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_services.html">IEmailServices</a>&#160;</td>
-          <td class="paramname"><em>emailServices</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_alerts_1_1_i_alert.html">IAlert</a>&#160;</td>
           <td class="paramname"><em>alert</em>, </td>
         </tr>
@@ -277,7 +269,19 @@ Properties</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_http_response_information.html">HttpResponseInformation</a>&#160;</td>
-          <td class="paramname"><em>httpResponseInfo</em>&#160;</td>
+          <td class="paramname"><em>httpResponseInfo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html">IApplicationSettings</a>&#160;</td>
+          <td class="paramname"><em>app</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a>&#160;</td>
+          <td class="paramname"><em>email</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -512,8 +516,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a1d41a0dad6cf047a9b89bb0e7f19e5b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d41a0dad6cf047a9b89bb0e7f19e5b7">&#9670;&nbsp;</a></span>Custom()</h2>
+<a id="a4eeeb1bba70ef3b1f46ba4c6cc288239"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4eeeb1bba70ef3b1f46ba4c6cc288239">&#9670;&nbsp;</a></span>Custom1&lt; T &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -522,28 +526,16 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Custom </td>
+          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Custom1&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">TraceEventType&#160;</td>
-          <td class="paramname"><em>severity</em>, </td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
+          <td class="paramname"><em>message</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -558,23 +550,22 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logs a generic message with the type set to the category so it can be dis/enabled </p>
+<p>Logs a generic object </p>
+<p>To use this, you should create a class inheriting from CustomInformation1. Fill out all of the required abstract methods (and override any others) You will need to register this service: Eg. services.TryAddTransient&lt;CustomInformation1&lt;Widget&gt;, WidgetInformation&gt;(); When you call this method, the type needs to match... otherwise runtime exception with service locator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">severity</td><td>The severity level of the log request</td></tr>
-    <tr><td class="paramname">type</td><td>The category of the log message which doubles as the type (which can be configured on/off)</td></tr>
-    <tr><td class="paramname">message</td><td>The message to log</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
+    <tr><td class="paramname">obj</td><td>Your object to be logged</td></tr>
+    <tr><td class="paramname">message</td><td>Optional message to be logged (if not supplied in your inherited class)</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a217ac2c82f124be8cc8b96ba5174c14d">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#acc326e9f20d54c5b75e565bd3f22a794">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
-<a id="a07aac50473b246f77cacd11ad1bb2251"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a07aac50473b246f77cacd11ad1bb2251">&#9670;&nbsp;</a></span>Custom1()</h2>
+<a id="ad5a72ac37e20f61739f24e0a6bb5063b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5a72ac37e20f61739f24e0a6bb5063b">&#9670;&nbsp;</a></span>Custom2&lt; T &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -583,16 +574,16 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Custom1 </td>
+          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Custom2&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -607,22 +598,22 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logs a generic message with the type set to the category so it can be dis/enabled </p>
-<p>There are 3 methods to choose from - each one you can specify your own LogInformation file. This file should inherit from CustomInformation1 and override virtual properties. You should register that implementation in your own project against CustomInformation1. To make things cleaner, you should also likely create an extension method instead of directly calling <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a07aac50473b246f77cacd11ad1bb2251" title="Logs a generic message with the type set to the category so it can be dis/enabled">Custom1()</a> </p>
+<p>Logs a generic object </p>
+<p>To use this, you should create a class inheriting from CustomInformation2. Fill out all of the required abstract methods (and override any others) You will need to register this service: Eg. services.TryAddTransient&lt;CustomInformation2&lt;Widget&gt;, WidgetInformation&gt;(); When you call this method, the type needs to match... otherwise runtime exception with service locator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>The message to log</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
+    <tr><td class="paramname">obj</td><td>Your object to be logged</td></tr>
+    <tr><td class="paramname">message</td><td>Optional message to be logged (if not supplied in your inherited class)</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a4b6b9f1eddc976345c553aa1f33b50ba">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a869f3ebbdfb1dccf72103724265183e8">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
-<a id="a03aa76c2a17ba461b2fb752546026325"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03aa76c2a17ba461b2fb752546026325">&#9670;&nbsp;</a></span>Custom2()</h2>
+<a id="a1104bd5a156d04db1de2e14b3c618c6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1104bd5a156d04db1de2e14b3c618c6e">&#9670;&nbsp;</a></span>Custom3&lt; T &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -631,16 +622,16 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Custom2 </td>
+          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Custom3&lt; T &gt; </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
+          <td class="paramtype">T&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -655,22 +646,22 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logs a generic message with the type set to the category so it can be dis/enabled </p>
-<p>There are 3 methods to choose from - each one you can specify your own LogInformation file. This file should inherit from CustomInformation2 and override virtual properties. You should register that implementation in your own project against CustomInformation2. To make things cleaner, you should also likely create an extension method instead of directly calling <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a03aa76c2a17ba461b2fb752546026325" title="Logs a generic message with the type set to the category so it can be dis/enabled">Custom2()</a> </p>
+<p>Logs a generic object </p>
+<p>To use this, you should create a class inheriting from CustomInformation3. Fill out all of the required abstract methods (and override any others) You will need to register this service: Eg. services.TryAddTransient&lt;CustomInformation3&lt;Widget&gt;, WidgetInformation&gt;(); When you call this method, the type needs to match... otherwise runtime exception with service locator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>The message to log</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
+    <tr><td class="paramname">obj</td><td>Your object to be logged</td></tr>
+    <tr><td class="paramname">message</td><td>Optional message to be logged (if not supplied in your inherited class)</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a8d0b75661b7e68181e7666521f5fe25e">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a0ab5131b42e9d0effeb28e41e7d6a75c">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
-<a id="ad548043af188802c25cd98eef7bdc5ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad548043af188802c25cd98eef7bdc5ad">&#9670;&nbsp;</a></span>Custom3()</h2>
+<a id="a33fed9d9efc0257485be97d01c7943d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33fed9d9efc0257485be97d01c7943d5">&#9670;&nbsp;</a></span>CustomTimer1Start&lt; T1, T2 &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -679,16 +670,16 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Custom3 </td>
+          <td class="memname">virtual async Task&lt;<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information1.html">CustomTimerInformation1</a>&lt;T1, T2&gt; &gt; Sphyrnidae.Common.Logging.Logger.CustomTimer1Start&lt; T1, T2 &gt; </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>message</em>, </td>
+          <td class="paramtype">T1&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -703,71 +694,23 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logs a generic message with the type set to the category so it can be dis/enabled </p>
-<p>There are 3 methods to choose from - each one you can specify your own LogInformation file. This file should inherit from CustomInformation3 and override virtual properties. You should register that implementation in your own project against CustomInformation3. To make things cleaner, you should also likely create an extension method instead of directly calling <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ad548043af188802c25cd98eef7bdc5ad" title="Logs a generic message with the type set to the category so it can be dis/enabled">Custom3()</a> </p>
+<p>Will log a custom timer object </p>
+<p>To use this, you should create a class inheriting from CustomTimerInformation1. Fill out all of the required abstract methods (and override any others) You will need to register this service: Eg. services.TryAddTransient&lt;CustomTimerInformation1&lt;Widget, Foo&gt;, WidgetTimerInformation&gt;(); When you call this method, the type needs to match... otherwise runtime exception with service locator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">message</td><td>The message to log</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a59ba472f9466864e6b95e1daabb2bde3">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
-
-</div>
-</div>
-<a id="ac42f007dcabe14744a7be30c0b17ddd8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac42f007dcabe14744a7be30c0b17ddd8">&#9670;&nbsp;</a></span>CustomTimer1Start()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual async Task&lt;<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information1.html">CustomTimerInformation1</a>&gt; Sphyrnidae.Common.Logging.Logger.CustomTimer1Start </td>
-          <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Will log a custom timer method with the type set to the category so it can be dis/enabled </p>
-<p>There are 3 methods to choose from - each one you can specify your own LogInformation file. This file should inherit from CustomTimerInformation1 and override virtual properties. You should register that implementation in your own project against CustomTimerInformation1. To make things cleaner, you should also likely create an extension method instead of directly calling <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ac42f007dcabe14744a7be30c0b17ddd8" title="Will log a custom timer method with the type set to the category so it can be dis/enabled">CustomTimer1Start()</a>/CustomTimerEnd() </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">name</td><td>The name you are giving this timer</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
+    <tr><td class="paramname">obj</td><td>Your object to be logged</td></tr>
+    <tr><td class="paramname">message</td><td>Optional message to be logged (if not supplied in your inherited class)</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The object which keeps the timer (to be passed into TimerEnd)</dd></dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#ab0c3968ee452cdb5d5f1fab93aeb73f1">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a35bc5b99cafd791077783ecaa6bb70a5">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
-<a id="add4653c3aa3cc0c21d6b6fed84476103"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#add4653c3aa3cc0c21d6b6fed84476103">&#9670;&nbsp;</a></span>CustomTimer2Start()</h2>
+<a id="a890136ff55366ed1ed4901ba16d164cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a890136ff55366ed1ed4901ba16d164cd">&#9670;&nbsp;</a></span>CustomTimer2Start&lt; T1, T2 &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -776,16 +719,16 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual async Task&lt;<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information2.html">CustomTimerInformation2</a>&gt; Sphyrnidae.Common.Logging.Logger.CustomTimer2Start </td>
+          <td class="memname">virtual async Task&lt;<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information2.html">CustomTimerInformation2</a>&lt;T1, T2&gt; &gt; Sphyrnidae.Common.Logging.Logger.CustomTimer2Start&lt; T1, T2 &gt; </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
+          <td class="paramtype">T1&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -800,23 +743,23 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Will log a custom timer method with the type set to the category so it can be dis/enabled </p>
-<p>There are 3 methods to choose from - each one you can specify your own LogInformation file. This file should inherit from CustomTimerInformation2 and override virtual properties. You should register that implementation in your own project against CustomTimerInformation2. To make things cleaner, you should also likely create an extension method instead of directly calling <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#add4653c3aa3cc0c21d6b6fed84476103" title="Will log a custom timer method with the type set to the category so it can be dis/enabled">CustomTimer2Start()</a>/CustomTimerEnd() </p>
+<p>Will log a custom timer object </p>
+<p>To use this, you should create a class inheriting from CustomTimerInformation2. Fill out all of the required abstract methods (and override any others) You will need to register this service: Eg. services.TryAddTransient&lt;CustomTimerInformation2&lt;Widget, Foo&gt;, WidgetTimerInformation&gt;(); When you call this method, the type needs to match... otherwise runtime exception with service locator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The name you are giving this timer</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
+    <tr><td class="paramname">obj</td><td>Your object to be logged</td></tr>
+    <tr><td class="paramname">message</td><td>Optional message to be logged (if not supplied in your inherited class)</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The object which keeps the timer (to be passed into TimerEnd)</dd></dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a6191af5f2031a6c8e0848cd67adcae5c">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#afdfa88fec5e792f35aa330758c8d3083">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
-<a id="a10d1187960d3ef1630658e51fbe12dcd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10d1187960d3ef1630658e51fbe12dcd">&#9670;&nbsp;</a></span>CustomTimer3Start()</h2>
+<a id="ae5dbb0d7f91b676f7ee260eec844a669"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5dbb0d7f91b676f7ee260eec844a669">&#9670;&nbsp;</a></span>CustomTimer3Start&lt; T1, T2 &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -825,16 +768,16 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual async Task&lt;<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information3.html">CustomTimerInformation3</a>&gt; Sphyrnidae.Common.Logging.Logger.CustomTimer3Start </td>
+          <td class="memname">virtual async Task&lt;<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information3.html">CustomTimerInformation3</a>&lt;T1, T2&gt; &gt; Sphyrnidae.Common.Logging.Logger.CustomTimer3Start&lt; T1, T2 &gt; </td>
           <td>(</td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
+          <td class="paramtype">T1&#160;</td>
+          <td class="paramname"><em>obj</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em> = <code>&quot;&quot;</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -849,23 +792,23 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Will log a custom timer method with the type set to the category so it can be dis/enabled </p>
-<p>There are 3 methods to choose from - each one you can specify your own LogInformation file. This file should inherit from CustomTimerInformation3 and override virtual properties. You should register that implementation in your own project against CustomTimerInformation3. To make things cleaner, you should also likely create an extension method instead of directly calling <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#a10d1187960d3ef1630658e51fbe12dcd" title="Will log a custom timer method with the type set to the category so it can be dis/enabled">CustomTimer3Start()</a>/CustomTimerEnd() </p>
+<p>Will log a custom timer object </p>
+<p>To use this, you should create a class inheriting from CustomTimerInformation3. Fill out all of the required abstract methods (and override any others) You will need to register this service: Eg. services.TryAddTransient&lt;CustomTimerInformation3&lt;Widget, Foo&gt;, WidgetTimerInformation&gt;(); When you call this method, the type needs to match... otherwise runtime exception with service locator. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">name</td><td>The name you are giving this timer</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
+    <tr><td class="paramname">obj</td><td>Your object to be logged</td></tr>
+    <tr><td class="paramname">message</td><td>Optional message to be logged (if not supplied in your inherited class)</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The object which keeps the timer (to be passed into TimerEnd)</dd></dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a9143d88bc37be7cfa8a171f02de51164">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a2c82ee3fb1608d9bdcad8c0e1696abdf">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
-<a id="a74c9bb6d4e30725df5842e58413aec88"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74c9bb6d4e30725df5842e58413aec88">&#9670;&nbsp;</a></span>CustomTimerEnd()</h2>
+<a id="aee867943199b54c2928410d4e18c9067"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee867943199b54c2928410d4e18c9067">&#9670;&nbsp;</a></span>CustomTimerEnd&lt; T1, T2 &gt;()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -874,16 +817,16 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.CustomTimerEnd </td>
+          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.CustomTimerEnd&lt; T1, T2 &gt; </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information.html">CustomTimerInformation</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information.html">CustomTimerInformation</a>&lt; T1, T2 &gt;&#160;</td>
           <td class="paramname"><em>info</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
+          <td class="paramtype">T2&#160;</td>
+          <td class="paramname"><em>obj</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -898,79 +841,17 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Logs the actual time a customer timer took (in milliseconds) </p>
+<p>Logs the actual time a custom timer took (in milliseconds) </p>
 <p>This should be called after CustomTimerStart</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">info</td><td>The object with the timer which was returned from CustomTimerStart</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
+    <tr><td class="paramname">obj</td><td>Any object to store additional user-supplied information</td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#afc2fd1cd5e1b51af201c42618e8303ac">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
-
-</div>
-</div>
-<a id="a195022e113220bf96af6c31bcd9588d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a195022e113220bf96af6c31bcd9588d4">&#9670;&nbsp;</a></span>CustomTimerStart()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">virtual async Task&lt;<a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_custom_timer_information.html">CustomTimerInformation</a>&gt; Sphyrnidae.Common.Logging.Logger.CustomTimerStart </td>
-          <td>(</td>
-          <td class="paramtype">TraceEventType&#160;</td>
-          <td class="paramname"><em>severity</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">object&#160;</td>
-          <td class="paramname"><em>o</em> = <code>null</code>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Will log a custom timer method with the type set to the category so it can be dis/enabled </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">severity</td><td>The severity level of the log request</td></tr>
-    <tr><td class="paramname">type</td><td>The category of the timer which doubles as the type (which can be configured on/off)</td></tr>
-    <tr><td class="paramname">name</td><td>The name you are giving this timer</td></tr>
-    <tr><td class="paramname">o</td><td>Any object to store additional user-supplied information</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>The object which keeps the timer (to be passed into TimerEnd)</dd></dl>
-
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#af8ca15e5dc08ba7fd4c66fa5cd12ebe6">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#ac2f3cabfef93d8c1db27ea56d1d284c3">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
@@ -1139,8 +1020,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a522348428bd7888146d03d0ad354b9ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a522348428bd7888146d03d0ad354b9ef">&#9670;&nbsp;</a></span>Entry()</h2>
+<a id="ae8d016dd8210a1dd000a8442e48f4f32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8d016dd8210a1dd000a8442e48f4f32">&#9670;&nbsp;</a></span>Entry()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1151,7 +1032,7 @@ Properties</h2></td></tr>
         <tr>
           <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Entry </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html">BaseLogInformation</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_timer_base_information.html">TimerBaseInformation</a>&#160;</td>
           <td class="paramname"><em>info</em>, </td>
         </tr>
         <tr>
@@ -1173,7 +1054,7 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a3fe08284283fd6481aab62adf104bd0e">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a7580cf0de61d42a4ff4833810703f6d2">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
@@ -1317,6 +1198,44 @@ Properties</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a6045348c1b5fcc90445d97e18288e046">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+
+</div>
+</div>
+<a id="a2f51a7926bf9587b2f35ab88f4b8fb97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f51a7926bf9587b2f35ab88f4b8fb97">&#9670;&nbsp;</a></span>Generic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual async Task Sphyrnidae.Common.Logging.Logger.Generic </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html">BaseLogInformation</a>&#160;</td>
+          <td class="paramname"><em>info</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Action&#160;</td>
+          <td class="paramname"><em>errorAction</em> = <code>null</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a2bad6987c3859fc75228722c6a139810">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
@@ -1654,8 +1573,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a87029704fc16cbf834c5d2889a21a5cd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a87029704fc16cbf834c5d2889a21a5cd">&#9670;&nbsp;</a></span>WebServiceEntry()</h2>
+<a id="a3c8728919e564205fa8594332906732f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3c8728919e564205fa8594332906732f">&#9670;&nbsp;</a></span>WebServiceEntry()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1673,7 +1592,7 @@ Properties</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">string&#160;</td>
-          <td class="paramname"><em>route</em>, </td>
+          <td class="paramname"><em>name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -1711,7 +1630,7 @@ Properties</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">headers</td><td>The collection of HTTP headers that will have logger prefix added</td></tr>
-    <tr><td class="paramname">route</td><td>The unique route you are hitting (without dynamic url replacement)</td></tr>
+    <tr><td class="paramname">name</td><td>The unique name of the route you are hitting</td></tr>
     <tr><td class="paramname">url</td><td>The endpoint that is being hit</td></tr>
     <tr><td class="paramname">method</td><td>The HTTP method: GET POST PUT DELETE OTHER </td></tr>
     <tr><td class="paramname">data</td><td>Any additional data being sent in the body of the request</td></tr>
@@ -1720,7 +1639,7 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The object which keeps the web service information (to be passed into WebServiceExit)</dd></dl>
 
-<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#a6954470962a95932348e840a4b52a97a">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
+<p>Implements <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html#ac52501e68d088b7797da60829e1fadc0">Sphyrnidae.Common.Logging.Interfaces.ILogger</a>.</p>
 
 </div>
 </div>
@@ -1850,6 +1769,28 @@ Properties</h2></td></tr>
 
 </div>
 </div>
+<a id="ae6e7b59a3574a13652d74613a1643801"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6e7b59a3574a13652d74613a1643801">&#9670;&nbsp;</a></span>App</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html">IApplicationSettings</a> Sphyrnidae.Common.Logging.Logger.App</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="afd7d76f88f3fba4ac0e5ab0baf71b967"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afd7d76f88f3fba4ac0e5ab0baf71b967">&#9670;&nbsp;</a></span>Config</h2>
 
@@ -1872,8 +1813,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a1315d9c8b711335e9d16166d96b37b0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1315d9c8b711335e9d16166d96b37b0e">&#9670;&nbsp;</a></span>EmailServices</h2>
+<a id="ac5ca63deb28f90c2f4a89a172d25c261"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5ca63deb28f90c2f4a89a172d25c261">&#9670;&nbsp;</a></span>EmailImpl</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1882,7 +1823,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_services.html">IEmailServices</a> Sphyrnidae.Common.Logging.Logger.EmailServices</td>
+          <td class="memname"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a> Sphyrnidae.Common.Logging.Logger.EmailImpl</td>
         </tr>
       </table>
   </td>

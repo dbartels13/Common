@@ -5,13 +5,15 @@ using System.Net.Http.Headers;
 using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
-using Sphyrnidae.Common.Authentication;
-using Sphyrnidae.Common.Authentication.Interfaces;
-using Sphyrnidae.Common.EncryptionImplementations.Interfaces;
+using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Sphyrnidae.Common.Authentication.Helper;
+using Sphyrnidae.Common.Encryption;
 using Sphyrnidae.Common.Extensions;
 using Sphyrnidae.Common.HttpClient;
 using Sphyrnidae.Common.Logging.Interfaces;
 using Sphyrnidae.Common.Serialize;
+using Sphyrnidae.Common.Utilities;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.WebServices
@@ -24,16 +26,14 @@ namespace Sphyrnidae.Common.WebServices
         #region Constructor and Implementations
         protected IHttpClientFactory Factory { get; }
         protected IHttpClientSettings Settings { get; }
-        protected IIdentityWrapper Identity { get; }
-        protected ITokenSettings Token { get; }
+        protected IIdentityHelper Identity { get; }
         protected IEncryption Encryption { get; }
         protected ILogger Logger { get; }
-        protected WebServiceBase(IHttpClientFactory factory, IHttpClientSettings settings, IIdentityWrapper identity, ITokenSettings token, IEncryption encryption, ILogger logger)
+        protected WebServiceBase(IHttpClientFactory factory, IHttpClientSettings settings, IIdentityHelper identity, IEncryption encryption, ILogger logger)
         {
             Factory = factory;
             Settings = settings;
             Identity = identity;
-            Token = token;
             Encryption = encryption;
             Logger = logger;
         }
@@ -264,7 +264,7 @@ namespace Sphyrnidae.Common.WebServices
             if (!identity.IsPopulated())
                 return client;
 
-            var jwt = identity.ToJwt(Token, Encryption);
+            var jwt = Identity.ToJwt(identity);
             client.DefaultRequestHeaders.TryAddWithoutValidation(Settings.JwtHeader, jwt);
             return client;
         }
@@ -291,6 +291,141 @@ namespace Sphyrnidae.Common.WebServices
                 headers.Add(Settings.IpAddressHeader, ip);
 
             // LogOrder is not auto-set, will get appended with the Logger.WebServiceEntry() call instead (it must be there)
+        }
+        #endregion
+
+        #region Response Parsing
+        /// <summary>
+        /// If the body is something other than the real type that you want, this will convert it
+        /// </summary>
+        /// <param name="body">The full body of the HttpResponseMessage</param>
+        /// <returns>The part of the body that contains the realy object(s)</returns>
+        protected virtual Tuple<int, string> ParseResponseBody(int statusCode, string body)
+            => new Tuple<int, string>(statusCode, body);
+
+        /// <summary>
+        /// Retrieves the result of a Json formatted http response
+        /// </summary>
+        /// <typeparam name="T">Any object</typeparam>
+        /// <param name="response">The HttpResponseMessage</param>
+        /// <param name="name">For logging purposes only: This is an identifier for a thrown exception</param>
+        /// <param name="jsonSettings">Optional: The json settings to use</param>
+        /// <returns>The object from the response</returns>
+        protected async Task<T> GetResult<T>(HttpResponseMessage response, string name,
+            JsonSerializerSettings jsonSettings = null)
+            => await GetResult(
+                response,
+                true,
+                name,
+                default,
+                x => x.DeserializeJson<T>(jsonSettings));
+
+        /// <summary>
+        /// Retrieves the result of a Json formatted http response
+        /// </summary>
+        /// <typeparam name="T">Any object</typeparam>
+        /// <param name="response">The HttpResponseMessage</param>
+        /// <param name="defaultObject">This will be returned if any errors arise getting the result</param>
+        /// <param name="jsonSettings">Optional: The json settings to use</param>
+        /// <returns>The object from the result</returns>
+        protected async Task<T> GetResult<T>(HttpResponseMessage response, T defaultObject,
+            JsonSerializerSettings jsonSettings = null)
+            => await GetResult(
+                response,
+                false,
+                null,
+                defaultObject,
+                x => x.DeserializeJson<T>(jsonSettings));
+
+        /// <summary>
+        /// Retrieves the result of a XML formatted http response
+        /// </summary>
+        /// <typeparam name="T">Any object</typeparam>
+        /// <param name="response">The HttpResponseMessage</param>
+        /// <param name="name">For logging purposes only: This is an identifier for a thrown exception</param>
+        /// <param name="serializer">Optional: The XML Serializer to use</param>
+        /// <returns>The object from the result</returns>
+        protected async Task<T> GetXmlResult<T>(HttpResponseMessage response, string name,
+            XmlSerializer serializer = null)
+            => await GetResult(
+                response,
+                true,
+                name,
+                default,
+                x => x.DeserializeXml<T>(serializer));
+
+        /// <summary>
+        /// Retrieves the result of a XML formatted http response
+        /// </summary>
+        /// <typeparam name="T">Any object</typeparam>
+        /// <param name="response">The HttpResponseMessage</param>
+        /// <param name="defaultObject">This will be returned if any errors arise getting the result</param>
+        /// <param name="serializer">Optional: The XML Serializer to use</param>
+        /// <returns>The object from the result</returns>
+        protected async Task<T> GetXmlResult<T>(HttpResponseMessage response, T defaultObject,
+            XmlSerializer serializer = null)
+            => await GetResult(
+                response,
+                false,
+                null,
+                defaultObject,
+                x => x.DeserializeXml<T>(serializer));
+
+        /// <summary>
+        /// Retrieves the result of a http response
+        /// </summary>
+        /// <typeparam name="T">Any object</typeparam>
+        /// <param name="response">The HttpResponseMessage</param>
+        /// <param name="throwOnFailure">
+        /// If false, the default object will be returned if any error is encountered
+        /// If true and an error is encountered retrieving the result, an exception will be thrown
+        /// </param>
+        /// <param name="name">For logging purposes only: set this as an identifier for a thrown exception</param>
+        /// <param name="defaultObject">If "throwOnFailure" is false, this will be returned instead</param>
+        /// <param name="deserializer">The deserialization method</param>
+        /// <returns>The object from the result</returns>
+        private async Task<T> GetResult<T>(HttpResponseMessage response, bool throwOnFailure,
+            string name, T defaultObject, Func<string, T> deserializer)
+            => await SafeTry.OnException(async () =>
+                {
+                    // Make sure the call was successful
+                    if (!response.IsSuccessStatusCode)
+                        return Unsuccessful(throwOnFailure, name, defaultObject);
+
+                    // Get body as string
+                    // This will actually be done twice in web services... first one for logging, and 2nd one for the actual result.
+                    var body = await response.GetBodyAsync();
+                    if (body == null)
+                        return Unsuccessful(throwOnFailure, name, defaultObject);
+
+                    // Possibly do some parsing in case the structure is not of type T
+                    var parsedResponse = ParseResponseBody((int)response.StatusCode, body);
+
+                    // Secondary check in case the status code changed based on parsing
+                    var statusCode = parsedResponse.Item1;
+                    if (statusCode < 200 || statusCode >= 300)
+                        return Unsuccessful(throwOnFailure, name, defaultObject);
+
+                    // Deserialize to complex outer object
+                    var result = deserializer(parsedResponse.Item2);
+                    return result;
+                },
+                ex =>
+                {
+                    if (throwOnFailure)
+                        throw ex;
+                    return defaultObject;
+                });
+
+        private static T Unsuccessful<T>(bool throwOnFailure, string name, T defaultObject)
+        {
+            // Unsuccessful
+            if (!throwOnFailure)
+                return defaultObject;
+
+            if (name == null)
+                throw new Exception("Unsuccessful call");
+            throw new Exception("Unsuccessful call to: " + name);
         }
         #endregion
     }

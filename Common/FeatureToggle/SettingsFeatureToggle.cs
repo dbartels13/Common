@@ -8,7 +8,7 @@ namespace Sphyrnidae.Common.FeatureToggle
     /// <summary>
     /// Wrapper/Helper class around feature toggles
     /// </summary>
-    public class SettingsFeatureToggle : SettingsLookup<IFeatureToggleSettings, SphyrnidaeFeatureToggle>
+    public class SettingsFeatureToggle : SettingsLookup<IFeatureToggleSettings, FeatureToggleSetting>
     {
         /// <summary>
         /// Retrieves a feature toggle value as a boolean - use this if you are doing multiple lookups to avoid doing ServiceLocation each time on the service/cache

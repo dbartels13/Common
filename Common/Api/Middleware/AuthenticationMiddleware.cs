@@ -3,18 +3,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Sphyrnidae.Common.Api.Attributes;
 using Sphyrnidae.Common.Api.Models;
+using Sphyrnidae.Common.Api.Responses;
 using Sphyrnidae.Common.Application;
-using Sphyrnidae.Common.Authentication;
-using Sphyrnidae.Common.Authentication.Interfaces;
+using Sphyrnidae.Common.Authentication.Helper;
 using Sphyrnidae.Common.Cache;
-using Sphyrnidae.Common.EncryptionImplementations.Interfaces;
+using Sphyrnidae.Common.Encryption;
 using Sphyrnidae.Common.Extensions;
 using Sphyrnidae.Common.HttpClient;
 using Sphyrnidae.Common.Logging.Information;
 using Sphyrnidae.Common.Logging.Interfaces;
 using Sphyrnidae.Common.RequestData;
 using Sphyrnidae.Common.Serialize;
-using Sphyrnidae.Common.SphyrnidaeApiResponse;
 using Sphyrnidae.Common.Variable;
 using Sphyrnidae.Common.Variable.Interfaces;
 using Sphyrnidae.Common.WebServices.Interfaces;
@@ -34,14 +33,13 @@ namespace Sphyrnidae.Common.Api.Middleware
         public async Task Invoke(
             HttpContext context,
             IRequestData request,
-            IIdentityWrapper identity,
+            IIdentityHelper identity,
             ILogger logger,
-            IHttpClientSettings http,
-            IEncryption encryption,
             IApplicationSettings app,
             IVariableServices variable,
             ICache cache,
-            IApiAuthenticationWebService service)
+            IApiAuthenticationWebService service,
+            IApiResponse apiResponse)
         {
             var info = await logger.MiddlewareEntry("Authentication");
 
@@ -55,10 +53,10 @@ namespace Sphyrnidae.Common.Api.Middleware
                 // Must have Jwt
                 if (identity.Current.IsDefault())
                 {
-                    await NotAuthenticated(context);
+                    await NotAuthenticated(context, apiResponse);
                     await Log(
                         logger,
-                        () => IdentityHelper.RetrieveIdentityError(http, encryption),
+                        () => identity.RetrieveIdentityErrorFromJwt(),
                         info);
                     return;
                 }
@@ -67,7 +65,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 var role = authentication?.Role;
                 if (!string.IsNullOrWhiteSpace(role) && !identity.Current.SearchableRoles.Has(role))
                 {
-                    await context.Response.WriteResponseAsync(ApiResponse.NotAuthorized(), SerializationSettings.Default);
+                    await context.Response.WriteResponseAsync(ApiResponse.NotAuthorized().ConvertToOther(apiResponse), SerializationSettings.Default);
                     await Log(
                         logger,
                         () => $"Not authorized for role '{role}'",
@@ -81,7 +79,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 var application = request.GetHeader(Constants.ApiToApi.Application);
                 if (string.IsNullOrWhiteSpace(application))
                 {
-                    await NotAuthenticated(context);
+                    await NotAuthenticated(context, apiResponse);
                     await Log(
                         logger,
                         () => $"{Constants.ApiToApi.Application} was not provided for Api to Api communication",
@@ -92,7 +90,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 var token = request.GetHeader(Constants.ApiToApi.Token);
                 if (string.IsNullOrWhiteSpace(token))
                 {
-                    await NotAuthenticated(context);
+                    await NotAuthenticated(context, apiResponse);
                     await Log(
                         logger,
                         () => $"{Constants.ApiToApi.Token} was not provided for Api to Api communication",
@@ -104,7 +102,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 cache.Options.Seconds = SettingsVariable.Get(variable, "CachingSeconds_ApiAuth", "30").ToInt(30);
                 if (!await Caching.GetAsync(cache, key, async () => await service.IsAuthenticated(application, token)))
                 {
-                    await NotAuthenticated(context);
+                    await NotAuthenticated(context, apiResponse);
                     await Log(
                         logger,
                         () => $"Invalid token from {application} for Api to Api communication",
@@ -118,8 +116,8 @@ namespace Sphyrnidae.Common.Api.Middleware
             await logger.MiddlewareExit(info);
         }
 
-        private static async Task NotAuthenticated(HttpContext context)
-            => await context.Response.WriteResponseAsync(ApiResponse.NotAuthenticated(), SerializationSettings.Default);
+        private static async Task NotAuthenticated(HttpContext context, IApiResponse apiResponse)
+            => await context.Response.WriteResponseAsync(ApiResponse.NotAuthenticated().ConvertToOther(apiResponse), SerializationSettings.Default);
 
         private static async Task Log(ILogger logger, Func<string> reason, MiddlewareInformation info)
         {

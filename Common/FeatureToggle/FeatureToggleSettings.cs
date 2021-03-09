@@ -3,7 +3,7 @@ using Sphyrnidae.Common.Lookup;
 
 namespace Sphyrnidae.Common.FeatureToggle
 {
-    public abstract class FeatureToggleSettings : BaseLookupSetting<SphyrnidaeFeatureToggle>, IFeatureToggleSettings
+    public abstract class FeatureToggleSettings : BaseLookupSetting<FeatureToggleSetting>, IFeatureToggleSettings
     {
         public override string Key => "FeatureToggleSettings";
 

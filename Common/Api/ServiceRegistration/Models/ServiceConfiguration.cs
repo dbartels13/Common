@@ -179,7 +179,7 @@ namespace Sphyrnidae.Common.Api.ServiceRegistration.Models
         /// Default = Standard pipeline
         /// Note: Alter with caution... you should generally only be adding your custom middleware at some point in this collection
         /// </remarks>
-        public List<Pipeline> ApiPipeline { get; set; } = ApiHelper.DefaultPipeline;
+        public List<Pipeline> ApiPipeline { get; set; } = PipelineHelper.DefaultPipeline;
 
         /// <summary>
         /// If you have custom middleware, you can define it here, and then add it to the pipeline using ApiPipeline with value of Pipeline.Custom1

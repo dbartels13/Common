@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="header.jpg"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Sphyrnidae Common Library
-   &#160;<span id="projectnumber">2.0.0</span>
+   &#160;<span id="projectnumber">2.0.1</span>
    </div>
    <div id="projectbrief">Shared Utilities/Library</div>
   </td>
@@ -91,15 +91,20 @@ $(document).ready(function(){initNavTree('class_sphyrnidae_1_1_common_1_1_api_1_
 <div class="title">Sphyrnidae.Common.Api.Middleware.JwtMiddleware Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Replaces the JWT with a refreshed token in the HTTP response  
+ <a href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_jwt_middleware.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aef3809d68ea4b75dd6b7b03f171c0ba2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_jwt_middleware.html#aef3809d68ea4b75dd6b7b03f171c0ba2">JwtMiddleware</a> (RequestDelegate next)</td></tr>
 <tr class="separator:aef3809d68ea4b75dd6b7b03f171c0ba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a097ae5a525f8f38447df87cdf8bed3b7"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_jwt_middleware.html#a097ae5a525f8f38447df87cdf8bed3b7">Invoke</a> (HttpContext context, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> logger, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_identity_wrapper.html">IIdentityWrapper</a> identity, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_i_default_identity.html">IDefaultIdentity</a> defaultIdentity, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_client_1_1_i_http_client_settings.html">IHttpClientSettings</a> http, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_token_settings.html">ITokenSettings</a> token, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption.html">IEncryption</a> encrypt)</td></tr>
-<tr class="separator:a097ae5a525f8f38447df87cdf8bed3b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2702da52358512000ccc34dee322f3ad"><td class="memItemLeft" align="right" valign="top">async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_jwt_middleware.html#a2702da52358512000ccc34dee322f3ad">Invoke</a> (HttpContext context, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> logger, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html">IIdentityHelper</a> identity, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_client_1_1_i_http_client_settings.html">IHttpClientSettings</a> http, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a> encrypt)</td></tr>
+<tr class="separator:a2702da52358512000ccc34dee322f3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Replaces the JWT with a refreshed token in the HTTP response </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="aef3809d68ea4b75dd6b7b03f171c0ba2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aef3809d68ea4b75dd6b7b03f171c0ba2">&#9670;&nbsp;</a></span>JwtMiddleware()</h2>
 
@@ -119,8 +124,8 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a097ae5a525f8f38447df87cdf8bed3b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a097ae5a525f8f38447df87cdf8bed3b7">&#9670;&nbsp;</a></span>Invoke()</h2>
+<a id="a2702da52358512000ccc34dee322f3ad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2702da52358512000ccc34dee322f3ad">&#9670;&nbsp;</a></span>Invoke()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -140,14 +145,8 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_identity_wrapper.html">IIdentityWrapper</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html">IIdentityHelper</a>&#160;</td>
           <td class="paramname"><em>identity</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_api_1_1_default_identity_1_1_i_default_identity.html">IDefaultIdentity</a>&#160;</td>
-          <td class="paramname"><em>defaultIdentity</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -158,13 +157,7 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_interfaces_1_1_i_token_settings.html">ITokenSettings</a>&#160;</td>
-          <td class="paramname"><em>token</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_implementations_1_1_interfaces_1_1_i_encryption.html">IEncryption</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a>&#160;</td>
           <td class="paramname"><em>encrypt</em>&#160;</td>
         </tr>
         <tr>

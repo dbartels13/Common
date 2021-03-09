@@ -16,7 +16,8 @@ namespace Sphyrnidae.Common.Logging.Interfaces
     public interface ILogger
     {
         #region Generic
-        Task Entry(BaseLogInformation info, Action errorAction = null);
+        Task Generic(BaseLogInformation info, Action errorAction = null);
+        Task Entry(TimerBaseInformation info, Action errorAction = null);
         Task Exit(TimerBaseInformation info, Action errorAction = null);
         #endregion
 
@@ -61,105 +62,91 @@ namespace Sphyrnidae.Common.Logging.Interfaces
 
         #region Custom
         /// <summary>
-        /// Logs a generic message with the type set to the category so it can be dis/enabled
-        /// </summary>
-        /// <param name="severity">The severity level of the log request</param>
-        /// <param name="type">The category of the log message which doubles as the type (which can be configured on/off)</param>
-        /// <param name="message">The message to log</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
-        Task Custom(TraceEventType severity, string type, string message, object o = null);
-        /// <summary>
-        /// Logs a generic message with the type set to the category so it can be dis/enabled
+        /// Logs a generic object
         /// </summary>
         /// <remarks>
-        /// There are 3 methods to choose from - each one you can specify your own LogInformation file.
-        /// This file should inherit from CustomInformation1 and override virtual properties.
-        /// You should register that implementation in your own project against CustomInformation1.
-        /// To make things cleaner, you should also likely create an extension method instead of directly calling Custom1()
+        /// To use this, you should create a class inheriting from CustomInformation1.
+        /// Fill out all of the required abstract methods (and override any others)
+        /// You will need to register this service: Eg. services.TryAddTransient&lt;CustomInformation1&lt;Widget&gt;, WidgetInformation&gt;();
+        /// When you call this method, the type needs to match... otherwise runtime exception with service locator.
         /// </remarks>
-        /// <param name="message">The message to log</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
-        Task Custom1(string message, object o = null);
+        /// <param name="obj">Your object to be logged</param>
+        /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
+        Task Custom1<T>(T obj, string message = "");
         /// <summary>
-        /// Logs a generic message with the type set to the category so it can be dis/enabled
+        /// Logs a generic object
         /// </summary>
         /// <remarks>
-        /// There are 3 methods to choose from - each one you can specify your own LogInformation file.
-        /// This file should inherit from CustomInformation2 and override virtual properties.
-        /// You should register that implementation in your own project against CustomInformation2.
-        /// To make things cleaner, you should also likely create an extension method instead of directly calling Custom2()
+        /// To use this, you should create a class inheriting from CustomInformation2.
+        /// Fill out all of the required abstract methods (and override any others)
+        /// You will need to register this service: Eg. services.TryAddTransient&lt;CustomInformation2&lt;Widget&gt;, WidgetInformation&gt;();
+        /// When you call this method, the type needs to match... otherwise runtime exception with service locator.
         /// </remarks>
-        /// <param name="message">The message to log</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
-        Task Custom2(string message, object o = null);
+        /// <param name="obj">Your object to be logged</param>
+        /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
+        Task Custom2<T>(T obj, string message = "");
         /// <summary>
-        /// Logs a generic message with the type set to the category so it can be dis/enabled
+        /// Logs a generic object
         /// </summary>
         /// <remarks>
-        /// There are 3 methods to choose from - each one you can specify your own LogInformation file.
-        /// This file should inherit from CustomInformation3 and override virtual properties.
-        /// You should register that implementation in your own project against CustomInformation3.
-        /// To make things cleaner, you should also likely create an extension method instead of directly calling Custom3()
+        /// To use this, you should create a class inheriting from CustomInformation3.
+        /// Fill out all of the required abstract methods (and override any others)
+        /// You will need to register this service: Eg. services.TryAddTransient&lt;CustomInformation3&lt;Widget&gt;, WidgetInformation&gt;();
+        /// When you call this method, the type needs to match... otherwise runtime exception with service locator.
         /// </remarks>
-        /// <param name="message">The message to log</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
-        Task Custom3(string message, object o = null);
+        /// <param name="obj">Your object to be logged</param>
+        /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
+        Task Custom3<T>(T obj, string message = "");
 
         /// <summary>
-        /// Will log a custom timer method with the type set to the category so it can be dis/enabled
-        /// </summary>
-        /// <param name="severity">The severity level of the log request</param>
-        /// <param name="type">The category of the timer which doubles as the type (which can be configured on/off)</param>
-        /// <param name="name">The name you are giving this timer</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
-        /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<CustomTimerInformation> CustomTimerStart(TraceEventType severity, string type, string name, object o = null);
-        /// <summary>
-        /// Will log a custom timer method with the type set to the category so it can be dis/enabled
+        /// Will log a custom timer object
         /// </summary>
         /// <remarks>
-        /// There are 3 methods to choose from - each one you can specify your own LogInformation file.
-        /// This file should inherit from CustomTimerInformation1 and override virtual properties.
-        /// You should register that implementation in your own project against CustomTimerInformation1.
-        /// To make things cleaner, you should also likely create an extension method instead of directly calling CustomTimer1Start()/CustomTimerEnd()
+        /// <remarks>
+        /// To use this, you should create a class inheriting from CustomTimerInformation1.
+        /// Fill out all of the required abstract methods (and override any others)
+        /// You will need to register this service: Eg. services.TryAddTransient&lt;CustomTimerInformation1&lt;Widget, Foo&gt;, WidgetTimerInformation&gt;();
+        /// When you call this method, the type needs to match... otherwise runtime exception with service locator.
         /// </remarks>
-        /// <param name="name">The name you are giving this timer</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
+        /// <param name="obj">Your object to be logged</param>
+        /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
         /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<CustomTimerInformation1> CustomTimer1Start(string name, object o = null);
+        Task<CustomTimerInformation1<T1, T2>> CustomTimer1Start<T1, T2>(T1 obj, string message = "");
         /// <summary>
-        /// Will log a custom timer method with the type set to the category so it can be dis/enabled
+        /// Will log a custom timer object
         /// </summary>
         /// <remarks>
-        /// There are 3 methods to choose from - each one you can specify your own LogInformation file.
-        /// This file should inherit from CustomTimerInformation2 and override virtual properties.
-        /// You should register that implementation in your own project against CustomTimerInformation2.
-        /// To make things cleaner, you should also likely create an extension method instead of directly calling CustomTimer2Start()/CustomTimerEnd()
+        /// <remarks>
+        /// To use this, you should create a class inheriting from CustomTimerInformation2.
+        /// Fill out all of the required abstract methods (and override any others)
+        /// You will need to register this service: Eg. services.TryAddTransient&lt;CustomTimerInformation2&lt;Widget, Foo&gt;, WidgetTimerInformation&gt;();
+        /// When you call this method, the type needs to match... otherwise runtime exception with service locator.
         /// </remarks>
-        /// <param name="name">The name you are giving this timer</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
+        /// <param name="obj">Your object to be logged</param>
+        /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
         /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<CustomTimerInformation2> CustomTimer2Start(string name, object o = null);
+        Task<CustomTimerInformation2<T1, T2>> CustomTimer2Start<T1, T2>(T1 obj, string message = "");
         /// <summary>
-        /// Will log a custom timer method with the type set to the category so it can be dis/enabled
+        /// Will log a custom timer object
         /// </summary>
         /// <remarks>
-        /// There are 3 methods to choose from - each one you can specify your own LogInformation file.
-        /// This file should inherit from CustomTimerInformation3 and override virtual properties.
-        /// You should register that implementation in your own project against CustomTimerInformation3.
-        /// To make things cleaner, you should also likely create an extension method instead of directly calling CustomTimer3Start()/CustomTimerEnd()
+        /// <remarks>
+        /// To use this, you should create a class inheriting from CustomTimerInformation3.
+        /// Fill out all of the required abstract methods (and override any others)
+        /// You will need to register this service: Eg. services.TryAddTransient&lt;CustomTimerInformation3&lt;Widget, Foo&gt;, WidgetTimerInformation&gt;();
+        /// When you call this method, the type needs to match... otherwise runtime exception with service locator.
         /// </remarks>
-        /// <param name="name">The name you are giving this timer</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
+        /// <param name="obj">Your object to be logged</param>
+        /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
         /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<CustomTimerInformation3> CustomTimer3Start(string name, object o = null);
+        Task<CustomTimerInformation3<T1, T2>> CustomTimer3Start<T1, T2>(T1 obj, string message = "");
         /// <summary>
-        /// Logs the actual time a customer timer took (in milliseconds)
+        /// Logs the actual time a custom timer took (in milliseconds)
         /// </summary>
         /// <remarks>This should be called after CustomTimerStart</remarks>
         /// <param name="info">The object with the timer which was returned from CustomTimerStart</param>
-        /// <param name="o">Any object to store additional user-supplied information</param>
-        Task CustomTimerEnd(CustomTimerInformation info, object o = null);
+        /// <param name="obj">Any object to store additional user-supplied information</param>
+        Task CustomTimerEnd<T1, T2>(CustomTimerInformation<T1, T2> info, T2 obj);
         #endregion
 
         #region Attributes
@@ -238,7 +225,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// The actual information that is collected (or if this even logs out) will be given by your implementation of ILoggerConfiguration/WebServiceInformation
         /// </remarks>
         /// <param name="headers">The collection of HTTP headers that will have logger prefix added</param>
-        /// <param name="route">The unique route you are hitting (without dynamic url replacement)</param>
+        /// <param name="name">The unique name of the route you are hitting</param>
         /// <param name="url">The endpoint that is being hit</param>
         /// <param name="method">
         /// The HTTP method:
@@ -250,7 +237,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </param>
         /// <param name="data">Any additional data being sent in the body of the request</param>
         /// <returns>The object which keeps the web service information (to be passed into WebServiceExit)</returns>
-        Task<WebServiceInformation> WebServiceEntry(HttpHeaders headers, string route, string url, string method, object data = null);
+        Task<WebServiceInformation> WebServiceEntry(HttpHeaders headers, string name, string url, string method, object data = null);
         /// <summary>
         /// Logs the actual time the web service call took (in milliseconds), and optionally the result
         /// </summary>
