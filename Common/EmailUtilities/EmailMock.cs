@@ -9,8 +9,8 @@ namespace Sphyrnidae.Common.EmailUtilities
     /// <inheritdoc />
     public class EmailMock : IEmail
     {
-        public async Task<bool> SendAsync(EmailType type, IEnumerable<string> to,
+        public Task<bool> SendAsync(EmailType type, IEnumerable<string> to,
             IEnumerable<string> cc, string subject, string content)
-            => await Task.FromResult(true);
+            => Task.FromResult(true);
     }
 }

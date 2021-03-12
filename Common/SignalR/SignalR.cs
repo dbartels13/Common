@@ -135,85 +135,85 @@ namespace Sphyrnidae.Common.SignalR
         #endregion
 
         #region Receive
-        public async void Receive(string url, string context, Action method)
+        public Task Receive(string url, string context, Action method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T>(string url, string context, Action<T> method)
+        public Task Receive<T>(string url, string context, Action<T> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T1, T2>(string url, string context, Action<T1, T2> method)
+        public Task Receive<T1, T2>(string url, string context, Action<T1, T2> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T1, T2, T3>(string url, string context, Action<T1, T2, T3> method)
+        public Task Receive<T1, T2, T3>(string url, string context, Action<T1, T2, T3> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T1, T2, T3, T4>(string url, string context, Action<T1, T2, T3, T4> method)
+        public Task Receive<T1, T2, T3, T4>(string url, string context, Action<T1, T2, T3, T4> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T1, T2, T3, T4, T5>(string url, string context, Action<T1, T2, T3, T4, T5> method)
+        public Task Receive<T1, T2, T3, T4, T5>(string url, string context, Action<T1, T2, T3, T4, T5> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T1, T2, T3, T4, T5, T6>(string url, string context, Action<T1, T2, T3, T4, T5, T6> method)
+        public Task Receive<T1, T2, T3, T4, T5, T6>(string url, string context, Action<T1, T2, T3, T4, T5, T6> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T1, T2, T3, T4, T5, T6, T7>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7> method)
+        public Task Receive<T1, T2, T3, T4, T5, T6, T7>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
 
-        public async void Receive<T1, T2, T3, T4, T5, T6, T7, T8>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7, T8> method)
+        public Task Receive<T1, T2, T3, T4, T5, T6, T7, T8>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7, T8> method)
         {
             var cnn = GetConnection(url);
             if (cnn.IsDefault())
-                return;
+                return Task.CompletedTask;
             cnn.On(context, method);
-            await Start(cnn);
+            return Start(cnn);
         }
         #endregion
 

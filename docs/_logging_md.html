@@ -158,7 +158,7 @@ Statements</h1>
 <td>DatabaseEntry </td><td>DatabaseExit </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_database_information.html">DatabaseInformation</a> </td><td><a class="el" href="_dal_md.html">Repository Calls</a> <br  />
 <a class="el" href="_dal_md.html#DalTransactionsMd">Transactions</a> </td><td>Logs the execution of a database call </td></tr>
 <tr>
-<td>WebServiceEntry </td><td>WebServiceExit </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_web_service_information.html">WebServiceInformation</a> </td><td>Web Services: The actual call, not the preparation, nor parsing of result </td><td>Logs the execution of a web service call </td></tr>
+<td>WebServiceEntry </td><td>WebServiceExit </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_web_service_information.html">WebServiceInformation</a> </td><td><a class="el" href="_web_service_md.html">Web Services</a>: The actual call, not the preparation, nor parsing of result </td><td>Logs the execution of a web service call </td></tr>
 <tr>
 <td>MiddlewareEntry </td><td>MiddlewareExit </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_middleware_information.html">MiddlewareInformation</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_api_logging_middleware.html">ApiLoggingMiddleware</a> <br  />
 <a class="el" href="class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_authentication_middleware.html">AuthenticationMiddleware</a> <br  />
@@ -356,7 +356,7 @@ Loggers</h1>
 <tr>
 <td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html">EmailLogger</a> </td><td>Email </td><td>Sends an <a class="el" href="_email_md.html">Email</a> to someone </td><td>Identity;Static;High;Med </td><td>Exception;Hidden Exception </td></tr>
 <tr>
-<td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_file_logger.html">FileLogger</a> </td><td>File </td><td>Writes to a file. A single file will be created every day in the format of $"log_{dt.DayOfYear}.log". File location is given by the variable "Logging_FilePath" - and put into subfolder of "Logs" at that path. If the <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html#a43b60862912d941a2d52d5038b9630c7">severity</a> of the thing being logged is Warning, Error, or Critical, then a 2nd logfile will be created. Location of this log file will be in a subfolder of the Logs directory called "Highlights" with a naming convention of $"log_highlights_{dt.Year}_{dt:MMM}.log". </td><td>Identity;Static;High;Med </td><td>API;Exception;Hidden Exception;HTTP Response Error;Long Running;Message;Timer;Web Service </td></tr>
+<td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_file_logger.html">FileLogger</a> </td><td>File </td><td>Writes to a file. A single file will be created every day in the format of $"log_{dt.DayOfYear}.log". File location is given by the <a class="el" href="_variable_md.html">variable</a> "Logging_FilePath" - and put into subfolder of "Logs" at that path. If the <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html#a43b60862912d941a2d52d5038b9630c7">severity</a> of the thing being logged is Warning, Error, or Critical, then a 2nd logfile will be created. Location of this log file will be in a subfolder of the Logs directory called "Highlights" with a naming convention of $"log_highlights_{dt.Year}_{dt:MMM}.log". </td><td>Identity;Static;High;Med </td><td>API;Exception;Hidden Exception;HTTP Response Error;Long Running;Message;Timer;Web Service </td></tr>
 <tr>
 <td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_log4_net_logger.html">Log4NetLogger</a> </td><td>Log4Net </td><td>Sends to Log4Net which has it's own logging configurations </td><td>All </td><td>All </td></tr>
 </table>
@@ -383,15 +383,15 @@ Configurations</h1>
 <tr>
 <td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger_configuration.html#a7e45820c11f764c52a89058734bc722e">Enabled</a> </td><td>Global flag that allows you to completely disable logging. If this is true, a lot more checks might still prevent statements from being logged. </td><td>True </td></tr>
 <tr>
-<td>TypeEnabled() </td><td>The <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html#a23aa38d89ed4b20e19daf97a5a3c0506">Type</a> of the thing being logged can be enabled/disabled. See the Types table below. Enabled Types are a semicolon delimited list. </td><td>This list is retrieved from the configuration variable "Logging_Enabled_Types" </td></tr>
+<td>TypeEnabled() </td><td>The <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html#a23aa38d89ed4b20e19daf97a5a3c0506">Type</a> of the thing being logged can be enabled/disabled. See the Types table below. Enabled Types are a semicolon delimited list. </td><td>This list is retrieved from the <a class="el" href="_variable_md.html">configuration variable</a> "Logging_Enabled_Types" </td></tr>
 <tr>
-<td>Include() </td><td>The information gathered for a class might be optional to actually "log" that information. Included properties are a semicolon delimited list. </td><td>This list is retrieved from the configuration variable "Logging_Includes" </td></tr>
+<td>Include() </td><td>The information gathered for a class might be optional to actually "log" that information. Included properties are a semicolon delimited list. </td><td>This list is retrieved from the <a class="el" href="_variable_md.html">configuration variable</a> "Logging_Includes" </td></tr>
 <tr>
-<td>LoggerEnabled() </td><td>Determines if a <a class="el" href="_logging_md.html#LoggingLoggersMd">logger</a> is enabled given a type. Name of enabled loggers are a semicolon delimited list. Types that are supported for a given logger are a semicolon delimited list. See the Types table below. </td><td>List of enabled loggers is retrieved from the configuration variable "Logging_Enabled_Loggers". List of types enabled for a given logger is retrieved from the configuration variable $"Logging_Enabled_{name}_Types". </td></tr>
+<td>LoggerEnabled() </td><td>Determines if a <a class="el" href="_logging_md.html#LoggingLoggersMd">logger</a> is enabled given a type. Name of enabled loggers are a semicolon delimited list. Types that are supported for a given logger are a semicolon delimited list. See the Types table below. </td><td>List of enabled loggers is retrieved from the <a class="el" href="_variable_md.html">configuration variable</a> "Logging_Enabled_Loggers". List of types enabled for a given logger is retrieved from the <a class="el" href="_variable_md.html">configuration variable</a> $"Logging_Enabled_{name}_Types". </td></tr>
 <tr>
-<td>HideKeys() </td><td>Listing of any custom properties that will be obfuscated in the log. Eg. Passwords. The property name will be the "key" of the item inserted into one of the dictionaries that will be read by the logger. Property keys are a semicolon delimited list. </td><td>This list is retrieved from the configuration variable "Logging_HideKeys" </td></tr>
+<td>HideKeys() </td><td>Listing of any custom properties that will be obfuscated in the log. Eg. Passwords. The property name will be the "key" of the item inserted into one of the dictionaries that will be read by the logger. Property keys are a semicolon delimited list. </td><td>This list is retrieved from the <a class="el" href="_variable_md.html">configuration variable</a> "Logging_HideKeys" </td></tr>
 <tr>
-<td>MaxLength() </td><td>Maximum length of a custom property to be logged given a logger. This is useful for not logging an image, or large set of text. </td><td>1000: Also could be retrieved from the configuration variable $"Logging_{loggerName}_MaxLength" </td></tr>
+<td>MaxLength() </td><td>Maximum length of a custom property to be logged given a logger. This is useful for not logging an image, or large set of text. </td><td>1000: Also could be retrieved from the <a class="el" href="_variable_md.html">configuration variable</a> $"Logging_{loggerName}_MaxLength" </td></tr>
 </table>
 <p>Existing <a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_information_1_1_base_log_information.html#a23aa38d89ed4b20e19daf97a5a3c0506">Types</a> (You can also create your own "Type" - see <a class="el" href="_logging_md.html#LoggingCustomizationsMd">Customizations</a>): </p><table class="doxtable">
 <tr>
@@ -523,7 +523,7 @@ Customizations</h1>
             : base(config, loggers, provider, alert, longRunningInfo, httpResponseInfo, app, email)
             { }
 
-        public async Task Widget(Widget widget) =&gt; await Custom1(widget);
+        public void Widget(Widget widget) =&gt; Custom1(widget);
     }
 
     // Registration (Note that the ILogger can still be used, but if you want to use your customized calls, you should use this one)

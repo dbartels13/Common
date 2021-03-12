@@ -22,7 +22,7 @@ namespace Sphyrnidae.Common.Api.Middleware
 
         public async Task Invoke(HttpContext context, ILogger logger, IApiResponse apiResponse)
         {
-            var info = await logger.MiddlewareEntry("Exception");
+            var info = logger.MiddlewareEntry("Exception");
 
             // Save off response body
             var response = context.Response;
@@ -42,19 +42,19 @@ namespace Sphyrnidae.Common.Api.Middleware
                     ApiResponse.InternalServerError(ex).ConvertToOther(apiResponse)
                 );
 
-                await logger.MiddlewareExit(info);
+                logger.MiddlewareExit(info);
                 return;
             }
             catch (Exception ex)
             {
-                var guid = await logger.Exception(ex);
+                var guid = logger.Exception(ex);
                 await ExceptionResponse(
                     response,
                     originalBody,
                     ApiResponse.InternalServerError(guid).ConvertToOther(apiResponse)
                 );
 
-                await logger.MiddlewareExit(info);
+                logger.MiddlewareExit(info);
                 return;
             }
 
@@ -63,13 +63,13 @@ namespace Sphyrnidae.Common.Api.Middleware
             response.Body = originalBody;
             await response.WriteAsync(newBodyStr);
 
-            await logger.MiddlewareExit(info);
+            logger.MiddlewareExit(info);
         }
 
-        private static async Task ExceptionResponse(HttpResponse response, Stream originalBody, IApiResponse responseObj)
+        private static Task ExceptionResponse(HttpResponse response, Stream originalBody, IApiResponse responseObj)
         {
             response.Body = originalBody;
-            await response.WriteResponseAsync(responseObj, SerializationSettings.Default);
+            return response.WriteResponseAsync(responseObj, SerializationSettings.Default);
         }
     }
 }

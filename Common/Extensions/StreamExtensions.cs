@@ -56,6 +56,6 @@ namespace Sphyrnidae.Common.Extensions
             */
         }
 
-        private static async Task<string> ReadStreamAsync(TextReader reader) => await reader.ReadToEndAsync();
+        private static Task<string> ReadStreamAsync(TextReader reader) => reader.ReadToEndAsync();
     }
 }

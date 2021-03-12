@@ -867,7 +867,7 @@ Eg.
             : base(config, loggers, provider, alert, longRunningInfo, httpResponseInfo, app, email)
             { }
 
-        public async Task Widget(Widget widget) => await Custom1(widget);
+        public void Widget(Widget widget) => Custom1(widget);
     }
 
     // Registration (Note that the ILogger can still be used, but if you want to use your customized calls, you should use this one)

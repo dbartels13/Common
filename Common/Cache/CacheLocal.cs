@@ -96,12 +96,12 @@ namespace Sphyrnidae.Common.Cache
         /// <param name="key">Name of the item in cache</param>
         /// <param name="method">The callback function returning the item if not initially found in cache</param>
         /// <returns>The object from cache/callback function</returns>
-        public virtual async Task<T> GetAsync<T>(string key, Func<Task<T>> method)
+        public virtual Task<T> GetAsync<T>(string key, Func<Task<T>> method)
         {
             if (Get(key, out T item))
-                return item;
+                return Task.FromResult(item);
 
-            return await NamedLocker.LockAsync(key, async () =>
+            return NamedLocker.LockAsync(key, async () =>
             {
                 if (Get(key, out item))
                     return item;
@@ -121,20 +121,21 @@ namespace Sphyrnidae.Common.Cache
 
         /// <inheritdoc />
         /// <summary>
-        /// Removes the given object from cache
+        /// Removes the given object from local cache
         /// </summary>
-        /// <remarks>
-        /// Note that this removes from local cache, distributed cache, and via SignalR, all other local cache as well
-        /// </remarks>
         /// <param name="key">Name of the item in cache</param>
-        /// <returns>
-        /// If an exception was thrown and the item was not fully removed, this exception will be returned.
-        /// If everything succeeded, this will be null.
-        /// </returns>
-        public virtual Exception Remove(string key)
+        public virtual void Remove(string key) => L1Cache.Remove(key);
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Removes the given object from local cache
+        /// </summary>
+        /// <param name="key">Name of the item in cache</param>
+        /// <returns>Always default(Exception) - eg. null</returns>
+        public virtual Task<Exception> RemoveAsync(string key)
         {
             L1Cache.Remove(key);
-            return default;
+            return Task.FromResult(default(Exception));
         }
     }
 }

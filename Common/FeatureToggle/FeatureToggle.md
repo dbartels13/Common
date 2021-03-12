@@ -20,7 +20,7 @@ Implementations:
 2. [FeatureToggleServices](@ref Sphyrnidae.Common.FeatureToggle.FeatureToggleServices)
 
 Other:
-1. You can view an alternative implementation which actually uses a webservice to lookup these settings: [SphyrnidaeFeatureToggleSettings](@ref Sphyrnidae.Settings.SphyrnidaeFeatureToggleSettings). Note this implementation gathers customer-specific features and will email out any exceptions that occurred
+1. You can view an alternative implementation which actually uses a webservice to lookup these settings: <a href="https://github.com/dbartels13/Common/blob/main/SphyrnidaeSettings/FeatureToggle/SphyrnidaeFeatureToggleSettings.cs" target="blank">SphyrnidaeFeatureToggleSettings</a>. Note this implementation gathers customer-specific features and will email out any exceptions that occurred
 2. [SettingsFeatureToggle](@ref Sphyrnidae.Common.FeatureToggle.SettingsFeatureToggle): Static class which you should use to gather any feature toggles.
 
 ## Where Used {#FeatureToggleWhereUsedMd}

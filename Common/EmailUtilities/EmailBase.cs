@@ -55,7 +55,7 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// </summary>
         /// <remarks>If 'Name' or 'Email' properties are not set, this will use the logged in user</remarks>
         /// <returns>True if email seems to have sent ok, false otherwise</returns>
-        public async Task<bool> SendAsync()
+        public Task<bool> SendAsync()
         {
             if (!ValidatePropertiesSet)
                 throw new Exception("Failed to set properties for Email");
@@ -70,7 +70,7 @@ namespace Sphyrnidae.Common.EmailUtilities
             var body = Shell.Replace("\n", ""); // Remove everything that would convert to <br>
 
             // There is no proper email overload, so call this directly
-            return await EmailUtilities.Email.SendAsync(EmailImpl, Email, Subject, body);
+            return EmailUtilities.Email.SendAsync(EmailImpl, Email, Subject, body);
         }
 
         protected virtual string Shell => $@"

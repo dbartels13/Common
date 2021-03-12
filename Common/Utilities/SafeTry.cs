@@ -63,15 +63,15 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="method">The method to execute which will have it's exceptions sent to error method</param>
         /// <param name="error">The asynchronous method to execute if the main method throws an exception</param>
         /// <returns>The return from either the main method or the exception handler (awaitable)</returns>
-        public static async Task<T> OnException<T>(Func<T> method, Func<Exception, Task<T>> error)
+        public static Task<T> OnException<T>(Func<T> method, Func<Exception, Task<T>> error)
         {
             try
             {
-                return method();
+                return Task.FromResult(method());
             }
             catch (Exception ex)
             {
-                return await error(ex);
+                return error(ex);
             }
         }
 
@@ -140,16 +140,16 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="method">The method to execute which will have it's exceptions sent to error method</param>
         /// <param name="error">The asynchronous method to execute if the main method throws an exception</param>
         /// <returns>True if the main method succeeded, or True/False based on the exception method (awaitable)</returns>
-        public static async Task<bool> OnException(Action method, Func<Exception, Task<bool>> error)
+        public static Task<bool> OnException(Action method, Func<Exception, Task<bool>> error)
         {
             try
             {
                 method();
-                return true;
+                return Task.FromResult(true);
             }
             catch (Exception ex)
             {
-                return await error(ex);
+                return error(ex);
             }
         }
 
@@ -187,7 +187,16 @@ namespace Sphyrnidae.Common.Utilities
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
         public static async Task<T> IgnoreException<T>(Func<Task<T>> method, T defaultValue = default)
-            => await OnException(method, ex => IgnoreExceptionError(ex, defaultValue));
+        {
+            try
+            {
+                return await method();
+            }
+            catch (Exception ex)
+            {
+                return IgnoreExceptionError(ex, defaultValue);
+            }
+        }
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be handled gracefully and code will resume past this block
@@ -200,7 +209,16 @@ namespace Sphyrnidae.Common.Utilities
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
         public static T IgnoreException<T>(Func<T> method, T defaultValue = default)
-            => OnException(method, ex => IgnoreExceptionError(ex, defaultValue));
+        {
+            try
+            {
+                return method();
+            }
+            catch (Exception ex)
+            {
+                return IgnoreExceptionError(ex, defaultValue);
+            }
+        }
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing asynchronous method will be handled gracefully and code will resume past this block
@@ -208,7 +226,17 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="method">The asynchronous method to execute which will have it's exceptions ignored</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
         public static async Task<bool> IgnoreException(Func<Task> method)
-            => await OnException(method, ex => IgnoreExceptionError(ex, false));
+        {
+            try
+            {
+                await method();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return IgnoreExceptionError(ex, false);
+            }
+        }
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be handled gracefully and code will resume past this block
@@ -216,7 +244,17 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="method">The method to execute which will have it's exceptions ignored</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
         public static bool IgnoreException(Action method)
-            => OnException(method, ex => IgnoreExceptionError(ex, false));
+        {
+            try
+            {
+                method();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return IgnoreExceptionError(ex, false);
+            }
+        }
 
         private static T IgnoreExceptionError<T>(Exception ex, T returnValue)
         {
@@ -242,7 +280,16 @@ namespace Sphyrnidae.Common.Utilities
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
         public static async Task<T> EmailException<T>(IEmail email, IApplicationSettings app, Func<Task<T>> method, T defaultValue = default)
-            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, defaultValue));
+        {
+            try
+            {
+                return await method();
+            }
+            catch (Exception ex)
+            {
+                return await EmailExceptionError(email, app, ex, defaultValue);
+            }
+        }
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be e-mailed and code will resume past this block
@@ -256,8 +303,18 @@ namespace Sphyrnidae.Common.Utilities
         /// Default = default(t). Eg. null for most classes
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
-        public static async Task<T> EmailException<T>(IEmail email, IApplicationSettings app, Func<T> method, T defaultValue = default)
-            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, defaultValue));
+        public static Task<T> EmailException<T>(IEmail email, IApplicationSettings app, Func<T> method, T defaultValue = default)
+        {
+            try
+            {
+                return Task.FromResult(method());
+            }
+            catch (Exception ex)
+            {
+                return EmailExceptionError(email, app, ex, defaultValue);
+            }
+        }
+
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing asynchronous method will be e-mailed and code will resume past this block
@@ -267,7 +324,18 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="method">The asynchronous method to execute which will have it's exceptions emailed</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
         public static async Task<bool> EmailException(IEmail email, IApplicationSettings app, Func<Task> method)
-            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, false));
+        {
+            try
+            {
+                await method();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return await EmailExceptionError(email, app, ex, false);
+            }
+        }
+
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be e-mailed and code will resume past this block
@@ -276,8 +344,19 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="app">The implementation of the IApplicationSettings interface</param>
         /// <param name="method">The method to execute which will have it's exceptions emailed</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
-        public static async Task<bool> EmailException(IEmail email, IApplicationSettings app, Action method)
-            => await OnException(method, async ex => await EmailExceptionError(email, app, ex, false));
+        public static Task<bool> EmailException(IEmail email, IApplicationSettings app, Action method)
+        {
+            try
+            {
+                method();
+                return Task.FromResult(true);
+            }
+            catch (Exception ex)
+            {
+                return EmailExceptionError(email, app, ex, false);
+            }
+        }
+
 
         private static async Task<T> EmailExceptionError<T>(IEmail email, IApplicationSettings app, Exception ex, T returnValue)
         {
@@ -321,13 +400,16 @@ namespace Sphyrnidae.Common.Utilities
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
         public static async Task<T> LogException<T>(ILogger logger, Func<Task<T>> method, T defaultValue = default)
-            => await OnException(
-                method,
-                async ex =>
-                {
-                    await logger.HiddenException(ex);
-                    return defaultValue;
-                });
+        {
+            try
+            {
+                return await method();
+            }
+            catch (Exception ex)
+            {
+                return LogExceptionError(logger, ex, defaultValue);
+            }
+        }
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be handled gracefully and code will resume past this block
@@ -341,14 +423,17 @@ namespace Sphyrnidae.Common.Utilities
         /// Default = default(t). Eg. null for most classes
         /// </param>
         /// <returns>The return value from the calling method (or defaultValue)</returns>
-        public static async Task<T> LogException<T>(ILogger logger, Func<T> method, T defaultValue = default)
-            => await OnException(
-                method,
-                async ex =>
-                {
-                    await logger.HiddenException(ex);
-                    return defaultValue;
-                });
+        public static T LogException<T>(ILogger logger, Func<T> method, T defaultValue = default)
+        {
+            try
+            {
+                return method();
+            }
+            catch (Exception ex)
+            {
+                return LogExceptionError(logger, ex, defaultValue);
+            }
+        }
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing asynchronous method will be handled gracefully and code will resume past this block
@@ -358,13 +443,17 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="method">The asynchronous method to execute which will have it's exceptions ignored</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
         public static async Task<bool> LogException(ILogger logger, Func<Task> method)
-            => await OnException(
-                method,
-                async ex =>
-                {
-                    await logger.HiddenException(ex);
-                    return false;
-                });
+        {
+            try
+            {
+                await method();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return LogExceptionError(logger, ex, false);
+            }
+        }
 
         /// <summary>
         /// Ensures that any exceptions thrown by the containing method will be handled gracefully and code will resume past this block
@@ -373,14 +462,24 @@ namespace Sphyrnidae.Common.Utilities
         /// <param name="logger">The implementation of the ILogger interface</param>
         /// <param name="method">The method to execute which will have it's exceptions ignored</param>
         /// <returns>False if an exception was thrown, True if everything went off without exception</returns>
-        public static async Task<bool> LogException(ILogger logger, Action method)
-            => await OnException(
-                method,
-                async ex =>
-                {
-                    await logger.HiddenException(ex);
-                    return false;
-                });
+        public static bool LogException(ILogger logger, Action method)
+        {
+            try
+            {
+                method();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return LogExceptionError(logger, ex, false);
+            }
+        }
+
+        private static T LogExceptionError<T>(ILogger logger, Exception ex, T returnValue)
+        {
+            logger.HiddenException(ex);
+            return returnValue;
+        }
         #endregion
     }
 }

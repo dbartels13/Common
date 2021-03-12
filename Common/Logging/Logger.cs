@@ -67,139 +67,139 @@ namespace Sphyrnidae.Common.Logging
 
         #region Main Calls
         #region Generic
-        public virtual async Task Generic(BaseLogInformation info, Action errorAction = null)
+        public virtual void Generic(BaseLogInformation info, Action errorAction = null)
         {
-            if (!EnabledPreCheck(info))
-                return;
-            await DoLog(info, errorAction);
-        }
-        public virtual async Task Entry(TimerBaseInformation info, Action errorAction = null)
-        {
-            if (!EnabledPreCheck(info))
-                return;
-            await DoLog(info, errorAction);
+            if (EnabledPreCheck(info))
+                DoLog(info, errorAction);
         }
 
-        public virtual async Task Exit(TimerBaseInformation info, Action errorAction = null) => await DoUpdate(info, errorAction);
+        public virtual void Entry(TimerBaseInformation info, Action errorAction = null)
+        {
+            if (EnabledPreCheck(info))
+                DoLog(info, errorAction);
+        }
+
+        public virtual void Exit(TimerBaseInformation info, Action errorAction = null)
+            => DoUpdate(info, errorAction);
         #endregion
 
         #region Misc
         /// <inheritdoc />
-        public virtual async Task Log(TraceEventType severity, string message, string category = "")
+        public virtual void Log(TraceEventType severity, string message, string category = "")
         {
             var info = ServiceLocator.Get<MessageInformation>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
             info.Initialize(severity, message, category);
-            await DoLog(info);
+            DoLog(info);
         }
 
-        public virtual async Task Unauthorized(string message)
+        public virtual void Unauthorized(string message)
         {
             var info = ServiceLocator.Get<UnauthorizedInformation>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
             info.Initialize(message);
-            await DoLog(info);
+            DoLog(info);
         }
         #endregion
 
         #region Timers
-        public virtual async Task<TimerInformation> TimerStart(string name)
+        public virtual TimerInformation TimerStart(string name)
         {
             var info = ServiceLocator.Get<TimerInformation>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
             info.Initialize(name);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
-        public virtual async Task TimerEnd(TimerInformation info) => await DoUpdate(info);
+        public virtual void TimerEnd(TimerInformation info) => DoUpdate(info);
         #endregion
 
         #region Custom
-        public virtual async Task Custom1<T>(T obj, string message = "")
+        public virtual void Custom1<T>(T obj, string message = "")
         {
             var info = ServiceLocator.Get<CustomInformation1<T>>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
             info.Initialize(obj, message);
-            await DoLog(info);
+            DoLog(info);
         }
-        public virtual async Task Custom2<T>(T obj, string message = "")
+        public virtual void Custom2<T>(T obj, string message = "")
         {
             var info = ServiceLocator.Get<CustomInformation2<T>>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
             info.Initialize(obj, message);
-            await DoLog(info);
+            DoLog(info);
         }
-        public virtual async Task Custom3<T>(T obj, string message = "")
+        public virtual void Custom3<T>(T obj, string message = "")
         {
             var info = ServiceLocator.Get<CustomInformation3<T>>(Provider);
             if (!EnabledPreCheck(info))
                 return;
 
             info.Initialize(obj, message);
-            await DoLog(info);
+            DoLog(info);
         }
 
-        public virtual async Task<CustomTimerInformation1<T1, T2>> CustomTimer1Start<T1, T2>(T1 obj, string message = "")
+        public virtual CustomTimerInformation1<T1, T2> CustomTimer1Start<T1, T2>(T1 obj, string message = "")
         {
             var info = ServiceLocator.Get<CustomTimerInformation1<T1, T2>>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
             info.Initialize(obj, message);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
-        public virtual async Task<CustomTimerInformation2<T1, T2>> CustomTimer2Start<T1, T2>(T1 obj, string message = "")
+        public virtual CustomTimerInformation2<T1, T2> CustomTimer2Start<T1, T2>(T1 obj, string message = "")
         {
             var info = ServiceLocator.Get<CustomTimerInformation2<T1, T2>>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
             info.Initialize(obj, message);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
-        public virtual async Task<CustomTimerInformation3<T1, T2>> CustomTimer3Start<T1, T2>(T1 obj, string message = "")
+        public virtual CustomTimerInformation3<T1, T2> CustomTimer3Start<T1, T2>(T1 obj, string message = "")
         {
             var info = ServiceLocator.Get<CustomTimerInformation3<T1, T2>>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
             info.Initialize(obj, message);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
 
-        public virtual async Task CustomTimerEnd<T1, T2>(CustomTimerInformation<T1, T2> info, T2 obj)
+        public virtual void CustomTimerEnd<T1, T2>(CustomTimerInformation<T1, T2> info, T2 obj)
         {
             if (info != null && obj != null)
                 info.ObjEnd = obj;
-            await DoUpdate(info);
+            DoUpdate(info);
         }
         #endregion
 
         #region Attributes
-        public virtual async Task<AttributeInformation> AttributeEntry(string attributeName, Dictionary<string, string> parameters)
+        public virtual AttributeInformation AttributeEntry(string attributeName, Dictionary<string, string> parameters)
         {
             var info = ServiceLocator.Get<AttributeInformation>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
             info.Initialize(attributeName, parameters);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
-        public virtual async Task AttributeExit(AttributeInformation info) => await DoUpdate(info);
+        public virtual void AttributeExit(AttributeInformation info) => DoUpdate(info);
         #endregion
 
         #region Api
@@ -210,13 +210,13 @@ namespace Sphyrnidae.Common.Logging
                 return null;
 
             await info.Initialize(Config);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
-        public virtual async Task ApiExit(ApiInformation info, int statusCode, string result)
+        public virtual void ApiExit(ApiInformation info, int statusCode, string result)
         {
             info?.SaveResult(statusCode, result);
-            await DoUpdate(info);
+            DoUpdate(info);
         }
 
         public virtual async Task ApiExit(ApiInformation info, HttpResponse response)
@@ -225,27 +225,27 @@ namespace Sphyrnidae.Common.Logging
                 return;
 
             await info.SaveResponse(response);
-            await DoUpdate(info);
+            DoUpdate(info);
         }
         #endregion
 
         #region Database
-        public virtual async Task<DatabaseInformation> DatabaseEntry(string cnnName, string command, object args = null)
+        public virtual DatabaseInformation DatabaseEntry(string cnnName, string command, object args = null)
         {
             var info = ServiceLocator.Get<DatabaseInformation>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
             info.Initialize(cnnName, command, args);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
 
-        public virtual async Task DatabaseExit(DatabaseInformation info) => await DoUpdate(info);
+        public virtual void DatabaseExit(DatabaseInformation info) => DoUpdate(info);
         #endregion
 
         #region Web Services
-        public virtual async Task<WebServiceInformation> WebServiceEntry(HttpHeaders headers, string name, string url, string method, object data = null)
+        public virtual WebServiceInformation WebServiceEntry(HttpHeaders headers, string name, string url, string method, object data = null)
         {
             // Always do initialization even if not logging since the Order is needed
             var info = ServiceLocator.Get<WebServiceInformation>(Provider);
@@ -258,14 +258,14 @@ namespace Sphyrnidae.Common.Logging
             if (!EnabledPreCheck(info))
                 return null;
 
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
 
-        public virtual async Task WebServiceExit(WebServiceInformation info, int statusCode, string result)
+        public virtual void WebServiceExit(WebServiceInformation info, int statusCode, string result)
         {
             info?.SaveResult(statusCode, result);
-            await DoUpdate(info);
+            DoUpdate(info);
         }
         public virtual async Task WebServiceExit(WebServiceInformation info, HttpResponseMessage response)
         {
@@ -273,28 +273,28 @@ namespace Sphyrnidae.Common.Logging
                 return;
 
             await info.SaveResponse(response);
-            await DoUpdate(info);
+            DoUpdate(info);
         }
         #endregion
 
         #region Middleware
-        public virtual async Task<MiddlewareInformation> MiddlewareEntry(string name)
+        public virtual MiddlewareInformation MiddlewareEntry(string name)
         {
             var info = ServiceLocator.Get<MiddlewareInformation>(Provider);
             if (!EnabledPreCheck(info))
                 return null;
 
             info.Initialize(name);
-            await DoLog(info);
+            DoLog(info);
             return info;
         }
 
-        public virtual async Task MiddlewareExit(MiddlewareInformation info) => await DoUpdate(info);
+        public virtual void MiddlewareExit(MiddlewareInformation info) => DoUpdate(info);
         #endregion
 
         #region Hidden Exceptions
-        public virtual async Task HiddenException(Exception e, bool messageOnly) => await HiddenException(e, "", messageOnly);
-        public virtual async Task HiddenException(Exception e, string title = "", bool messageOnly = true)
+        public virtual void HiddenException(Exception e, bool messageOnly) => HiddenException(e, "", messageOnly);
+        public virtual void HiddenException(Exception e, string title = "", bool messageOnly = true)
         {
             var info = ServiceLocator.Get<ExceptionInformation>(Provider);
             info.SetHidden();
@@ -302,13 +302,13 @@ namespace Sphyrnidae.Common.Logging
                 return;
 
             info.Initialize(e, title, messageOnly);
-            await DoLog(info);
+            DoLog(info);
         }
         #endregion
 
         #region Exceptions
-        public virtual async Task<Guid> Exception(Exception e, bool messageOnly) => await Exception(e, "", messageOnly);
-        public virtual async Task<Guid> Exception(Exception e, string title = "", bool messageOnly = false)
+        public virtual Guid Exception(Exception e, bool messageOnly) => Exception(e, "", messageOnly);
+        public virtual Guid Exception(Exception e, string title = "", bool messageOnly = false)
         {
             var info = ServiceLocator.Get<ExceptionInformation>(Provider);
             if (!EnabledPreCheck(info))
@@ -317,7 +317,7 @@ namespace Sphyrnidae.Common.Logging
             info.Initialize(e, title, messageOnly);
             var ex = e;
 
-            await DoLog(info, () =>
+            DoLog(info, () =>
             {
                 // We were unable to record the exception
                 // Eg. "SetConfiguration" failed to make the call or get the info
@@ -351,38 +351,33 @@ Stack Trace:
         }
 
         // ReSharper disable once UnusedMethodReturnValue.Local
-        private async Task<bool> SendEmail(string subject, string body)
-            => await Email.SendAsync(EmailImpl, EmailType.Exception, subject, body);
+        private Task<bool> SendEmail(string subject, string body)
+            => Email.SendAsync(EmailImpl, EmailType.Exception, subject, body);
 
         #region Inserts
 
-        protected Task DoLog(BaseLogInformation info, Action errorAction = null)
+        protected void DoLog(BaseLogInformation info, Action errorAction = null)
         {
-            var t = Task.CompletedTask;
-            t.ContinueWith(
-                task =>
-                    SafeTry.EmailException(
-                        EmailImpl,
-                        App,
-                        async () =>
-                        {
-                            // Set properties on the object (ones that aren't set on the constructor that may take a bit)
-                            info.SetProperties(Config);
+            _ = SafeTry.EmailException(
+                EmailImpl,
+                App,
+                async () =>
+                {
+                    // Set properties on the object (ones that aren't set on the constructor that may take a bit)
+                    info.SetProperties(Config);
 
-                            // Log it (Insert)
-                            await DoAllLoggerInserts(info, errorAction);
+                    // Log it (Insert)
+                    await DoAllLoggerInserts(info, errorAction);
 
-                            // Waited for complete above so that this can be set (free it up for updates)
-                            if (info is TimerBaseInformation timer)
-                                timer.SetComplete = true;
-                        }
-                    )
+                    // Waited for complete above so that this can be set (free it up for updates)
+                    if (info is TimerBaseInformation timer)
+                        timer.SetComplete = true;
+                }
             );
-            return t;
         }
 
-        private async Task DoAllLoggerInserts(BaseLogInformation info, Action errorAction = null)
-            => await Task.WhenAll(Loggers.All
+        private Task DoAllLoggerInserts(BaseLogInformation info, Action errorAction = null)
+            => Task.WhenAll(Loggers.All
                 .Where(logger => Config.LoggerEnabled(logger.Name, info.Type))
                 .Select(logger => DoLoggerInsert(logger, info, errorAction)));
 
@@ -402,87 +397,83 @@ Stack Trace:
         #endregion
 
         #region Updates
-        protected Task DoUpdate(TimerBaseInformation info, Action errorAction = null)
+        protected void DoUpdate(TimerBaseInformation info, Action errorAction = null)
         {
-            var t = Task.CompletedTask;
             if (info == null)
-                return t;
+                return;
 
             info.Stop();
 
-            t.ContinueWith(
-                task => SafeTry.EmailException(
-                    EmailImpl,
-                    App,
-                    async () =>
+            _ = SafeTry.EmailException(
+                EmailImpl,
+                App,
+                async () =>
+                {
+                    // Only proceed when the initial logging call has completed as everything below requires information in the set call to be present/done
+                    for (var i = 0; i < 600; i++) // 1 minute max wait
                     {
-                        // Only proceed when the initial logging call has completed as everything below requires information in the set call to be present/done
-                        for (var i = 0; i < 600; i++) // 1 minute max wait
-                        {
-                            if (info.SetComplete)
-                                break;
-                            await Task.Delay(100);
-                        }
+                        if (info.SetComplete)
+                            break;
+                        await Task.Delay(100);
+                    }
 
-                        // If this failed, email out (all we can do, kinda)
-                        if (!info.SetComplete)
-                        {
-                            var subject = $"{GetEmailSubjectPrefix(info)}Unable to Record Logging Update";
-                            var body = $@"{info.IdentifierStr}
+                    // If this failed, email out (all we can do, kinda)
+                    if (!info.SetComplete)
+                    {
+                        var subject = $"{GetEmailSubjectPrefix(info)}Unable to Record Logging Update";
+                        var body = $@"{info.IdentifierStr}
 {info.GetElapsedStr()}";
 #pragma warning disable 4014
-                            SendEmail(subject, body);
+                        SendEmail(subject, body);
 #pragma warning restore 4014
-                            return;
-                        }
-
-                        // Set update properties now that may take a while
-                        info.UpdateProperties(Config);
-
-                        // Long running determination
-                        if (info.LongRunningName != null)
-                        {
-                            // Enabled?
-                            if (Config.TypeEnabled(LongRunningInformation.StaticType))
-                            {
-                                // Check
-                                var maxMilliseconds = Alert.MaxMilliseconds(info.LongRunningName);
-                                if (info.IsLongRunning(maxMilliseconds) ?? false)
-                                {
-                                    LongRunningInfo.Initialize(info);
-                                    LongRunningInfo.SetProperties(Config);
-                                    await DoAllLoggerInserts(LongRunningInfo);
-                                }
-                            }
-                        }
-
-                        // HTTP response determination
-                        var responseInfo = info.GetResponseInfo();
-                        if (responseInfo != null)
-                        {
-                            // Enabled?
-                            if (Config.TypeEnabled(HttpResponseInformation.StaticType))
-                            {
-                                // Check
-                                if (Alert.HttpResponseAlert(responseInfo))
-                                {
-                                    var result = info.GetResponse(Config.HideKeys());
-                                    HttpResponseInfo.Initialize(info, responseInfo.Type, responseInfo.HttpMethod,
-                                        responseInfo.HttpCode, result);
-                                    HttpResponseInfo.SetProperties(Config);
-                                    await DoAllLoggerInserts(HttpResponseInfo);
-                                }
-                            }
-                        }
-
-                        // Log it (Update)
-                        await Task.WhenAll(Loggers.All
-                            .Where(logger => Config.LoggerEnabled(logger.Name, info.Type))
-                            .Select(logger => DoLoggerUpdate(logger, info, errorAction)));
+                        return;
                     }
-                )
+
+                    // Set update properties now that may take a while
+                    info.UpdateProperties(Config);
+
+                    // Long running determination
+                    if (info.LongRunningName != null)
+                    {
+                        // Enabled?
+                        if (Config.TypeEnabled(LongRunningInformation.StaticType))
+                        {
+                            // Check
+                            var maxMilliseconds = Alert.MaxMilliseconds(info.LongRunningName);
+                            if (info.IsLongRunning(maxMilliseconds) ?? false)
+                            {
+                                LongRunningInfo.Initialize(info);
+                                LongRunningInfo.SetProperties(Config);
+                                await DoAllLoggerInserts(LongRunningInfo);
+                            }
+                        }
+                    }
+
+                    // HTTP response determination
+                    var responseInfo = info.GetResponseInfo();
+                    if (responseInfo != null)
+                    {
+                        // Enabled?
+                        if (Config.TypeEnabled(HttpResponseInformation.StaticType))
+                        {
+                            // Check
+                            if (Alert.HttpResponseAlert(responseInfo))
+                            {
+                                var result = info.GetResponse(Config.HideKeys());
+                                HttpResponseInfo.Initialize(info, responseInfo.Type, responseInfo.HttpMethod,
+                                    responseInfo.HttpCode, result);
+                                HttpResponseInfo.SetProperties(Config);
+                                await DoAllLoggerInserts(HttpResponseInfo);
+                            }
+                        }
+                    }
+
+                    // Log it (Update)
+                    await Task.WhenAll(Loggers.All
+                    .Where(logger => Config.LoggerEnabled(logger.Name, info.Type))
+                    .Select(logger => DoLoggerUpdate(logger, info, errorAction)));
+                }
             );
-            return t;
         }
 
         private Task DoLoggerUpdate(BaseLogger logger, TimerBaseInformation info, Action errorAction)

@@ -23,12 +23,12 @@ namespace Sphyrnidae.Common.Api.ServiceRegistration
                 async msg => await SafeTry.EmailException(
                     email,
                     app,
-                    async () => await logger.Log(TraceEventType.Suspend, msg, "SignalR")
+                    () => logger.Log(TraceEventType.Suspend, msg, "SignalR")
                 ),
                 async ex => await SafeTry.EmailException(
                     email,
                     app,
-                    async () => await logger.Exception(ex)
+                    () => logger.Exception(ex)
                 )
             );
         }
@@ -40,7 +40,7 @@ namespace Sphyrnidae.Common.Api.ServiceRegistration
             var logger = ServiceLocator.Get<ILogger>(sp);
             var signalR = ServiceLocator.Get<ISignalR>(sp);
             var memory = ServiceLocator.Get<IMemoryCache>(sp);
-            _ = SafeTry.LogException(logger, () => SignalRHub.Receive<string>(signalR, url, "Invalidate Cache", memory.Remove));
+            _ = SafeTry.LogException(logger, async () => await SignalRHub.Receive<string>(signalR, url, "Invalidate Cache", memory.Remove));
         }
     }
 }

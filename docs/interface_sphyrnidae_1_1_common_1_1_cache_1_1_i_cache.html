@@ -122,9 +122,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aee7510e28565fe0557c2c88031336741"><td class="memItemLeft" align="right" valign="top">Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#aee7510e28565fe0557c2c88031336741">GetAsync&lt; T &gt;</a> (string key, Func&lt; Task&lt; T &gt;&gt; method)</td></tr>
 <tr class="memdesc:aee7510e28565fe0557c2c88031336741"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to retrieve an item from cache. If not found in cache, will make callback to obtain the item from the caller which will be stored for later use  <a href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#aee7510e28565fe0557c2c88031336741">More...</a><br /></td></tr>
 <tr class="separator:aee7510e28565fe0557c2c88031336741"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23a60ce7a88f78c104bbbf329c863a4a"><td class="memItemLeft" align="right" valign="top">Exception&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#a23a60ce7a88f78c104bbbf329c863a4a">Remove</a> (string key)</td></tr>
-<tr class="memdesc:a23a60ce7a88f78c104bbbf329c863a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the given object from cache  <a href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#a23a60ce7a88f78c104bbbf329c863a4a">More...</a><br /></td></tr>
-<tr class="separator:a23a60ce7a88f78c104bbbf329c863a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b09950f407b332d7b4896deea4ec2ac"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#a2b09950f407b332d7b4896deea4ec2ac">Remove</a> (string key)</td></tr>
+<tr class="memdesc:a2b09950f407b332d7b4896deea4ec2ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the given object from cache  <a href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#a2b09950f407b332d7b4896deea4ec2ac">More...</a><br /></td></tr>
+<tr class="separator:a2b09950f407b332d7b4896deea4ec2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad91f1536c5d3d5cc31b808e83e6bd8ee"><td class="memItemLeft" align="right" valign="top">Task&lt; Exception &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#ad91f1536c5d3d5cc31b808e83e6bd8ee">RemoveAsync</a> (string key)</td></tr>
+<tr class="memdesc:ad91f1536c5d3d5cc31b808e83e6bd8ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes the given object from cache  <a href="interface_sphyrnidae_1_1_common_1_1_cache_1_1_i_cache.html#ad91f1536c5d3d5cc31b808e83e6bd8ee">More...</a><br /></td></tr>
+<tr class="separator:ad91f1536c5d3d5cc31b808e83e6bd8ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -269,18 +272,47 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The object from cache/callback function</dd></dl>
 
-<p>Implemented in <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_none.html#a17b358b5183af124a54854b147b497dd">Sphyrnidae.Common.Cache.CacheNone</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html#add73b8c2376392a747a83eef4e3bc99d">Sphyrnidae.Common.Cache.CacheLocalAndDistributed</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local.html#a9f0f88297018200dbe900aada6f70fb1">Sphyrnidae.Common.Cache.CacheLocal</a>, and <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_distributed.html#aebcf39cc8a1a668109a9c870c3fc441a">Sphyrnidae.Common.Cache.CacheDistributed</a>.</p>
+<p>Implemented in <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_none.html#a5af97c960d0edf63c5ed3870db5afcd6">Sphyrnidae.Common.Cache.CacheNone</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html#a9d187e022140971fcf22441d58eeb1c2">Sphyrnidae.Common.Cache.CacheLocalAndDistributed</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local.html#a205b94d1591cbe49291ba87b3e8329df">Sphyrnidae.Common.Cache.CacheLocal</a>, and <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_distributed.html#ad3e11f910f16f3fbc00e17db10c7ee4a">Sphyrnidae.Common.Cache.CacheDistributed</a>.</p>
 
 </div>
 </div>
-<a id="a23a60ce7a88f78c104bbbf329c863a4a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a23a60ce7a88f78c104bbbf329c863a4a">&#9670;&nbsp;</a></span>Remove()</h2>
+<a id="a2b09950f407b332d7b4896deea4ec2ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b09950f407b332d7b4896deea4ec2ac">&#9670;&nbsp;</a></span>Remove()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Exception Sphyrnidae.Common.Cache.ICache.Remove </td>
+          <td class="memname">void Sphyrnidae.Common.Cache.ICache.Remove </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>key</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Removes the given object from cache </p>
+<p>Note that this removes from local cache, distributed cache, and via <a class="el" href="namespace_sphyrnidae_1_1_common_1_1_signal_r.html">SignalR</a>, all other local cache as well. Any errors in removal of the item will be hidden from the user, so it is preferred to use RemoveAsync if you need this exception handling. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">key</td><td>Name of the item in cache</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_none.html#af5e14f60bee82886bfbad312b42ed6d5">Sphyrnidae.Common.Cache.CacheNone</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html#a1696427f781d0af82afe6977c644a7a7">Sphyrnidae.Common.Cache.CacheLocalAndDistributed</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local.html#aa48faf26d757204802a8afbfe16d58c1">Sphyrnidae.Common.Cache.CacheLocal</a>, and <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_distributed.html#ab323379899f33409c5bd2a8ed669357d">Sphyrnidae.Common.Cache.CacheDistributed</a>.</p>
+
+</div>
+</div>
+<a id="ad91f1536c5d3d5cc31b808e83e6bd8ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad91f1536c5d3d5cc31b808e83e6bd8ee">&#9670;&nbsp;</a></span>RemoveAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task&lt;Exception&gt; Sphyrnidae.Common.Cache.ICache.RemoveAsync </td>
           <td>(</td>
           <td class="paramtype">string&#160;</td>
           <td class="paramname"><em>key</em></td><td>)</td>
@@ -299,7 +331,7 @@ Properties</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>If an exception was thrown and the item was not fully removed, this exception will be returned. If everything succeeded, this will be null. </dd></dl>
 
-<p>Implemented in <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_none.html#a31412daa71d5b21efafba0435d69ca17">Sphyrnidae.Common.Cache.CacheNone</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html#abeda13c446603c7d6708eb0a1e44fcd9">Sphyrnidae.Common.Cache.CacheLocalAndDistributed</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local.html#adb88c444f26f8c2f7a20c5bae501ee33">Sphyrnidae.Common.Cache.CacheLocal</a>, and <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_distributed.html#afd01e4924a24f5938afcd39236241c20">Sphyrnidae.Common.Cache.CacheDistributed</a>.</p>
+<p>Implemented in <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_none.html#ab0bc220e598226d7381a032504da270f">Sphyrnidae.Common.Cache.CacheNone</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html#a8105225012b03dc66601d77dddb77c40">Sphyrnidae.Common.Cache.CacheLocalAndDistributed</a>, <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local.html#a1aff8847a1c67372b8e34b68b3796205">Sphyrnidae.Common.Cache.CacheLocal</a>, and <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_distributed.html#a21869877dca7b6fb0f2f16cd274b802f">Sphyrnidae.Common.Cache.CacheDistributed</a>.</p>
 
 </div>
 </div>

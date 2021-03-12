@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Sphyrnidae.Common.Serialize;
-using Sphyrnidae.Common.Utilities;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Extensions
@@ -23,7 +22,9 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="endpoint">For logging purposes only: This is an identifier for a thrown exception</param>
         /// <param name="jsonSettings">Optional: The json settings to use</param>
         /// <returns>The object from the result</returns>
-        public static async Task<T> GetResult<T>(this HttpResponseMessage result, string endpoint, JsonSerializerSettings jsonSettings = null) => await result.GetResult(true, endpoint, default, x => x.DeserializeJson<T>(jsonSettings));
+        public static Task<T> GetResult<T>(this HttpResponseMessage result, string endpoint,
+            JsonSerializerSettings jsonSettings = null)
+            => result.GetResult(true, endpoint, default, x => x.DeserializeJson<T>(jsonSettings));
         /// <summary>
         /// Retrieves the result of the Json formatted http response
         /// </summary>
@@ -32,7 +33,9 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="defaultObject">This will be returned if any errors arise getting the result</param>
         /// <param name="jsonSettings">Optional: The json settings to use</param>
         /// <returns>The object from the result</returns>
-        public static async Task<T> GetResultAsync<T>(this HttpResponseMessage result, T defaultObject, JsonSerializerSettings jsonSettings = null) => await result.GetResult(false, null, defaultObject, x => x.DeserializeJson<T>(jsonSettings));
+        public static Task<T> GetResultAsync<T>(this HttpResponseMessage result,
+            T defaultObject, JsonSerializerSettings jsonSettings = null)
+            => result.GetResult(false, null, defaultObject, x => x.DeserializeJson<T>(jsonSettings));
         /// <summary>
         /// Retrieves the result of the XML formatted http response
         /// </summary>
@@ -41,7 +44,9 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="endpoint">For logging purposes only: This is an identifier for a thrown exception</param>
         /// <param name="serializer">Optional: The XML Serializer to use</param>
         /// <returns>The object from the result</returns>
-        public static async Task<T> GetXmlResultAsync<T>(this HttpResponseMessage result, string endpoint, XmlSerializer serializer = null) => await result.GetResult(true, endpoint, default, x => x.DeserializeXml<T>(serializer));
+        public static Task<T> GetXmlResultAsync<T>(this HttpResponseMessage result, string endpoint,
+            XmlSerializer serializer = null)
+            => result.GetResult(true, endpoint, default, x => x.DeserializeXml<T>(serializer));
         /// <summary>
         /// Retrieves the result of the XML formatted http response
         /// </summary>
@@ -50,7 +55,9 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="defaultObject">This will be returned if any errors arise getting the result</param>
         /// <param name="serializer">Optional: The XML Serializer to use</param>
         /// <returns>The object from the result</returns>
-        public static async Task<T> GetXmlResultAsync<T>(this HttpResponseMessage result, T defaultObject, XmlSerializer serializer = null) => await result.GetResult(false, null, defaultObject, x => x.DeserializeXml<T>(serializer));
+        public static Task<T> GetXmlResultAsync<T>(this HttpResponseMessage result, T defaultObject,
+            XmlSerializer serializer = null)
+            => result.GetResult(false, null, defaultObject, x => x.DeserializeXml<T>(serializer));
 
         /// <summary>
         /// Retrieves the result of the http response
@@ -66,33 +73,34 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="deserializer">The deserialization method</param>
         /// <returns>The object from the result</returns>
         private static async Task<T> GetResult<T>(this HttpResponseMessage result, bool throwOnFailure, string endpoint, T defaultObject, Func<string, T> deserializer)
-            => await SafeTry.OnException(
-                async () =>
+        {
+            try
+            {
+                // Successful, return the object
+                if (result.IsSuccessStatusCode)
                 {
-                    // Successful, return the object
-                    if (result.IsSuccessStatusCode)
-                    {
-                        // This will actually be done twice in web services... first one for logging, and 2nd one for the actual result (this).
-                        var strResult = await result.GetBodyAsync();
+                    // This will actually be done twice in web services... first one for logging, and 2nd one for the actual result (this).
+                    var strResult = await result.GetBodyAsync();
 
-                        // Since this is not an error, don't return "defaultObject" - "default" is correct
-                        return strResult == null ? default : deserializer(strResult);
-                    }
+                    // Since this is not an error, don't return "defaultObject" - "default" is correct
+                    return strResult == null ? default : deserializer(strResult);
+                }
 
-                    // Unsuccessful
-                    if (!throwOnFailure)
-                        return defaultObject;
-
-                    if (endpoint == null)
-                        throw new Exception("Unsuccessful call");
-                    throw new Exception("Unsuccessful call to: " + endpoint);
-                },
-                ex =>
-                {
-                    if (throwOnFailure)
-                        throw ex;
+                // Unsuccessful
+                if (!throwOnFailure)
                     return defaultObject;
-                });
+
+                if (endpoint == null)
+                    throw new Exception("Unsuccessful call");
+                throw new Exception("Unsuccessful call to: " + endpoint);
+            }
+            catch (Exception ex)
+            {
+                if (throwOnFailure)
+                    throw ex;
+                return defaultObject;
+            }
+        }
         #endregion
 
         #region Helpers
@@ -109,7 +117,7 @@ namespace Sphyrnidae.Common.Extensions
         /// </summary>
         /// <param name="result"></param>
         /// <returns></returns>
-        public static async Task<string> GetBodyAsync(this HttpResponseMessage result) => await result.Content.ReadAsStringAsync();
+        public static Task<string> GetBodyAsync(this HttpResponseMessage result) => result.Content.ReadAsStringAsync();
         #endregion
     }
 }

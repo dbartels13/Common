@@ -25,7 +25,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 return;
             }
 
-            var middlewareInfo = await logger.MiddlewareEntry("ApiLogging");
+            var middlewareInfo = logger.MiddlewareEntry("ApiLogging");
             var apiInfo = await logger.ApiEntry();
 
             // Save off response body (must be done so the ApiExit call has access to the HttpResponse object)
@@ -46,7 +46,7 @@ namespace Sphyrnidae.Common.Api.Middleware
                 response.Body = originalBody;
                 await response.WriteAsync(newBodyStr);
 
-                await logger.MiddlewareExit(middlewareInfo);
+                logger.MiddlewareExit(middlewareInfo);
             }
         }
     }

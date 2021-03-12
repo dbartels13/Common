@@ -15,10 +15,9 @@ namespace Sphyrnidae.Common.Dal
 
         protected override IDbConnection GetConnection => new MySqlConnection(CnnStr);
 
-        protected override async Task PreCall(IDbConnection cnn, IDbTransaction trans)
-        {
-            if (cnn.State != ConnectionState.Open)
-                await ((MySqlConnection)cnn).OpenAsync();
-        }
+        protected override Task PreCall(IDbConnection cnn, IDbTransaction trans)
+            => cnn.State == ConnectionState.Open
+                ? Task.CompletedTask
+                : ((MySqlConnection)cnn).OpenAsync();
     }
 }

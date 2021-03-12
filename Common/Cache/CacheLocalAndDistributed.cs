@@ -50,7 +50,12 @@ namespace Sphyrnidae.Common.Cache
             // Check L2 cache
             if (Options.UseDistributedCache)
             {
-                var bytes = SafeTry.IgnoreException(() => L2Cache.Get(key));
+                byte[] bytes = null;
+                try
+                {
+                    bytes = L2Cache.Get(key);
+                }
+                catch { }
 
                 // Was not found
                 if (bytes == null)
@@ -106,15 +111,16 @@ namespace Sphyrnidae.Common.Cache
             }
 
             // Optionally place in L2 Cache
-            // If this call fails, do nothing
             if (Options.UseDistributedCache)
             {
-                SafeTry.IgnoreException(() =>
+                // If these calls fail, do nothing
+                try
                 {
                     var obj = new L2CacheItem<T>(Options.Seconds, Options.Priority, item);
-                    var l2Options = new DistributedCacheEntryOptions {AbsoluteExpiration = expiration};
+                    var l2Options = new DistributedCacheEntryOptions { AbsoluteExpiration = expiration };
                     L2Cache.Set(key, obj.ToByteArray(), l2Options);
-                });
+                }
+                catch { }
             }
         }
 
@@ -159,12 +165,12 @@ namespace Sphyrnidae.Common.Cache
         /// <param name="key">Name of the item in cache</param>
         /// <param name="method">The callback function returning the item if not initially found in cache</param>
         /// <returns>The object from cache/callback function</returns>
-        public virtual async Task<T> GetAsync<T>(string key, Func<Task<T>> method)
+        public virtual Task<T> GetAsync<T>(string key, Func<Task<T>> method)
         {
             if (Get(key, out T item))
-                return item;
+                return Task.FromResult(item);
 
-            return await NamedLocker.LockAsync(key, async () =>
+            return NamedLocker.LockAsync(key, async () =>
             {
                 if (Get(key, out item))
                     return item;
@@ -184,7 +190,37 @@ namespace Sphyrnidae.Common.Cache
 
         /// <inheritdoc />
         /// <summary>
-        /// Removes the given object from cache
+        /// Removes the given object from local and distributed cache
+        /// </summary>
+        /// <remarks>
+        /// Note that this removes from local cache, distributed cache, and via SignalR, all other local cache as well
+        /// Any failures will be hidden from the caller (Exceptions will not be thrown out)
+        /// </remarks>
+        /// <param name="key">Name of the item in cache</param>
+        public virtual void Remove(string key)
+        {
+            if (Options.UseLocalCache)
+                L1Cache.Remove(key); // This one should never throw
+
+            if (Options.UseDistributedCache)
+            {
+                try
+                {
+                    L2Cache.Remove(key);
+                }
+                catch { }
+            }
+
+            try
+            {
+                _ = SignalRHub.Send(SignalR, SignalRCacheHubUrl, "InvalidateCache", key);
+            }
+            catch { }
+        }
+
+        /// <inheritdoc />
+        /// <summary>
+        /// Removes the given object from local and distributed cache
         /// </summary>
         /// <remarks>
         /// Note that this removes from local cache, distributed cache, and via SignalR, all other local cache as well
@@ -194,29 +230,34 @@ namespace Sphyrnidae.Common.Cache
         /// If an exception was thrown and the item was not fully removed, this exception will be returned.
         /// If everything succeeded, this will be null.
         /// </returns>
-        public virtual Exception Remove(string key)
+        public virtual async Task<Exception> RemoveAsync(string key)
         {
             if (Options.UseLocalCache)
                 L1Cache.Remove(key); // This one should never throw
 
             Exception l2Success = null;
             if (Options.UseDistributedCache)
-                l2Success = SafeTry.OnException(
-                    () =>
-                    {
-                        L2Cache.Remove(key);
-                        return default(Exception);
-                    }
-                    , ex => ex
-                );
+            {
+                try
+                {
+                    L2Cache.Remove(key);
+                }
+                catch (Exception ex)
+                {
+                    l2Success = ex;
+                }
+            }
 
-            var signalRSuccess = SafeTry.OnException(
-                () => SignalRHub.Send(SignalR, SignalRCacheHubUrl, "InvalidateCache", key).Result
-                    ? default
-                    : new Exception($"Unable to remove cache item {key} from distributed cache")
-                , ex => ex
-            );
-            return signalRSuccess ?? l2Success;
+            try
+            {
+                if (!await SignalRHub.Send(SignalR, SignalRCacheHubUrl, "InvalidateCache", key))
+                    return new Exception($"Unable to remove cache item {key} from distributed local caches");
+                return l2Success;
+            }
+            catch (Exception ex)
+            {
+                return ex;
+            }
         }
 
         protected virtual string SignalRCacheHubUrl => SettingsEnvironmental.Get(Env, "URL:Hub:Cache");

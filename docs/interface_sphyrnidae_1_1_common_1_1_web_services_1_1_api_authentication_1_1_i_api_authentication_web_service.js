@@ -1,0 +1,4 @@
+var interface_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_i_api_authentication_web_service =
+[
+    [ "IsAuthenticated", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_i_api_authentication_web_service.html#a34bae08326ce51c4eb3e37c140832ac8", null ]
+];

@@ -45,7 +45,7 @@ namespace Sphyrnidae.Common.Api.Middleware
             var requireHttps = SettingsEnvironmental.Get(env, "Require_Https", "false").ToBool(false);
             if (requireHttps && !context.Request.IsHttps)
             {
-                await logger.Log(TraceEventType.Warning, "Non-Https request received", "HTTPS");
+                logger.Log(TraceEventType.Warning, "Non-Https request received", "HTTPS");
                 await context.Response.WriteResponseAsync(ApiResponse.HttpsRequired().ConvertToOther(apiResponse), SerializationSettings.Default);
                 return;
             }

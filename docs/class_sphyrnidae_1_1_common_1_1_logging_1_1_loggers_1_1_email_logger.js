@@ -1,8 +1,8 @@
 var class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger =
 [
     [ "EmailLogger", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#ae1d8d719830352f323577f14b593c141", null ],
-    [ "DoInsert", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#aa56fa4eaa4135bb33025b42df0cf5d57", null ],
-    [ "DoUpdate", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#a21a1e79f8d19bb077931b60cc92a97c3", null ],
+    [ "DoInsert", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#a9a839061d42ef25a2a82d04cc005d7f4", null ],
+    [ "DoUpdate", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#a30548dcfd898c519e5ff0bc78774022f", null ],
     [ "EmailImpl", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#aae3adfe9948457214179d11a43acce94", null ],
     [ "Host", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#ae10bd37c767e385b877da7ae578e371d", null ],
     [ "IncludeHigh", "class_sphyrnidae_1_1_common_1_1_logging_1_1_loggers_1_1_email_logger.html#a67e9ccef29b786cd443f41cb588d1f19", null ],

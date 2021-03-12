@@ -20,7 +20,7 @@ Mock: [ApplicationSettingsMock](@ref Sphyrnidae.Common.Application.ApplicationSe
 Implementation: None (You must implement)
 
 ## Where Used {#ApplicationWhereUsedMd}
-1. [AuthenticationMiddleware](@ref Sphyrnidae.Common.Api.Middleware.AuthenticationMiddleware) and [IApiAuthenticationWebService](@ref Sphyrnidae.Common.WebServices.IApiAuthenticationWebService): API to API authentication
+1. [AuthenticationMiddleware](@ref Sphyrnidae.Common.Api.Middleware.AuthenticationMiddleware) and [IApiAuthenticationWebService](@ref Sphyrnidae.Common.WebServices.ApiAuthentication.IApiAuthenticationWebService): API to API authentication
 2. Swagger Documentation
 3. [IEmail](@ref Sphyrnidae.Common.EmailUtilities.Interfaces.IEmail): Application name appears in some email subject emails
 4. [IFeatureToggleServices](@ref Sphyrnidae.Common.FeatureToggle.Interfaces.IFeatureToggleServices): Features can be application-specific

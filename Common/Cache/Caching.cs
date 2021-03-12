@@ -47,7 +47,18 @@ namespace Sphyrnidae.Common.Cache
         /// <param name="key">Name of the item in cache</param>
         /// <param name="method">The callback function returning the item if not initially found in cache</param>
         /// <returns>The object from cache/callback function</returns>
-        public static async Task<T> GetAsync<T>(ICache cache, string key, Func<Task<T>> method) => await cache.GetAsync(key, method);
+        public static Task<T> GetAsync<T>(ICache cache, string key, Func<Task<T>> method) => cache.GetAsync(key, method);
+
+        /// <summary>
+        /// Removes the given object from cache
+        /// </summary>
+        /// <remarks>
+        /// Note that this removes from local cache, distributed cache, and via SignalR, all other local cache as well
+        /// Any exceptions occurring during this process will be hidden
+        /// </remarks>
+        /// <param name="cache">The instance of the ICache interface</param>
+        /// <param name="key">Name of the item in cache</param>
+        public static void Remove(ICache cache, string key) => cache.Remove(key);
 
         /// <summary>
         /// Removes the given object from cache
@@ -61,6 +72,6 @@ namespace Sphyrnidae.Common.Cache
         /// If an exception was thrown and the item was not fully removed, this exception will be returned.
         /// If everything succeeded, this will be null.
         /// </returns>
-        public static Exception Remove(ICache cache, string key) => cache.Remove(key);
+        public static Task<Exception> RemoveAsync(ICache cache, string key) => cache.RemoveAsync(key);
     }
 }

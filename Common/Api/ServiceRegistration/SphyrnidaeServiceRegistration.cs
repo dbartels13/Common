@@ -31,8 +31,7 @@ using Sphyrnidae.Common.UserPreference;
 using Sphyrnidae.Common.UserPreference.Interfaces;
 using Sphyrnidae.Common.Variable;
 using Sphyrnidae.Common.Variable.Interfaces;
-using Sphyrnidae.Common.WebServices;
-using Sphyrnidae.Common.WebServices.Interfaces;
+using Sphyrnidae.Common.WebServices.ApiAuthentication;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Api.ServiceRegistration
@@ -143,10 +142,7 @@ namespace Sphyrnidae.Common.Api.ServiceRegistration
                 services.TryAddTransient<ICache, CacheLocal>();
 
             // Email
-            services.TryAddTransient<IEmail, DotNetEmail>();
-            services.TryAddTransient<IDotNetEmailSettings, SphyrnidaeDotNetEmailSettings>();
-            services.TryAddTransient<IEmailDefaultSettings, SphyrnidaeEmailDefaultSettings>();
-            services.TryAddTransient<IEmailSettings, SphyrnidaeEmailSettings>();
+            services.TryAddTransient<IEmail, EmailMock>();
 
             // Encryption
             services.TryAddTransient<IEncryption, EncryptionDispatcher>();
@@ -191,9 +187,6 @@ namespace Sphyrnidae.Common.Api.ServiceRegistration
 
             // Web Services
             services.TryAddTransient<IApiAuthenticationWebService, ApiAuthenticationWebServiceMock>();
-            services.TryAddTransient<IFeatureToggleWebService, FeatureToggleWebServiceMock>();
-            services.TryAddTransient<IUserPreferenceWebService, UserPreferenceWebServiceMock>();
-            services.TryAddTransient<IVariableWebService, VariableWebServiceMock>();
 
             // Transient Helpers
             //services.TryAddTransient<IApplicationSettings, YOUR_APP_SETTINGS_CLASS>(); // Caller must do this

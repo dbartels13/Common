@@ -6,7 +6,6 @@ using Dapper;
 using Sphyrnidae.Common.Api.Responses;
 using Sphyrnidae.Common.Dal.Models;
 using Sphyrnidae.Common.Logging.Interfaces;
-using Sphyrnidae.Common.Utilities;
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Dal
@@ -85,19 +84,24 @@ namespace Sphyrnidae.Common.Dal
 
             try
             {
-                var info = DoLog ? await Logger.DatabaseEntry(CnnName, sql, parameters) : null;
+                var info = DoLog ? Logger.DatabaseEntry(CnnName, sql, parameters) : null;
                 await PreCall(cnn, trans);
-                var result = await SafeTry.OnException(
-                    async () => await method(cnn, sql, parameters, trans, type),
-                    ex =>
-                    {
-                        Ex = ex;
-                        if (!trapExceptions)
-                            throw ex;
-                        return default(T);
-                    });
+
+                T result;
+                try
+                {
+                    result = await method(cnn, sql, parameters, trans, type);
+                }
+                catch (Exception ex)
+                {
+                    Ex = ex;
+                    if (!trapExceptions)
+                        throw ex;
+                    result = default;
+                }
+
                 await PostCall(cnn, trans);
-                await Logger.DatabaseExit(info);
+                Logger.DatabaseExit(info);
                 return result;
             }
             finally
@@ -116,8 +120,8 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>Number of records affected</returns>
-        protected async Task<int> WriteSQLAsync(string sql, object parameters, IDbTransaction trans = null)
-            => (await WriteAsync(sql, CommandType.Text, parameters, trans)).Value;
+        protected Task<int> WriteSQLAsync(string sql, object parameters, IDbTransaction trans = null)
+            => ExecuteAsync(sql, parameters, trans, CommandType.Text, DoWriteAsync);
 
         /// <summary>
         /// Executes something against a database
@@ -126,8 +130,8 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>Number of records affected</returns>
-        protected async Task<int> WriteSPAsync(string sp, object parameters, IDbTransaction trans = null)
-            => (await WriteAsync(sp, CommandType.StoredProcedure, parameters, trans)).Value;
+        protected Task<int> WriteSPAsync(string sp, object parameters, IDbTransaction trans = null)
+            => ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, DoWriteAsync);
 
         /// <summary>
         /// Executes something against a database
@@ -137,7 +141,10 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>False if nothing was changed, otherwise true</returns>
         protected async Task<bool> WriteSQLAsBoolAsync(string sql, object parameters, IDbTransaction trans = null)
-            => (await WriteAsync(sql, CommandType.Text, parameters, trans)).Value != 0;
+        {
+            var numRows = await ExecuteAsync(sql, parameters, trans, CommandType.Text, DoWriteAsync);
+            return numRows != 0;
+        }
 
         /// <summary>
         /// Executes something against a database
@@ -147,7 +154,10 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>False if nothing was changed, otherwise true</returns>
         protected async Task<bool> WriteSPAsBoolAsync(string sp, object parameters, IDbTransaction trans = null)
-            => (await WriteAsync(sp, CommandType.StoredProcedure, parameters, trans)).Value != 0;
+        {
+            var numRows = await ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, DoWriteAsync);
+            return numRows != 0;
+        }
 
         /// <summary>
         /// Executes something against a database
@@ -156,9 +166,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>Number of records affected, or null if exception occurred</returns>
-        protected async Task<int?> WriteSQLTrappingExceptionsAsync(string sql, object parameters,
+        protected Task<int?> WriteSQLTrappingExceptionsAsync(string sql, object parameters,
             IDbTransaction trans = null)
-            => await WriteAsync(sql, CommandType.Text, parameters, trans, true);
+            => ExecuteAsync(sql, parameters, trans, CommandType.Text, DoNullableWriteAsync, true);
 
         /// <summary>
         /// Executes something against a database
@@ -167,9 +177,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>Number of records affected, or null if exception occurred</returns>
-        protected async Task<int?> WriteSPTrappingExceptionsAsync(string sp, object parameters,
+        protected Task<int?> WriteSPTrappingExceptionsAsync(string sp, object parameters,
             IDbTransaction trans = null)
-            => await WriteAsync(sp, CommandType.StoredProcedure, parameters, trans, true);
+            => ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, DoNullableWriteAsync, true);
 
         /// <summary>
         /// Executes something against a database
@@ -180,7 +190,7 @@ namespace Sphyrnidae.Common.Dal
         /// <returns>Null if exception occurred, false if nothing was changed, otherwise true</returns>
         protected async Task<bool?> WriteSQLAsBoolTrappingExceptionsAsync(string sql, object parameters,
             IDbTransaction trans = null)
-            => await WriteAsync(sql, CommandType.Text, parameters, trans, true) switch
+            => await ExecuteAsync(sql, parameters, trans, CommandType.Text, DoNullableWriteAsync, true) switch
             {
                 null => default(bool?),
                 0 => false,
@@ -196,27 +206,17 @@ namespace Sphyrnidae.Common.Dal
         /// <returns>Null if exception occurred, false if nothing was changed, otherwise true</returns>
         protected async Task<bool?> WriteSPAsBoolTrappingExceptionsAsync(string sp, object parameters,
             IDbTransaction trans = null)
-            => await WriteAsync(sp, CommandType.StoredProcedure, parameters, trans, true) switch
+            => await ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, DoNullableWriteAsync, true) switch
             {
                 null => default(bool?),
                 0 => false,
                 _ => true
             };
 
-        /// <summary>
-        /// Executes something against a database
-        /// </summary>
-        /// <param name="sql">The sql to execute</param>
-        /// <param name="type">If this is a SP/Text/etc</param>
-        /// <param name="parameters">Any parameters needed for the execution</param>
-        /// <param name="trans">Optional: The transaction to be used</param>
-        /// <param name="trapExceptions">Optional: Default = false. If true, this will not throw out exceptions (will be caught in variable Ex)</param>
-        /// <returns>Number of records affected, or null if exception occurred</returns>
-        protected async Task<int?> WriteAsync(string sql, CommandType type, object parameters,
-            IDbTransaction trans = null, bool trapExceptions = false)
-            => await ExecuteAsync(sql, parameters, trans, type, DoWriteAsync, trapExceptions);
-
-        private static async Task<int?> DoWriteAsync(IDbConnection cnn, string sql, object parameters,
+        private static Task<int> DoWriteAsync(IDbConnection cnn, string sql, object parameters,
+            IDbTransaction trans, CommandType type)
+            => cnn.ExecuteAsync(sql, parameters, trans, null, type);
+        private static async Task<int?> DoNullableWriteAsync(IDbConnection cnn, string sql, object parameters,
             IDbTransaction trans, CommandType type)
             => await cnn.ExecuteAsync(sql, parameters, trans, null, type);
         #endregion
@@ -230,8 +230,8 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The result (or default if no records)</returns>
-        protected async Task<T> ScalarSQLAsync<T>(string sql, object parameters, IDbTransaction trans = null)
-            => await ScalarAsync<T>(sql, CommandType.Text, parameters, trans);
+        protected Task<T> ScalarSQLAsync<T>(string sql, object parameters, IDbTransaction trans = null)
+            => ExecuteAsync(sql, parameters, trans, CommandType.Text, DoScalarAsync<T>);
 
         /// <summary>
         /// Executes something against a database that returns a single result
@@ -240,8 +240,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The result (or default if no records)</returns>
-        protected async Task<T> ScalarSPAsync<T>(string sp, object parameters, IDbTransaction trans = null)
-            => await ScalarAsync<T>(sp, CommandType.StoredProcedure, parameters, trans);
+        protected Task<T> ScalarSPAsync<T>(string sp, object parameters, IDbTransaction trans = null)
+            //=> await ScalarAsync<T>(sp, CommandType.StoredProcedure, parameters, trans);
+            => ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, DoScalarAsync<T>);
 
         /// <summary>
         /// Executes something against a database that returns a single result
@@ -250,9 +251,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The result (or default if no records)</returns>
-        protected async Task<T> ScalarSQLTrappingExceptionsAsync<T>(string sql, object parameters,
+        protected Task<T> ScalarSQLTrappingExceptionsAsync<T>(string sql, object parameters,
             IDbTransaction trans = null)
-            => await ScalarAsync<T>(sql, CommandType.Text, parameters, trans, true);
+            => ExecuteAsync(sql, parameters, trans, CommandType.Text, DoScalarAsync<T>, true);
 
         /// <summary>
         /// Executes something against a database that returns a single result
@@ -261,26 +262,13 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The result (or default if no records)</returns>
-        protected async Task<T> ScalarSPTrappingExceptionsAsync<T>(string sp, object parameters,
+        protected Task<T> ScalarSPTrappingExceptionsAsync<T>(string sp, object parameters,
             IDbTransaction trans = null)
-            => await ScalarAsync<T>(sp, CommandType.StoredProcedure, parameters, trans, true);
+            => ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, DoScalarAsync<T>, true);
 
-        /// <summary>
-        /// Executes something against a database that returns a single result
-        /// </summary>
-        /// <param name="sql">The sql to execute</param>
-        /// <param name="type">If this is a SP/Text/etc</param>
-        /// <param name="parameters">Any parameters needed for the execution</param>
-        /// <param name="trans">Optional: The transaction to be used</param>
-        /// <param name="trapExceptions">Optional: Default = false. If true, this will not throw out exceptions (will be caught in variable Ex)</param>
-        /// <returns>The result (or default if no records)</returns>
-        protected async Task<T> ScalarAsync<T>(string sql, CommandType type, object parameters,
-            IDbTransaction trans = null, bool trapExceptions = false)
-            => await ExecuteAsync(sql, parameters, trans, type, DoScalarAsync<T>, trapExceptions);
-
-        private static async Task<T> DoScalarAsync<T>(IDbConnection cnn, string sql, object parameters,
+        private static Task<T> DoScalarAsync<T>(IDbConnection cnn, string sql, object parameters,
             IDbTransaction trans, CommandType type)
-            => await cnn.ExecuteScalarAsync<T>(sql, parameters, trans, null, type);
+            => cnn.ExecuteScalarAsync<T>(sql, parameters, trans, null, type);
         #endregion
 
         #region Insert Identity
@@ -292,9 +280,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>Response Object</returns>
-        protected async Task<int?> InsertAsync(string sql, object parameters,
+        protected Task<int?> InsertAsync(string sql, object parameters,
             IDbTransaction trans = null)
-            => await InsertAsync(sql, DatabaseIdentity.Identity, parameters, trans);
+            => InsertAsync(sql, DatabaseIdentity.Identity, parameters, trans);
 
         /// <summary>
         /// Inserts a record into the database
@@ -303,9 +291,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The ID of the object</returns>
-        protected async Task<int?> InsertTrappingExceptionsAsync(string sql, object parameters,
+        protected Task<int?> InsertTrappingExceptionsAsync(string sql, object parameters,
             IDbTransaction trans = null)
-            => await InsertAsync(sql, DatabaseIdentity.Identity, parameters, trans, true);
+            => InsertAsync(sql, DatabaseIdentity.Identity, parameters, trans, true);
 
         /// <summary>
         /// Inserts a record into the database
@@ -316,11 +304,11 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <param name="trapExceptions">Optional: Default = false. If true, this will not throw out exceptions (will be caught in variable Ex)</param>
         /// <returns>The ID of the object</returns>
-        protected async Task<int?> InsertAsync(string sql, DatabaseIdentity identity,
+        protected Task<int?> InsertAsync(string sql, DatabaseIdentity identity,
             object parameters, IDbTransaction trans = null, bool trapExceptions = false)
         {
             sql = ModifySqlInsert(sql, identity);
-            return await ExecuteAsync(sql, parameters, trans, CommandType.Text, DoScalarAsync<int?>, trapExceptions);
+            return ExecuteAsync(sql, parameters, trans, CommandType.Text, DoScalarAsync<int?>, trapExceptions);
         }
 
         private static string ModifySqlInsert(string sql, DatabaseIdentity identity) => $"{sql}; SELECT CAST({(identity == DatabaseIdentity.Identity ? "@@IDENTITY" : "SCOPE_IDENTITY()")} AS INT)";
@@ -334,8 +322,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The record (or default/null if no records)</returns>
-        protected async Task<T> GetSQLAsync<T>(string sql, object parameters, IDbTransaction trans = null)
-            => await GetAsync<T>(sql, CommandType.Text, parameters, trans);
+        protected Task<T> GetSQLAsync<T>(string sql, object parameters, IDbTransaction trans = null)
+            => ExecuteAsync(sql, parameters, trans, CommandType.Text, GetFirstOrDefaultAsync<T>);
+
         /// <summary>
         /// Retrieves a single record from the database
         /// </summary>
@@ -343,20 +332,11 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The record (or default/null if no records)</returns>
-        protected async Task<T> GetSPAsync<T>(string sp, object parameters, IDbTransaction trans = null)
-            => await GetAsync<T>(sp, CommandType.StoredProcedure, parameters, trans);
-        /// <summary>
-        /// Retrieves a single record from the database
-        /// </summary>
-        /// <param name="sql">The sql to execute</param>
-        /// <param name="type">If this is a SP/Text/etc</param>
-        /// <param name="parameters">Any parameters needed for the execution</param>
-        /// <param name="trans">Optional: The transaction to be used</param>
-        /// <returns>The record (or default/null if no records)</returns>
-        protected async Task<T> GetAsync<T>(string sql, CommandType type, object parameters, IDbTransaction trans = null)
-            => await ExecuteAsync(sql, parameters, trans, type, GetFirstOrDefaultAsync<T>);
-        private static async Task<T> GetFirstOrDefaultAsync<T>(IDbConnection cnn, string sql, object parameters, IDbTransaction trans, CommandType type)
-            => await cnn.QueryFirstOrDefaultAsync<T>(sql, parameters, trans, null, type);
+        protected Task<T> GetSPAsync<T>(string sp, object parameters, IDbTransaction trans = null)
+            => ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, GetFirstOrDefaultAsync<T>);
+
+        private static Task<T> GetFirstOrDefaultAsync<T>(IDbConnection cnn, string sql, object parameters, IDbTransaction trans, CommandType type)
+            => cnn.QueryFirstOrDefaultAsync<T>(sql, parameters, trans, null, type);
         #endregion
 
         #region Get multiple records
@@ -367,8 +347,9 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The records (Could be 0, 1, or more)</returns>
-        protected async Task<IEnumerable<T>> GetListSQLAsync<T>(string sql, object parameters, IDbTransaction trans = null)
-            => await GetListAsync<T>(sql, CommandType.Text, parameters, trans);
+        protected Task<IEnumerable<T>> GetListSQLAsync<T>(string sql, object parameters, IDbTransaction trans = null)
+            => ExecuteAsync(sql, parameters, trans, CommandType.Text, GetListAsync<T>);
+
         /// <summary>
         /// Retrieves multiple records (0, 1, or more) from the database
         /// </summary>
@@ -376,20 +357,11 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>The records (Could be 0, 1, or more)</returns>
-        protected async Task<IEnumerable<T>> GetListSPAsync<T>(string sp, object parameters, IDbTransaction trans = null)
-            => await GetListAsync<T>(sp, CommandType.StoredProcedure, parameters, trans);
-        /// <summary>
-        /// Retrieves multiple records (0, 1, or more) from the database
-        /// </summary>
-        /// <param name="sql">The sql to execute</param>
-        /// <param name="type">If this is a SP/Text/etc</param>
-        /// <param name="parameters">Any parameters needed for the execution</param>
-        /// <param name="trans">Optional: The transaction to be used</param>
-        /// <returns>The records (Could be 0, 1, or more)</returns>
-        protected async Task<IEnumerable<T>> GetListAsync<T>(string sql, CommandType type, object parameters, IDbTransaction trans = null)
-            => await ExecuteAsync(sql, parameters, trans, type, GetListAsync<T>);
-        private static async Task<IEnumerable<T>> GetListAsync<T>(IDbConnection cnn, string sql, object parameters, IDbTransaction trans, CommandType type)
-            => await cnn.QueryAsync<T>(sql, parameters, trans, null, type);
+        protected Task<IEnumerable<T>> GetListSPAsync<T>(string sp, object parameters, IDbTransaction trans = null)
+            => ExecuteAsync(sp, parameters, trans, CommandType.StoredProcedure, GetListAsync<T>);
+
+        private static Task<IEnumerable<T>> GetListAsync<T>(IDbConnection cnn, string sql, object parameters, IDbTransaction trans, CommandType type)
+            => cnn.QueryAsync<T>(sql, parameters, trans, null, type);
         #endregion
 
         #region Exists
@@ -406,8 +378,8 @@ namespace Sphyrnidae.Common.Dal
         /// <param name="parameters">Any parameters needed for the execution</param>
         /// <param name="trans">Optional: The transaction to be used</param>
         /// <returns>True if found, otherwise false</returns>
-        protected async Task<bool> ExistsAsync(string conditions, object parameters, IDbTransaction trans = null)
-            => await ScalarAsync<bool>($"SELECT CASE {conditions} ELSE CAST(0 AS BIT) END;", CommandType.Text, parameters, trans);
+        protected Task<bool> ExistsAsync(string conditions, object parameters, IDbTransaction trans = null)
+            => ScalarSQLAsync<bool>($"SELECT CASE {conditions} ELSE CAST(0 AS BIT) END;", parameters, trans);
         #endregion
     }
 }

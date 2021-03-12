@@ -31,20 +31,20 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="response">The current http response</param>
         /// <returns>The full body of the request</returns>
         //public static string GetBody(this HttpResponse response) => response.BodyWriter.AsStream(true).AsString();
-        public static async Task<string> GetBodyAsync(this HttpResponse response) => await response.Body.AsStringAsync();
+        public static Task<string> GetBodyAsync(this HttpResponse response) => response.Body.AsStringAsync();
 
         /// <summary>
         /// Retrieves the body of a response as a string
         /// </summary>
         /// <param name="response">The current http response</param>
         /// <param name="str">The string value of the body (usually object serialized to json)</param>
-        public static async Task ReplaceBodyAsync(this HttpResponse response, string str)
+        public static Task ReplaceBodyAsync(this HttpResponse response, string str)
         {
             var writer = response.BodyWriter;
             var workspace = writer.GetMemory();
             var bytes = Encoding.ASCII.GetBytes(str, workspace.Span);
             writer.Advance(bytes);
-            await Flush(writer);
+            return Flush(writer);
         }
         private static async Task Flush(PipeWriter writer) => await writer.FlushAsync();
 
@@ -55,12 +55,12 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="obj">The object to write out</param>
         /// <param name="json">Json serialization settings</param>
         /// <returns></returns>
-        public static async Task WriteResponseAsync(this HttpResponse response, IApiResponse obj, JsonSerializerSettings json)
+        public static Task WriteResponseAsync(this HttpResponse response, IApiResponse obj, JsonSerializerSettings json)
         {
             response.ContentType = MediaTypeNames.Application.Json;
             var body = obj.ToResponseBody();
             response.StatusCode = obj.Code; // Do this after in case ToResponse() altered the Code
-            await response.WriteAsync(body.SerializeJson(json));
+            return response.WriteAsync(body.SerializeJson(json));
         }
     }
 }

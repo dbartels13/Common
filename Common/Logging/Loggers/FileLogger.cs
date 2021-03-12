@@ -63,7 +63,7 @@ namespace Sphyrnidae.Common.Logging.Loggers
             await NamedLocker.LockAsync(filenameHighlight, async () => await File.AppendAllLinesAsync(filenameHighlight, logItems));
         }
 
-        protected override async Task DoUpdate(LogUpdate model, TimerBaseInformation info, int maxLength)
+        protected override Task DoUpdate(LogUpdate model, TimerBaseInformation info, int maxLength)
         {
             var logItems = new List<string>
             {
@@ -79,7 +79,7 @@ namespace Sphyrnidae.Common.Logging.Loggers
             logItems.Add(""); // Blank line for spacing
 
             var filename = GetFileName(false);
-            await NamedLocker.LockAsync(filename, async () => await File.AppendAllLinesAsync(filename, logItems));
+            return NamedLocker.LockAsync(filename, async () => await File.AppendAllLinesAsync(filename, logItems));
         }
 
         private string GetFileName(bool highlight)

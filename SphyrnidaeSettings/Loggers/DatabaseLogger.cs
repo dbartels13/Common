@@ -27,12 +27,12 @@ namespace Sphyrnidae.Settings.Loggers
         private ILogRepo Repo { get; }
         public DatabaseLogger(ILogRepo repo) => Repo = repo;
 
-        protected override async Task DoInsert(LogInsert model, BaseLogInformation info, int maxLength)
-            => await DoInsertAsync(model, info);
+        protected override Task DoInsert(LogInsert model, BaseLogInformation info, int maxLength)
+            => DoInsertAsync(model, info);
 
-        private async Task DoInsertAsync(LogInsert model, BaseLogInformation info)
+        private Task DoInsertAsync(LogInsert model, BaseLogInformation info)
         {
-            await Transaction<SqlConnection>.Run(
+            return Transaction<SqlConnection>.Run(
                 null,
                 Repo.CnnStr,
                 async trans =>
@@ -125,13 +125,13 @@ namespace Sphyrnidae.Settings.Loggers
             });
         }
 
-        protected override async Task DoUpdate(LogUpdate model, TimerBaseInformation info, int maxLength)
-            => await DoUpdateAsync(model, info);
+        protected override Task DoUpdate(LogUpdate model, TimerBaseInformation info, int maxLength)
+            => DoUpdateAsync(model, info);
 
-        private async Task DoUpdateAsync(LogUpdate model, TimerBaseInformation info)
+        private Task DoUpdateAsync(LogUpdate model, TimerBaseInformation info)
         {
             var id = info.NotResetProperties[DatabaseKey].ToULong("Database Header Record Id");
-            await Transaction<SqlConnection>.Run(
+            return Transaction<SqlConnection>.Run(
                 null,
                 Repo.CnnStr,
                 async trans =>

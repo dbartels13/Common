@@ -28,7 +28,7 @@ namespace Sphyrnidae.Common.Logging.Loggers
             EmailImpl = email;
         }
 
-        protected override async Task DoInsert(LogInsert model, BaseLogInformation info, int maxLength)
+        protected override Task DoInsert(LogInsert model, BaseLogInformation info, int maxLength)
         {
             var subject =
                 $"[{model.Identifier}] Log Insert for: {model.Application ?? "Unknown"} ({Host.EnvironmentName})";
@@ -51,10 +51,10 @@ Environment: {Host.EnvironmentName}
 {string.Join("\r\n", model.Other)}
 ";
 
-            await Email.SendAsync(EmailImpl, EmailType.Logging, subject, body);
+            return Email.SendAsync(EmailImpl, EmailType.Logging, subject, body);
         }
 
-        protected override async Task DoUpdate(LogUpdate model, TimerBaseInformation info, int maxLength)
+        protected override Task DoUpdate(LogUpdate model, TimerBaseInformation info, int maxLength)
         {
             var subject = $"[{model.Identifier}] Completed";
             var body = $@"
@@ -64,7 +64,7 @@ Environment: {Host.EnvironmentName}
 {string.Join("\r\n", model.Other)}
 ";
 
-            await Email.SendAsync(EmailImpl, EmailType.Logging, subject, body);
+            return Email.SendAsync(EmailImpl, EmailType.Logging, subject, body);
         }
     }
 }

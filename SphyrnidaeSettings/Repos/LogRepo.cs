@@ -24,7 +24,7 @@ namespace Sphyrnidae.Settings.Repos
         private static string _cnn;
         public override string CnnStr => _cnn ??= SettingsEnvironmental.Get(Env, "Cnn:Logging").Decrypt(Encrypt).Value;
 
-        public async Task<ulong?> InsertHeader(LogInsert model, IDbTransaction trans)
+        public Task<ulong?> InsertHeader(LogInsert model, IDbTransaction trans)
         {
             var parameters = new
             {
@@ -41,10 +41,10 @@ namespace Sphyrnidae.Settings.Repos
                 p_UserId = model.UserId,
                 p_CustomerId = model.Other[SphyrnidaeIdentity.CustomerIdKey]
             };
-            return await ScalarSPAsync<ulong?>("LogHeader_Insert", parameters, trans);
+            return ScalarSPAsync<ulong?>("LogHeader_Insert", parameters, trans);
         }
 
-        public async Task<int?> InsertApi(ulong id, string headers, string querystring, string form, string browser, IDbTransaction trans)
+        public Task<int> InsertApi(ulong id, string headers, string querystring, string form, string browser, IDbTransaction trans)
         {
             var parameters = new
             {
@@ -54,10 +54,10 @@ namespace Sphyrnidae.Settings.Repos
                 Form = form,
                 Browser = browser
             };
-            return await WriteSPAsync("LogApi_Insert", parameters, trans);
+            return WriteSPAsync("LogApi_Insert", parameters, trans);
         }
 
-        public async Task<int?> InsertDatabase(ulong id, string connection, string sqlParams, IDbTransaction trans)
+        public Task<int> InsertDatabase(ulong id, string connection, string sqlParams, IDbTransaction trans)
         {
             var parameters = new
             {
@@ -65,10 +65,10 @@ namespace Sphyrnidae.Settings.Repos
                 Connection = connection,
                 Parameters = sqlParams
             };
-            return await WriteSPAsync("LogDatabase_Insert", parameters, trans);
+            return WriteSPAsync("LogDatabase_Insert", parameters, trans);
         }
 
-        public async Task<int?> InsertException(ulong id, string stackTrace, string source, string title, IDbTransaction trans)
+        public Task<int> InsertException(ulong id, string stackTrace, string source, string title, IDbTransaction trans)
         {
             var parameters = new
             {
@@ -77,10 +77,10 @@ namespace Sphyrnidae.Settings.Repos
                 Source = source,
                 Title = title
             };
-            return await WriteSPAsync("LogException_Insert", parameters, trans);
+            return WriteSPAsync("LogException_Insert", parameters, trans);
         }
 
-        public async Task<int?> InsertRequest(ulong id, string route, string method, string data, IDbTransaction trans)
+        public Task<int> InsertRequest(ulong id, string route, string method, string data, IDbTransaction trans)
         {
             var parameters = new
             {
@@ -89,10 +89,10 @@ namespace Sphyrnidae.Settings.Repos
                 Method = method,
                 Data = data
             };
-            return await WriteSPAsync("LogRequest_Insert", parameters, trans);
+            return WriteSPAsync("LogRequest_Insert", parameters, trans);
         }
 
-        public async Task<int?> InsertMisc(ulong id, string key, string value, IDbTransaction trans)
+        public Task<int> InsertMisc(ulong id, string key, string value, IDbTransaction trans)
         {
             var parameters = new
             {
@@ -100,20 +100,20 @@ namespace Sphyrnidae.Settings.Repos
                 Key = key,
                 Value = value
             };
-            return await WriteSPAsync("LogMisc_Insert", parameters, trans);
+            return WriteSPAsync("LogMisc_Insert", parameters, trans);
         }
 
-        public async Task<int?> InsertTiming(ulong id, long milliseconds, IDbTransaction trans)
+        public Task<int> InsertTiming(ulong id, long milliseconds, IDbTransaction trans)
         {
             var parameters = new
             {
                 LogHeaderId = id,
                 Milliseconds = milliseconds
             };
-            return await WriteSPAsync("LogTiming_Insert", parameters, trans);
+            return WriteSPAsync("LogTiming_Insert", parameters, trans);
         }
 
-        public async Task<int?> InsertResult(ulong id, string result, int statusCode, IDbTransaction trans)
+        public Task<int> InsertResult(ulong id, string result, int statusCode, IDbTransaction trans)
         {
             var parameters = new
             {
@@ -121,7 +121,7 @@ namespace Sphyrnidae.Settings.Repos
                 Result = result,
                 StatusCode = statusCode
             };
-            return await WriteSPAsync("LogResult_Insert", parameters, trans);
+            return WriteSPAsync("LogResult_Insert", parameters, trans);
         }
     }
 }

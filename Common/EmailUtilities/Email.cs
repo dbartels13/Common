@@ -19,12 +19,12 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             string to,
             string subject,
             string content)
-            => await SendAsync(email, EmailType.Custom, new List<string> {to}, null, subject, content);
+            => SendAsync(email, EmailType.Custom, new List<string> {to}, null, subject, content);
 
         /// <summary>
         /// Sends a custom email
@@ -34,12 +34,12 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             IEnumerable<string> to,
             string subject,
             string content)
-            => await SendAsync(email, EmailType.Custom, to, null, subject, content);
+            => SendAsync(email, EmailType.Custom, to, null, subject, content);
 
         /// <summary>
         /// Sends an email type that has defined/configured recipients
@@ -49,12 +49,12 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             EmailType type,
             string subject,
             string content)
-            => await SendAsync(email, type, null, null, subject, content);
+            => SendAsync(email, type, null, null, subject, content);
 
         /// <summary>
         /// Sends a custom email
@@ -65,13 +65,13 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             string to,
             string cc,
             string subject,
             string content)
-            => await SendAsync(email, EmailType.Custom, new List<string> {to}, new List<string> {cc}, subject, content);
+            => SendAsync(email, EmailType.Custom, new List<string> {to}, new List<string> {cc}, subject, content);
 
         /// <summary>
         /// Sends a custom email
@@ -82,13 +82,13 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static  Task<bool> SendAsync(
             IEmail email,
             IEnumerable<string> to,
             string cc,
             string subject,
             string content)
-            => await SendAsync(email, EmailType.Custom, to, new List<string> {cc}, subject, content);
+            => SendAsync(email, EmailType.Custom, to, new List<string> {cc}, subject, content);
 
         /// <summary>
         /// Sends an email type that has defined/configured recipients
@@ -99,13 +99,13 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             EmailType type,
             string cc,
             string subject,
             string content)
-            => await SendAsync(email, type, null, new List<string> {cc}, subject, content);
+            => SendAsync(email, type, null, new List<string> {cc}, subject, content);
 
         /// <summary>
         /// Sends a custom email
@@ -116,13 +116,13 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             string to,
             IEnumerable<string> cc,
             string subject,
             string content)
-            => await SendAsync(email, EmailType.Custom, new List<string> {to}, cc, subject, content);
+            => SendAsync(email, EmailType.Custom, new List<string> {to}, cc, subject, content);
 
         /// <summary>
         /// Sends a custom email
@@ -133,13 +133,13 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             IEnumerable<string> to,
             IEnumerable<string> cc,
             string subject,
             string content)
-            => await SendAsync(email, EmailType.Custom, to, cc, subject, content);
+            => SendAsync(email, EmailType.Custom, to, cc, subject, content);
 
         /// <summary>
         /// Sends an email type that has defined/configured recipients
@@ -150,21 +150,21 @@ namespace Sphyrnidae.Common.EmailUtilities
         /// <param name="subject">Subject of the email</param>
         /// <param name="content">Email body</param>
         /// <returns>True if send seems to be successful, false otherwise</returns>
-        public static async Task<bool> SendAsync(
+        public static Task<bool> SendAsync(
             IEmail email,
             EmailType type,
             IEnumerable<string> cc,
             string subject,
             string content)
-            => await SendAsync(email, type, null, cc, subject, content);
+            => SendAsync(email, type, null, cc, subject, content);
 
-        private static async Task<bool> SendAsync(
+        private static Task<bool> SendAsync(
             IEmail email,
             EmailType type,
             IEnumerable<string> to,
             IEnumerable<string> cc,
             string subject,
             string content)
-            => await email.SendAsync(type, to, cc, subject, content);
+            => email.SendAsync(type, to, cc, subject, content);
     }
 }

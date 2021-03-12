@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 // ReSharper disable UnusedMember.Global
 
@@ -9,8 +10,8 @@ namespace Sphyrnidae.Common.UserPreference
     {
         public void Setup() { }
 
-        public override async Task<IEnumerable<UserPreferenceSetting>> GetAll()
-            => await new Task<List<UserPreferenceSetting>>(() => new List<UserPreferenceSetting>());
+        public override Task<IEnumerable<UserPreferenceSetting>> GetAll()
+            => Task.FromResult(new List<UserPreferenceSetting>().AsEnumerable());
         public override UserPreferenceSetting GetItem(CaseInsensitiveBinaryList<UserPreferenceSetting> settingsCollection, string key) => new UserPreferenceSetting();
         public override string GetValue(UserPreferenceSetting setting) => setting.Value;
 

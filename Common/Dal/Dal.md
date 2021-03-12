@@ -98,14 +98,14 @@ If you are connection to MySql, then you can instead use the static class [MySql
         public override string CnnStr => "My Connection String - possibly lookup from Environmental Settings";
         protected override string CnnName => "Widgets";
 
-        public async Task<int?> InsertWidget(string name, double cost)
+        public Task<int?> InsertWidget(string name, double cost)
         {
             var parameters = new
             {
                 Name = name,
                 Cost = cost
             };
-            return await InsertTrappingExceptionsAsync("insert into Widgets([Name], [Cost]) values (@Name, @Cost)", parameters);
+            return InsertTrappingExceptionsAsync("insert into Widgets([Name], [Cost]) values (@Name, @Cost)", parameters);
         }
         public override ApiResponseStandard HandleException()
         {
@@ -114,7 +114,7 @@ If you are connection to MySql, then you can instead use the static class [MySql
                 return ApiResponse.Duplicate();
             return ApiResponse.InternalServerError(Ex);
         }
-        public async Task<bool> TransactionTestWidget(int id, string name, double cost)
+        public Task<bool> TransactionTestWidget(int id, string name, double cost)
         {
             var parameters = new
             {
@@ -122,7 +122,7 @@ If you are connection to MySql, then you can instead use the static class [MySql
                 Name = name,
                 Cost = cost
             };
-            return await WriteSQLAsBoolAsync("update Widgets set [Name]=@Name, [Cost]=@Cost where [Id]=@Id", parameters);
+            return WriteSQLAsBoolAsync("update Widgets set [Name]=@Name, [Cost]=@Cost where [Id]=@Id", parameters);
         }
     }
 </pre>

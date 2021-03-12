@@ -42,8 +42,8 @@ namespace Sphyrnidae.Common.Logging.Loggers
         /// <remarks>Do not override this one - you should instead customize in DoInsert</remarks>
         /// <param name="info">The log information class</param>
         /// <param name="maxLength">When to truncate items</param>
-        public virtual async Task Insert(BaseLogInformation info, int maxLength)
-            => await DoInsert(ToInsertModel(info, maxLength), info, maxLength);
+        public virtual Task Insert(BaseLogInformation info, int maxLength)
+            => DoInsert(ToInsertModel(info, maxLength), info, maxLength);
         /// <summary>
         /// Actual implementation of logging the record
         /// </summary>
@@ -58,8 +58,8 @@ namespace Sphyrnidae.Common.Logging.Loggers
         /// <remarks>Do not override this one - you should instead customize in DoInsert</remarks>
         /// <param name="info">The log information class</param>
         /// <param name="maxLength">When to truncate items</param>
-        public virtual async Task Update(TimerBaseInformation info, int maxLength)
-            => await DoUpdate(ToUpdateModel(info, maxLength), info, maxLength);
+        public virtual Task Update(TimerBaseInformation info, int maxLength)
+            => DoUpdate(ToUpdateModel(info, maxLength), info, maxLength);
         /// <summary>
         /// Actual implementation of updating a logged record
         /// </summary>

@@ -98,8 +98,8 @@ $(document).ready(function(){initNavTree('class_sphyrnidae_1_1_common_1_1_web_se
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a100d4ded4911d828e27e19771c006c69"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a100d4ded4911d828e27e19771c006c69">WebServiceBase</a> (IHttpClientFactory factory, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_client_1_1_i_http_client_settings.html">IHttpClientSettings</a> settings, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html">IIdentityHelper</a> identity, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a> encryption, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> logger)</td></tr>
-<tr class="separator:a100d4ded4911d828e27e19771c006c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb1e03fe4ea3a4f6eb2e7c4d10543eb7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#adb1e03fe4ea3a4f6eb2e7c4d10543eb7">WebServiceBase</a> (IHttpClientFactory factory, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_http_client_1_1_i_http_client_settings.html">IHttpClientSettings</a> settings, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html">IIdentityHelper</a> identity, <a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> logger)</td></tr>
+<tr class="separator:adb1e03fe4ea3a4f6eb2e7c4d10543eb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afc7ba5c25ad97f2506dad48adef8d209"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#afc7ba5c25ad97f2506dad48adef8d209">AlterHeaders</a> (HttpHeaders headers)</td></tr>
 <tr class="memdesc:afc7ba5c25ad97f2506dad48adef8d209"><td class="mdescLeft">&#160;</td><td class="mdescRight">Override this in inherited class to further alter the headers to be sent in the request  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#afc7ba5c25ad97f2506dad48adef8d209">More...</a><br /></td></tr>
 <tr class="separator:afc7ba5c25ad97f2506dad48adef8d209"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,18 +133,18 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4a0691855b1b0f20d84f4170a1381297"><td class="memItemLeft" align="right" valign="top">virtual Tuple&lt; int, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a4a0691855b1b0f20d84f4170a1381297">ParseResponseBody</a> (int statusCode, string body)</td></tr>
 <tr class="memdesc:a4a0691855b1b0f20d84f4170a1381297"><td class="mdescLeft">&#160;</td><td class="mdescRight">If the body is something other than the real type that you want, this will convert it  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a4a0691855b1b0f20d84f4170a1381297">More...</a><br /></td></tr>
 <tr class="separator:a4a0691855b1b0f20d84f4170a1381297"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a424e6ad3c339552dbe33fed778f63080"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a424e6ad3c339552dbe33fed778f63080">GetResult&lt; T &gt;</a> (HttpResponseMessage response, string name, JsonSerializerSettings jsonSettings=null)</td></tr>
-<tr class="memdesc:a424e6ad3c339552dbe33fed778f63080"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a Json formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a424e6ad3c339552dbe33fed778f63080">More...</a><br /></td></tr>
-<tr class="separator:a424e6ad3c339552dbe33fed778f63080"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf1425bb80b2fc8f9778b6dbee0dcaca"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#acf1425bb80b2fc8f9778b6dbee0dcaca">GetResult&lt; T &gt;</a> (HttpResponseMessage response, T defaultObject, JsonSerializerSettings jsonSettings=null)</td></tr>
-<tr class="memdesc:acf1425bb80b2fc8f9778b6dbee0dcaca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a Json formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#acf1425bb80b2fc8f9778b6dbee0dcaca">More...</a><br /></td></tr>
-<tr class="separator:acf1425bb80b2fc8f9778b6dbee0dcaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4dd7072f9a9dffcf294b21ca94c033df"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a4dd7072f9a9dffcf294b21ca94c033df">GetXmlResult&lt; T &gt;</a> (HttpResponseMessage response, string name, XmlSerializer serializer=null)</td></tr>
-<tr class="memdesc:a4dd7072f9a9dffcf294b21ca94c033df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a XML formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a4dd7072f9a9dffcf294b21ca94c033df">More...</a><br /></td></tr>
-<tr class="separator:a4dd7072f9a9dffcf294b21ca94c033df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86b6948564a2c0b40300930a05c39656"><td class="memItemLeft" align="right" valign="top">async Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a86b6948564a2c0b40300930a05c39656">GetXmlResult&lt; T &gt;</a> (HttpResponseMessage response, T defaultObject, XmlSerializer serializer=null)</td></tr>
-<tr class="memdesc:a86b6948564a2c0b40300930a05c39656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a XML formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a86b6948564a2c0b40300930a05c39656">More...</a><br /></td></tr>
-<tr class="separator:a86b6948564a2c0b40300930a05c39656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a429030bc054e9cf3821f013b9a6d6565"><td class="memItemLeft" align="right" valign="top">Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a429030bc054e9cf3821f013b9a6d6565">GetResult&lt; T &gt;</a> (HttpResponseMessage response, string name, JsonSerializerSettings jsonSettings=null)</td></tr>
+<tr class="memdesc:a429030bc054e9cf3821f013b9a6d6565"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a Json formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a429030bc054e9cf3821f013b9a6d6565">More...</a><br /></td></tr>
+<tr class="separator:a429030bc054e9cf3821f013b9a6d6565"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affa9a29f12134b071b73a03201b9d031"><td class="memItemLeft" align="right" valign="top">Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#affa9a29f12134b071b73a03201b9d031">GetResult&lt; T &gt;</a> (HttpResponseMessage response, T defaultObject, JsonSerializerSettings jsonSettings=null)</td></tr>
+<tr class="memdesc:affa9a29f12134b071b73a03201b9d031"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a Json formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#affa9a29f12134b071b73a03201b9d031">More...</a><br /></td></tr>
+<tr class="separator:affa9a29f12134b071b73a03201b9d031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4287f1e6ff2dea4e2c843ecbc2d43e3b"><td class="memItemLeft" align="right" valign="top">Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a4287f1e6ff2dea4e2c843ecbc2d43e3b">GetXmlResult&lt; T &gt;</a> (HttpResponseMessage response, string name, XmlSerializer serializer=null)</td></tr>
+<tr class="memdesc:a4287f1e6ff2dea4e2c843ecbc2d43e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a XML formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a4287f1e6ff2dea4e2c843ecbc2d43e3b">More...</a><br /></td></tr>
+<tr class="separator:a4287f1e6ff2dea4e2c843ecbc2d43e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f331de446f0d200870488a583461aba"><td class="memItemLeft" align="right" valign="top">Task&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a3f331de446f0d200870488a583461aba">GetXmlResult&lt; T &gt;</a> (HttpResponseMessage response, T defaultObject, XmlSerializer serializer=null)</td></tr>
+<tr class="memdesc:a3f331de446f0d200870488a583461aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the result of a XML formatted http response  <a href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a3f331de446f0d200870488a583461aba">More...</a><br /></td></tr>
+<tr class="separator:a3f331de446f0d200870488a583461aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
@@ -154,8 +154,6 @@ Properties</h2></td></tr>
 <tr class="separator:a2b3a7a414e00d07873fb65868aa3f34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae77022ee6c4d1c1b2a589abb51f52f52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html">IIdentityHelper</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#ae77022ee6c4d1c1b2a589abb51f52f52">Identity</a><code> [get]</code></td></tr>
 <tr class="separator:ae77022ee6c4d1c1b2a589abb51f52f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6085e0cdcff8d46f35d29e66e74f1a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#ae6085e0cdcff8d46f35d29e66e74f1a0">Encryption</a><code> [get]</code></td></tr>
-<tr class="separator:ae6085e0cdcff8d46f35d29e66e74f1a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ca9b9f8cf8cc0969cbd150105b995b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a9ca9b9f8cf8cc0969cbd150105b995b3">Logger</a><code> [get]</code></td></tr>
 <tr class="separator:a9ca9b9f8cf8cc0969cbd150105b995b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a974407ca0c0d25d89e245d408f84dc33"><td class="memItemLeft" align="right" valign="top">virtual string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html#a974407ca0c0d25d89e245d408f84dc33">JsonContentType</a><code> [get]</code></td></tr>
@@ -168,8 +166,8 @@ Properties</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Base class for all web service calls. You should inherit for each web service endpoint you will be using. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a100d4ded4911d828e27e19771c006c69"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a100d4ded4911d828e27e19771c006c69">&#9670;&nbsp;</a></span>WebServiceBase()</h2>
+<a id="adb1e03fe4ea3a4f6eb2e7c4d10543eb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb1e03fe4ea3a4f6eb2e7c4d10543eb7">&#9670;&nbsp;</a></span>WebServiceBase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -194,12 +192,6 @@ Properties</h2></td></tr>
           <td></td>
           <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_authentication_1_1_helper_1_1_i_identity_helper.html">IIdentityHelper</a>&#160;</td>
           <td class="paramname"><em>identity</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a>&#160;</td>
-          <td class="paramname"><em>encryption</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -411,8 +403,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a424e6ad3c339552dbe33fed778f63080"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a424e6ad3c339552dbe33fed778f63080">&#9670;&nbsp;</a></span>GetResult&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+<a id="a429030bc054e9cf3821f013b9a6d6565"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a429030bc054e9cf3821f013b9a6d6565">&#9670;&nbsp;</a></span>GetResult&lt; T &gt;() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -421,7 +413,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetResult&lt; T &gt; </td>
+          <td class="memname">Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetResult&lt; T &gt; </td>
           <td>(</td>
           <td class="paramtype">HttpResponseMessage&#160;</td>
           <td class="paramname"><em>response</em>, </td>
@@ -470,8 +462,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="acf1425bb80b2fc8f9778b6dbee0dcaca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf1425bb80b2fc8f9778b6dbee0dcaca">&#9670;&nbsp;</a></span>GetResult&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+<a id="affa9a29f12134b071b73a03201b9d031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affa9a29f12134b071b73a03201b9d031">&#9670;&nbsp;</a></span>GetResult&lt; T &gt;() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -480,7 +472,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetResult&lt; T &gt; </td>
+          <td class="memname">Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetResult&lt; T &gt; </td>
           <td>(</td>
           <td class="paramtype">HttpResponseMessage&#160;</td>
           <td class="paramname"><em>response</em>, </td>
@@ -529,8 +521,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a4dd7072f9a9dffcf294b21ca94c033df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4dd7072f9a9dffcf294b21ca94c033df">&#9670;&nbsp;</a></span>GetXmlResult&lt; T &gt;() <span class="overload">[1/2]</span></h2>
+<a id="a4287f1e6ff2dea4e2c843ecbc2d43e3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4287f1e6ff2dea4e2c843ecbc2d43e3b">&#9670;&nbsp;</a></span>GetXmlResult&lt; T &gt;() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -539,7 +531,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetXmlResult&lt; T &gt; </td>
+          <td class="memname">Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetXmlResult&lt; T &gt; </td>
           <td>(</td>
           <td class="paramtype">HttpResponseMessage&#160;</td>
           <td class="paramname"><em>response</em>, </td>
@@ -588,8 +580,8 @@ Properties</h2></td></tr>
 
 </div>
 </div>
-<a id="a86b6948564a2c0b40300930a05c39656"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a86b6948564a2c0b40300930a05c39656">&#9670;&nbsp;</a></span>GetXmlResult&lt; T &gt;() <span class="overload">[2/2]</span></h2>
+<a id="a3f331de446f0d200870488a583461aba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f331de446f0d200870488a583461aba">&#9670;&nbsp;</a></span>GetXmlResult&lt; T &gt;() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -598,7 +590,7 @@ Properties</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">async Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetXmlResult&lt; T &gt; </td>
+          <td class="memname">Task&lt;T&gt; Sphyrnidae.Common.WebServices.WebServiceBase.GetXmlResult&lt; T &gt; </td>
           <td>(</td>
           <td class="paramtype">HttpResponseMessage&#160;</td>
           <td class="paramname"><em>response</em>, </td>
@@ -984,28 +976,6 @@ Properties</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
-<a id="ae6085e0cdcff8d46f35d29e66e74f1a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6085e0cdcff8d46f35d29e66e74f1a0">&#9670;&nbsp;</a></span>Encryption</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a> Sphyrnidae.Common.WebServices.WebServiceBase.Encryption</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ab58735d799404fc66feb3339b3ed1994"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab58735d799404fc66feb3339b3ed1994">&#9670;&nbsp;</a></span>Factory</h2>
 

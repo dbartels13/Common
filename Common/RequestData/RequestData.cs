@@ -69,8 +69,18 @@ namespace Sphyrnidae.Common.RequestData
             if (_dataSet)
                 return _data;
 
-            _data = await SafeTry.IgnoreException(async () => await Data.Request.GetBodyAsync());
-            _dataSet = true;
+            try
+            {
+                _data = await Data.Request.GetBodyAsync();
+            }
+            catch
+            {
+                _data = null;
+            }
+            finally
+            {
+                _dataSet = true;
+            }
 
             return _data;
         }

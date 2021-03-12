@@ -92,13 +92,23 @@ namespace Sphyrnidae.Common.Authentication.Helper
 
 
         #region Private methods
-        protected T ParseJwt(string jwt) =>
-            string.IsNullOrWhiteSpace(jwt)
-                ? null
-                : SafeTry.IgnoreException(() => jwt
+        protected T ParseJwt(string jwt)
+        {
+            if (string.IsNullOrWhiteSpace(jwt))
+                return null;
+
+            try
+            {
+                return jwt
                     .Decrypt(Encryption)
                     .Value
-                    .DeserializeJson<T>());
+                    .DeserializeJson<T>();
+            }
+            catch
+            {
+                return null;
+            }
+        }
 
         protected bool IsExpired(T identity)
             => identity == null || identity.Expires < DateTime.UtcNow;

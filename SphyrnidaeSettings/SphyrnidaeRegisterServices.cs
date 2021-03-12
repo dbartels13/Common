@@ -4,18 +4,22 @@ using Sphyrnidae.Common.Api.ServiceRegistration;
 using Sphyrnidae.Common.Api.ServiceRegistration.Models;
 using Sphyrnidae.Common.Application;
 using Sphyrnidae.Common.Authentication.Helper;
+using Sphyrnidae.Common.EmailUtilities;
+using Sphyrnidae.Common.EmailUtilities.Interfaces;
 using Sphyrnidae.Common.Environment;
 using Sphyrnidae.Common.FeatureToggle.Interfaces;
 using Sphyrnidae.Common.HttpClient;
 using Sphyrnidae.Common.Logging.Interfaces;
 using Sphyrnidae.Common.UserPreference.Interfaces;
 using Sphyrnidae.Common.Variable.Interfaces;
-using Sphyrnidae.Common.WebServices.Interfaces;
+using Sphyrnidae.Common.WebServices.ApiAuthentication;
+using Sphyrnidae.Settings.Email;
+using Sphyrnidae.Settings.FeatureToggle;
 using Sphyrnidae.Settings.Loggers;
 using Sphyrnidae.Settings.Repos;
 using Sphyrnidae.Settings.Repos.Interfaces;
 using Sphyrnidae.Settings.UserPreference;
-using Sphyrnidae.Settings.WebServices;
+using Sphyrnidae.Settings.Variable;
 
 namespace Sphyrnidae.Settings
 {
@@ -40,6 +44,12 @@ namespace Sphyrnidae.Settings
             services.TryAddTransient<IVariableSettings, SphyrnidaeVariableSettings>();
             services.TryAddTransient<IUserPreferenceSettings, SphyrnidaeUserPreferenceSettings>();
 
+            // Email
+            services.TryAddTransient<IEmail, DotNetEmail>();
+            services.TryAddTransient<IDotNetEmailSettings, SphyrnidaeDotNetEmailSettings>();
+            services.TryAddTransient<IEmailDefaultSettings, SphyrnidaeEmailDefaultSettings>();
+            services.TryAddTransient<IEmailSettings, SphyrnidaeEmailSettings>();
+
             // Repositories
             services.TryAddTransient<ILogRepo, LogRepo>();
             services.TryAddTransient<IDefaultUserRepo, DefaultUserRepo>();
@@ -47,8 +57,8 @@ namespace Sphyrnidae.Settings
             // Web Services
             services.TryAddTransient<IApiAuthenticationWebService, SphyrnidaeApiAuthenticationWebService>();
             services.TryAddTransient<IFeatureToggleWebService, FeatureToggleWebService>();
-            services.TryAddTransient<IUserPreferenceWebService, SphyrnidaeUserPreferenceWebService>();
-            services.TryAddTransient<IVariableWebService, SphyrnidaeVariableWebService>();
+            services.TryAddTransient<IUserPreferenceWebService, UserPreferenceWebService>();
+            services.TryAddTransient<IVariableWebService, VariableWebService>();
 
             SphyrnidaeServiceRegistration.AddCommonServices(services, config, app, env, http);
         }

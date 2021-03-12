@@ -23,6 +23,7 @@ namespace Sphyrnidae.Settings
 
         public override int ExpirationMinutes => 60;
 
+        // Async/Await allow conversion from SphyrnidaeIdentity to BaseIdentity
         public override async Task<BaseIdentity> GetDefaultIdentity()
             => await Caching.GetAsync(Cache, "SphyrnidaeDefaultIdentity", async () => await Repo.GetDefaultUser());
     }

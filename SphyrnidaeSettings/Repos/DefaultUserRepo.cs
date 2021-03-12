@@ -22,9 +22,7 @@ namespace Sphyrnidae.Settings.Repos
             Encrypt = encrypt;
         }
 
-        public async Task<SphyrnidaeIdentity> GetDefaultUser()
-        {
-            return await GetSPAsync<SphyrnidaeIdentity>("Users_GetDefault", null);
-        }
+        public Task<SphyrnidaeIdentity> GetDefaultUser()
+            => GetSPAsync<SphyrnidaeIdentity>("Users_GetDefault", null);
     }
 }

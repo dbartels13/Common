@@ -12,7 +12,9 @@ Mock: [EmailMock](@ref Sphyrnidae.Common.EmailUtilities.EmailMock)
 
 Wrapper: [Email](@ref Sphyrnidae.Common.EmailUtilities.Email)
 
-Implementation: [DotNetEmail](@ref Sphyrnidae.Common.EmailUtilities.DotNetEmail)
+Implementations:
+1. [EmailMock](@ref Sphyrnidae.Common.EmailUtilities.EmailMock): Registered implementation which does nothing
+2. [DotNetEmail](@ref Sphyrnidae.Common.EmailUtilities.DotNetEmail): Sends emails using standard .Net mechanism. This requires additional interface implementations/registrations, but is also very configurable. See [Implementation Customizations](@ref EmailImplementationMd)
 
 ## Implementation Customizations {#EmailImplementationMd}
 The [DotNetEmail](@ref Sphyrnidae.Common.EmailUtilities.DotNetEmail) is very configurable.

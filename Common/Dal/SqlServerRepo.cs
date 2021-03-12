@@ -14,10 +14,9 @@ namespace Sphyrnidae.Common.Dal
         protected SqlServerRepo(ILogger logger) : base(logger) { }
 
         protected override IDbConnection GetConnection => new SqlConnection(CnnStr);
-        protected override async Task PreCall(IDbConnection cnn, IDbTransaction trans)
-        {
-            if (cnn.State != ConnectionState.Open)
-                await ((SqlConnection)cnn).OpenAsync();
-        }
+        protected override Task PreCall(IDbConnection cnn, IDbTransaction trans)
+            => cnn.State == ConnectionState.Open
+                ? Task.CompletedTask
+                : ((SqlConnection)cnn).OpenAsync();
     }
 }

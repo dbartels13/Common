@@ -23,8 +23,10 @@ namespace Sphyrnidae.Common.Cache
 
         public T Get<T>(string key, Func<T> method) => method();
 
-        public async Task<T> GetAsync<T>(string key, Func<Task<T>> method) => await method();
+        public Task<T> GetAsync<T>(string key, Func<Task<T>> method) => method();
 
-        public Exception Remove(string key) => default;
+        public void Remove(string key) { }
+
+        public Task<Exception> RemoveAsync(string key) => Task.FromResult(default(Exception));
     }
 }

@@ -50,6 +50,16 @@ namespace Sphyrnidae.Common.Cache
         /// Removes the given object from cache
         /// </summary>
         /// <remarks>
+        /// Note that this removes from local cache, distributed cache, and via SignalR, all other local cache as well.
+        /// Any errors in removal of the item will be hidden from the user, so it is preferred to use RemoveAsync if you need this exception handling.
+        /// </remarks>
+        /// <param name="key">Name of the item in cache</param>
+        void Remove(string key);
+
+        /// <summary>
+        /// Removes the given object from cache
+        /// </summary>
+        /// <remarks>
         /// Note that this removes from local cache, distributed cache, and via SignalR, all other local cache as well
         /// </remarks>
         /// <param name="key">Name of the item in cache</param>
@@ -57,7 +67,7 @@ namespace Sphyrnidae.Common.Cache
         /// If an exception was thrown and the item was not fully removed, this exception will be returned.
         /// If everything succeeded, this will be null.
         /// </returns>
-        Exception Remove(string key);
+        Task<Exception> RemoveAsync(string key);
 
         /// <summary>
         /// The options for storing items in cache

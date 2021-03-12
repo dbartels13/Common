@@ -16,9 +16,9 @@ namespace Sphyrnidae.Common.Logging.Interfaces
     public interface ILogger
     {
         #region Generic
-        Task Generic(BaseLogInformation info, Action errorAction = null);
-        Task Entry(TimerBaseInformation info, Action errorAction = null);
-        Task Exit(TimerBaseInformation info, Action errorAction = null);
+        void Generic(BaseLogInformation info, Action errorAction = null);
+        void Entry(TimerBaseInformation info, Action errorAction = null);
+        void Exit(TimerBaseInformation info, Action errorAction = null);
         #endregion
 
         #region Log
@@ -32,7 +32,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// The category of the message
         /// Default: "" (nothing)
         /// </param>
-        Task Log(TraceEventType severity, string message, string category = "");
+        void Log(TraceEventType severity, string message, string category = "");
         #endregion
 
         #region Unauthorized
@@ -41,7 +41,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </summary>
         /// <remarks>This should be called on your authentication/authorization checks if they fail</remarks>
         /// <param name="message">The message to log</param>
-        Task Unauthorized(string message);
+        void Unauthorized(string message);
         #endregion
 
         #region Timers
@@ -51,13 +51,13 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <remarks>Call this function at any place in your code where you want to capture helpful timing information</remarks>
         /// <param name="name">The name you are giving this timer</param>
         /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<TimerInformation> TimerStart(string name);
+        TimerInformation TimerStart(string name);
         /// <summary>
         /// Logs the actual time an operation lasted (in milliseconds)
         /// </summary>
         /// <remarks>This should be called after TimerStart</remarks>
         /// <param name="info">The object with the timer which was returned from TimerStart</param>
-        Task TimerEnd(TimerInformation info);
+        void TimerEnd(TimerInformation info);
         #endregion
 
         #region Custom
@@ -72,7 +72,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </remarks>
         /// <param name="obj">Your object to be logged</param>
         /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
-        Task Custom1<T>(T obj, string message = "");
+        void Custom1<T>(T obj, string message = "");
         /// <summary>
         /// Logs a generic object
         /// </summary>
@@ -84,7 +84,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </remarks>
         /// <param name="obj">Your object to be logged</param>
         /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
-        Task Custom2<T>(T obj, string message = "");
+        void Custom2<T>(T obj, string message = "");
         /// <summary>
         /// Logs a generic object
         /// </summary>
@@ -96,7 +96,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </remarks>
         /// <param name="obj">Your object to be logged</param>
         /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
-        Task Custom3<T>(T obj, string message = "");
+        void Custom3<T>(T obj, string message = "");
 
         /// <summary>
         /// Will log a custom timer object
@@ -111,7 +111,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <param name="obj">Your object to be logged</param>
         /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
         /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<CustomTimerInformation1<T1, T2>> CustomTimer1Start<T1, T2>(T1 obj, string message = "");
+        CustomTimerInformation1<T1, T2> CustomTimer1Start<T1, T2>(T1 obj, string message = "");
         /// <summary>
         /// Will log a custom timer object
         /// </summary>
@@ -125,7 +125,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <param name="obj">Your object to be logged</param>
         /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
         /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<CustomTimerInformation2<T1, T2>> CustomTimer2Start<T1, T2>(T1 obj, string message = "");
+        CustomTimerInformation2<T1, T2> CustomTimer2Start<T1, T2>(T1 obj, string message = "");
         /// <summary>
         /// Will log a custom timer object
         /// </summary>
@@ -139,14 +139,14 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <param name="obj">Your object to be logged</param>
         /// <param name="message">Optional message to be logged (if not supplied in your inherited class)</param>
         /// <returns>The object which keeps the timer (to be passed into TimerEnd)</returns>
-        Task<CustomTimerInformation3<T1, T2>> CustomTimer3Start<T1, T2>(T1 obj, string message = "");
+        CustomTimerInformation3<T1, T2> CustomTimer3Start<T1, T2>(T1 obj, string message = "");
         /// <summary>
         /// Logs the actual time a custom timer took (in milliseconds)
         /// </summary>
         /// <remarks>This should be called after CustomTimerStart</remarks>
         /// <param name="info">The object with the timer which was returned from CustomTimerStart</param>
         /// <param name="obj">Any object to store additional user-supplied information</param>
-        Task CustomTimerEnd<T1, T2>(CustomTimerInformation<T1, T2> info, T2 obj);
+        void CustomTimerEnd<T1, T2>(CustomTimerInformation<T1, T2> info, T2 obj);
         #endregion
 
         #region Attributes
@@ -158,14 +158,14 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </remarks>
         /// <param name="attributeName">The name of the attribute</param>
         /// <param name="parameters">The parameters into the attribute</param>
-        /// <returns>The object which keeps the api information (to be passed into ApiExit)</returns>
-        Task<AttributeInformation> AttributeEntry(string attributeName, Dictionary<string, string> parameters);
+        /// <returns>The object which keeps the api information (to be passed into AttributeExit)</returns>
+        AttributeInformation AttributeEntry(string attributeName, Dictionary<string, string> parameters);
         /// <summary>
         /// Logs the actual time the attribute took (in milliseconds), as well as the result
         /// </summary>
         /// <remarks>This should be called after AttributeEntry</remarks>
-        /// <param name="info">The object with the api information which was returned from ApiEntry</param>
-        Task AttributeExit(AttributeInformation info);
+        /// <param name="info">The object with the attribute information which was returned from AttributeEntry</param>
+        void AttributeExit(AttributeInformation info);
         #endregion
 
         #region Api
@@ -176,7 +176,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// Call this method when first entering an API method
         /// The actual information that is collected (or if this even logs out) will be given by your implementation of ILoggerConfiguration/ApiInformation
         /// </remarks>
-        /// <returns>The object which keeps the api information (to be passed into ApiExitAsync)</returns>
+        /// <returns>The object which keeps the api information (to be passed into ApiExit)</returns>
         Task<ApiInformation> ApiEntry();
         /// <summary>
         /// Logs the actual time API took (in milliseconds), as well as the result
@@ -185,7 +185,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <param name="info">The object with the api information which was returned from ApiEntry</param>
         /// <param name="statusCode">The http status code of the result</param>
         /// <param name="result">The full http result</param>
-        Task ApiExit(ApiInformation info, int statusCode, string result);
+        void ApiExit(ApiInformation info, int statusCode, string result);
         /// <summary>
         /// Logs the actual time API took (in milliseconds), as well as the result
         /// </summary>
@@ -207,13 +207,13 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <param name="command">The command being executed</param>
         /// <param name="args">Any parameters for the command</param>
         /// <returns>The object which keeps the database information (to be passed into DatabaseExit)</returns>
-        Task<DatabaseInformation> DatabaseEntry(string cnnName, string command, object args = null);
+        DatabaseInformation DatabaseEntry(string cnnName, string command, object args = null);
         /// <summary>
         /// Logs the actual time the database call took (in milliseconds)
         /// </summary>
         /// <remarks>This should be called after DatabaseEntry</remarks>
         /// <param name="info">The object with the database information which was returned from DatabaseEntry</param>
-        Task DatabaseExit(DatabaseInformation info);
+        void DatabaseExit(DatabaseInformation info);
         #endregion
 
         #region Web Services
@@ -237,7 +237,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </param>
         /// <param name="data">Any additional data being sent in the body of the request</param>
         /// <returns>The object which keeps the web service information (to be passed into WebServiceExit)</returns>
-        Task<WebServiceInformation> WebServiceEntry(HttpHeaders headers, string name, string url, string method, object data = null);
+        WebServiceInformation WebServiceEntry(HttpHeaders headers, string name, string url, string method, object data = null);
         /// <summary>
         /// Logs the actual time the web service call took (in milliseconds), and optionally the result
         /// </summary>
@@ -245,7 +245,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// <param name="info">The object with the web service information which was returned from WebServiceEntry</param>
         /// <param name="statusCode">The http status code of the result</param>
         /// <param name="result">The full http result</param>
-        Task WebServiceExit(WebServiceInformation info, int statusCode, string result);
+        void WebServiceExit(WebServiceInformation info, int statusCode, string result);
         /// <summary>
         /// Logs the actual time the web service call took (in milliseconds), and optionally the result
         /// </summary>
@@ -261,12 +261,12 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// </summary>
         /// <param name="name">The name of the middleware component</param>
         /// <returns>The object which keeps the middleware information (to be passed into MiddlewareExit)</returns>
-        Task<MiddlewareInformation> MiddlewareEntry(string name);
+        MiddlewareInformation MiddlewareEntry(string name);
         /// <summary>
         /// Logs the actual time the middleware took (in milliseconds)
         /// </summary>
         /// <param name="info">The object with the middleware information which was returned from MiddlewareEntry</param>
-        Task MiddlewareExit(MiddlewareInformation info);
+        void MiddlewareExit(MiddlewareInformation info);
         #endregion
 
         #region Hidden Exception
@@ -283,7 +283,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// If true, this will only log the exception text and type
         /// If false, all relevant information will be logged (eg. Stack Trace)
         /// </param>
-        Task HiddenException(Exception ex, bool messageOnly);
+        void HiddenException(Exception ex, bool messageOnly);
         /// <summary>
         /// Will log all hidden exception information
         /// </summary>
@@ -298,7 +298,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// If true, this will only log the exception text and type
         /// If false, all relevant information will be logged (eg. Stack Trace)
         /// </param>
-        Task HiddenException(Exception ex, string title = "", bool messageOnly = true);
+        void HiddenException(Exception ex, string title = "", bool messageOnly = true);
         #endregion
 
         #region Exception
@@ -316,7 +316,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// If false, all relevant information will be logged (eg. Stack Trace)
         /// </param>
         /// <returns>An identifier so the user can contact customer service</returns>
-        Task<Guid> Exception(Exception e, bool messageOnly);
+        Guid Exception(Exception e, bool messageOnly);
         /// <summary>
         /// Will log all exception information
         /// </summary>
@@ -332,7 +332,7 @@ namespace Sphyrnidae.Common.Logging.Interfaces
         /// If false, all relevant information will be logged (eg. Stack Trace)
         /// </param>
         /// <returns>An identifier so the user can contact customer service</returns>
-        Task<Guid> Exception(Exception e, string title = "", bool messageOnly = false);
+        Guid Exception(Exception e, string title = "", bool messageOnly = false);
         #endregion
     }
 }

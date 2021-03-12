@@ -112,7 +112,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive(string url, string context, Action method);
+        Task Receive(string url, string context, Action method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -120,7 +120,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T>(string url, string context, Action<T> method);
+        Task Receive<T>(string url, string context, Action<T> method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -129,7 +129,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T1, T2>(string url, string context, Action<T1, T2> method);
+        Task Receive<T1, T2>(string url, string context, Action<T1, T2> method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -139,7 +139,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T1, T2, T3>(string url, string context, Action<T1, T2, T3> method);
+        Task Receive<T1, T2, T3>(string url, string context, Action<T1, T2, T3> method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -150,7 +150,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T1, T2, T3, T4>(string url, string context, Action<T1, T2, T3, T4> method);
+        Task Receive<T1, T2, T3, T4>(string url, string context, Action<T1, T2, T3, T4> method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -162,7 +162,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T1, T2, T3, T4, T5>(string url, string context, Action<T1, T2, T3, T4, T5> method);
+        Task Receive<T1, T2, T3, T4, T5>(string url, string context, Action<T1, T2, T3, T4, T5> method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -175,7 +175,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T1, T2, T3, T4, T5, T6>(string url, string context, Action<T1, T2, T3, T4, T5, T6> method);
+        Task Receive<T1, T2, T3, T4, T5, T6>(string url, string context, Action<T1, T2, T3, T4, T5, T6> method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -189,7 +189,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T1, T2, T3, T4, T5, T6, T7>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7> method);
+        Task Receive<T1, T2, T3, T4, T5, T6, T7>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7> method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -204,6 +204,6 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        void Receive<T1, T2, T3, T4, T5, T6, T7, T8>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7, T8> method);
+        Task Receive<T1, T2, T3, T4, T5, T6, T7, T8>(string url, string context, Action<T1, T2, T3, T4, T5, T6, T7, T8> method);
     }
 }

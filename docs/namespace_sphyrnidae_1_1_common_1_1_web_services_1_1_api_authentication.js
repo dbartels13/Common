@@ -1,0 +1,5 @@
+var namespace_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication =
+[
+    [ "ApiAuthenticationWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_api_authentication_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_api_authentication_web_service_mock" ],
+    [ "IApiAuthenticationWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_i_api_authentication_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_i_api_authentication_web_service" ]
+];

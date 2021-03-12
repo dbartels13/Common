@@ -31,10 +31,10 @@ namespace Sphyrnidae.Common.Extensions
         /// <param name="request">The current http request</param>
         /// <returns>The full body of the request</returns>
         //public static string GetBody(this HttpRequest request) => request.BodyReader.AsStream(true).AsString();
-        public static async Task<string> GetBodyAsync(this HttpRequest request)
+        public static Task<string> GetBodyAsync(this HttpRequest request)
         {
             request.EnableBuffering();
-            return await request.Body.AsStringAsync();
+            return request.Body.AsStringAsync();
         }
         /*
         {
@@ -64,7 +64,7 @@ namespace Sphyrnidae.Common.Extensions
 
             return null;
         }
-        private static async Task<ReadResult> GetReadResult(PipeReader reader, CancellationToken cancellationToken) => await reader.ReadAsync(cancellationToken);
+        private static Task<ReadResult> GetReadResult(PipeReader reader, CancellationToken cancellationToken) => reader.ReadAsync(cancellationToken);
         */
     }
 }

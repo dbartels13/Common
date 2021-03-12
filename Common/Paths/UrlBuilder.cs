@@ -13,10 +13,13 @@ namespace Sphyrnidae.Common.Paths
     /// </summary>
     public class UrlBuilder
     {
+        #region Properties
         private UriBuilder Builder { get; }
         public List<string> Segments { get; } = new List<string>();
         private NameValueCollection Query { get; } = new NameValueCollection();
+        #endregion
 
+        #region Constructor
         /// <summary>
         /// Empty Constructor: You must specify all aspects of the URL
         /// </summary>
@@ -33,7 +36,9 @@ namespace Sphyrnidae.Common.Paths
                 AddPathSegment(segment);
             Query = HttpUtility.ParseQueryString(Builder.Query);
         }
+        #endregion
 
+        #region Scheme
         /// <summary>
         /// Sets the url scheme to "http"
         /// </summary>
@@ -57,7 +62,9 @@ namespace Sphyrnidae.Common.Paths
             Builder.Scheme = scheme;
             return this;
         }
+        #endregion
 
+        #region Host
         /// <summary>
         /// Updates the "host" part of the url (eg. the main part)
         /// </summary>
@@ -69,7 +76,9 @@ namespace Sphyrnidae.Common.Paths
             Builder.Host = host;
             return this;
         }
+        #endregion
 
+        #region Port
         /// <summary>
         /// Updates the "port" part of the url (eg. 80)
         /// </summary>
@@ -81,7 +90,9 @@ namespace Sphyrnidae.Common.Paths
             Builder.Port = port;
             return this;
         }
+        #endregion
 
+        #region Segments
         /// <summary>
         /// If you wish to remove all path segments to build new ones (existing segments can be retrieved via public property)
         /// </summary>
@@ -90,6 +101,30 @@ namespace Sphyrnidae.Common.Paths
         public UrlBuilder ClearPathSegments()
         {
             Segments.Clear();
+            return this;
+        }
+
+        /// <summary>
+        /// Removes the first path segment
+        /// </summary>
+        /// <remarks>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/&lt;path segment 1&gt;/&lt;path segment 2&gt;?&lt;query key 1&gt;=&lt;query value 1&gt;&amp;&lt;query key 2&gt;=&lt;query value 2&gt;#&lt;fragment&gt;</remarks>
+        /// <returns>The UrlBuilder so you can chain/build</returns>
+        public UrlBuilder RemoveFirstSegment()
+        {
+            if (Segments.Count > 0)
+                Segments.RemoveAt(0);
+            return this;
+        }
+
+        /// <summary>
+        /// Removes the last path segment
+        /// </summary>
+        /// <remarks>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/&lt;path segment 1&gt;/&lt;path segment 2&gt;?&lt;query key 1&gt;=&lt;query value 1&gt;&amp;&lt;query key 2&gt;=&lt;query value 2&gt;#&lt;fragment&gt;</remarks>
+        /// <returns>The UrlBuilder so you can chain/build</returns>
+        public UrlBuilder RemoveLastSegment()
+        {
+            if (Segments.Count > 0)
+                Segments.RemoveAt(Segments.Count - 1);
             return this;
         }
 
@@ -120,6 +155,31 @@ namespace Sphyrnidae.Common.Paths
                 Segments.Insert(0, segment);
             return this;
         }
+        #endregion
+
+        #region Querystring
+        /// <summary>
+        /// Removes all items from the query string
+        /// </summary>
+        /// <remarks>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/&lt;path segment 1&gt;/&lt;path segment 2&gt;?&lt;query key 1&gt;=&lt;query value 1&gt;&amp;&lt;query key 2&gt;=&lt;query value 2&gt;#&lt;fragment&gt;</remarks>
+        /// <returns>The UrlBuilder so you can chain/build</returns>
+        public UrlBuilder ClearQueryString()
+        {
+            Query.Clear();
+            return this;
+        }
+
+        /// <summary>
+        /// Removes an item from the query string. If key not found, this does nothing
+        /// </summary>
+        /// <remarks>&lt;scheme&gt;://&lt;host&gt;:&lt;port&gt;/&lt;path segment 1&gt;/&lt;path segment 2&gt;?&lt;query key 1&gt;=&lt;query value 1&gt;&amp;&lt;query key 2&gt;=&lt;query value 2&gt;#&lt;fragment&gt;</remarks>
+        /// <param name="key">The key (eg. key=value)</param>
+        /// <returns>The UrlBuilder so you can chain/build</returns>
+        public UrlBuilder RemoveFromQueryString(string key)
+        {
+            Query.Remove(key);
+            return this;
+        }
 
         /// <summary>
         /// Adds a key and value combination to the query string (parameters are raw text, the actual URL will have these properly escaped)
@@ -133,7 +193,9 @@ namespace Sphyrnidae.Common.Paths
             Query.Add(key, value);
             return this;
         }
+        #endregion
 
+        #region Fragment
         /// <summary>
         /// Sets the fragment for the url
         /// </summary>
@@ -145,7 +207,9 @@ namespace Sphyrnidae.Common.Paths
             Builder.Fragment = fragment;
             return this;
         }
+        #endregion
 
+        #region Build
         /// <summary>
         /// Must be called last
         /// </summary>
@@ -178,5 +242,6 @@ namespace Sphyrnidae.Common.Paths
 
             return Builder.Uri.ToString();
         }
+        #endregion
     }
 }

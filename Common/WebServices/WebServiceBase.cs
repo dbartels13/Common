@@ -27,14 +27,12 @@ namespace Sphyrnidae.Common.WebServices
         protected IHttpClientFactory Factory { get; }
         protected IHttpClientSettings Settings { get; }
         protected IIdentityHelper Identity { get; }
-        protected IEncryption Encryption { get; }
         protected ILogger Logger { get; }
-        protected WebServiceBase(IHttpClientFactory factory, IHttpClientSettings settings, IIdentityHelper identity, IEncryption encryption, ILogger logger)
+        protected WebServiceBase(IHttpClientFactory factory, IHttpClientSettings settings, IIdentityHelper identity, ILogger logger)
         {
             Factory = factory;
             Settings = settings;
             Identity = identity;
-            Encryption = encryption;
             Logger = logger;
         }
         #endregion
@@ -75,7 +73,7 @@ namespace Sphyrnidae.Common.WebServices
 
             var client = GetClient();
 
-            var info = await Logger.WebServiceEntry(content.Headers, name, endpoint, "Post", data);
+            var info = Logger.WebServiceEntry(content.Headers, name, endpoint, "Post", data);
             var result = await client.PostAsync(endpoint, content);
             await Logger.WebServiceExit(info, result);
 
@@ -99,7 +97,7 @@ namespace Sphyrnidae.Common.WebServices
 
             var client = GetClient();
 
-            var info = await Logger.WebServiceEntry(content.Headers, name, endpoint, "Put", data);
+            var info = Logger.WebServiceEntry(content.Headers, name, endpoint, "Put", data);
             var result = await client.PutAsync(endpoint, content);
             await Logger.WebServiceExit(info, result);
 
@@ -123,7 +121,7 @@ namespace Sphyrnidae.Common.WebServices
 
             var client = GetClient();
 
-            var info = await Logger.WebServiceEntry(content.Headers, name, endpoint, "Patch", data);
+            var info = Logger.WebServiceEntry(content.Headers, name, endpoint, "Patch", data);
             var result = await client.PatchAsync(endpoint, content);
             await Logger.WebServiceExit(info, result);
 
@@ -150,7 +148,7 @@ namespace Sphyrnidae.Common.WebServices
             var client = GetClient();
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(JsonContentType)); // Not sure if this is needed?
 
-            var info = await Logger.WebServiceEntry(request.Headers, name, endpoint, "Get");
+            var info = Logger.WebServiceEntry(request.Headers, name, endpoint, "Get");
             var result = await client.SendAsync(request);
             await Logger.WebServiceExit(info, result);
 
@@ -176,7 +174,7 @@ namespace Sphyrnidae.Common.WebServices
 
             var client = GetClient();
 
-            var info = await Logger.WebServiceEntry(request.Headers, name, endpoint, "Delete");
+            var info = Logger.WebServiceEntry(request.Headers, name, endpoint, "Delete");
             var result = await client.SendAsync(request);
             await Logger.WebServiceExit(info, result);
 
@@ -208,7 +206,7 @@ namespace Sphyrnidae.Common.WebServices
 
             var client = GetClient();
 
-            var info = await Logger.WebServiceEntry(content.Headers, name, endpoint, "Image", filename);
+            var info = Logger.WebServiceEntry(content.Headers, name, endpoint, "Image", filename);
             var result = await client.PostAsync(endpoint, content);
             await Logger.WebServiceExit(info, result);
 
@@ -231,7 +229,7 @@ namespace Sphyrnidae.Common.WebServices
 
             var client = GetClient();
 
-            var info = await Logger.WebServiceEntry(content.Headers, name, endpoint, "XML Post", xml);
+            var info = Logger.WebServiceEntry(content.Headers, name, endpoint, "XML Post", xml);
             var result = await client.PostAsync(endpoint, content);
             await Logger.WebServiceExit(info, result);
 
@@ -311,9 +309,9 @@ namespace Sphyrnidae.Common.WebServices
         /// <param name="name">For logging purposes only: This is an identifier for a thrown exception</param>
         /// <param name="jsonSettings">Optional: The json settings to use</param>
         /// <returns>The object from the response</returns>
-        protected async Task<T> GetResult<T>(HttpResponseMessage response, string name,
+        protected Task<T> GetResult<T>(HttpResponseMessage response, string name,
             JsonSerializerSettings jsonSettings = null)
-            => await GetResult(
+            => GetResult(
                 response,
                 true,
                 name,
@@ -328,9 +326,9 @@ namespace Sphyrnidae.Common.WebServices
         /// <param name="defaultObject">This will be returned if any errors arise getting the result</param>
         /// <param name="jsonSettings">Optional: The json settings to use</param>
         /// <returns>The object from the result</returns>
-        protected async Task<T> GetResult<T>(HttpResponseMessage response, T defaultObject,
+        protected Task<T> GetResult<T>(HttpResponseMessage response, T defaultObject,
             JsonSerializerSettings jsonSettings = null)
-            => await GetResult(
+            => GetResult(
                 response,
                 false,
                 null,
@@ -345,9 +343,9 @@ namespace Sphyrnidae.Common.WebServices
         /// <param name="name">For logging purposes only: This is an identifier for a thrown exception</param>
         /// <param name="serializer">Optional: The XML Serializer to use</param>
         /// <returns>The object from the result</returns>
-        protected async Task<T> GetXmlResult<T>(HttpResponseMessage response, string name,
+        protected Task<T> GetXmlResult<T>(HttpResponseMessage response, string name,
             XmlSerializer serializer = null)
-            => await GetResult(
+            => GetResult(
                 response,
                 true,
                 name,
@@ -362,9 +360,9 @@ namespace Sphyrnidae.Common.WebServices
         /// <param name="defaultObject">This will be returned if any errors arise getting the result</param>
         /// <param name="serializer">Optional: The XML Serializer to use</param>
         /// <returns>The object from the result</returns>
-        protected async Task<T> GetXmlResult<T>(HttpResponseMessage response, T defaultObject,
+        protected Task<T> GetXmlResult<T>(HttpResponseMessage response, T defaultObject,
             XmlSerializer serializer = null)
-            => await GetResult(
+            => GetResult(
                 response,
                 false,
                 null,
@@ -386,36 +384,38 @@ namespace Sphyrnidae.Common.WebServices
         /// <returns>The object from the result</returns>
         private async Task<T> GetResult<T>(HttpResponseMessage response, bool throwOnFailure,
             string name, T defaultObject, Func<string, T> deserializer)
-            => await SafeTry.OnException(async () =>
-                {
-                    // Make sure the call was successful
-                    if (!response.IsSuccessStatusCode)
-                        return Unsuccessful(throwOnFailure, name, defaultObject);
+        {
+            try
+            {
+                // Make sure the call was successful
+                if (!response.IsSuccessStatusCode)
+                    return Unsuccessful(throwOnFailure, name, defaultObject);
 
-                    // Get body as string
-                    // This will actually be done twice in web services... first one for logging, and 2nd one for the actual result.
-                    var body = await response.GetBodyAsync();
-                    if (body == null)
-                        return Unsuccessful(throwOnFailure, name, defaultObject);
+                // Get body as string
+                // This will actually be done twice in web services... first one for logging, and 2nd one for the actual result.
+                var body = await response.GetBodyAsync();
+                if (body == null)
+                    return Unsuccessful(throwOnFailure, name, defaultObject);
 
-                    // Possibly do some parsing in case the structure is not of type T
-                    var parsedResponse = ParseResponseBody((int)response.StatusCode, body);
+                // Possibly do some parsing in case the structure is not of type T
+                var parsedResponse = ParseResponseBody((int)response.StatusCode, body);
 
-                    // Secondary check in case the status code changed based on parsing
-                    var statusCode = parsedResponse.Item1;
-                    if (statusCode < 200 || statusCode >= 300)
-                        return Unsuccessful(throwOnFailure, name, defaultObject);
+                // Secondary check in case the status code changed based on parsing
+                var statusCode = parsedResponse.Item1;
+                if (statusCode < 200 || statusCode >= 300)
+                    return Unsuccessful(throwOnFailure, name, defaultObject);
 
-                    // Deserialize to complex outer object
-                    var result = deserializer(parsedResponse.Item2);
-                    return result;
-                },
-                ex =>
-                {
-                    if (throwOnFailure)
-                        throw ex;
-                    return defaultObject;
-                });
+                // Deserialize to complex outer object
+                var result = deserializer(parsedResponse.Item2);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                if (throwOnFailure)
+                    throw ex;
+                return defaultObject;
+            }
+        }
 
         private static T Unsuccessful<T>(bool throwOnFailure, string name, T defaultObject)
         {

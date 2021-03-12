@@ -95,7 +95,10 @@ Overview</h1>
 <p>Interface: <a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a></p>
 <p>Mock: <a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html">EmailMock</a></p>
 <p>Wrapper: <a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email.html">Email</a></p>
-<p>Implementation: <a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html">DotNetEmail</a></p>
+<p>Implementations:</p><ol type="1">
+<li><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html">EmailMock</a>: Registered implementation which does nothing</li>
+<li><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html">DotNetEmail</a>: Sends emails using standard .Net mechanism. This requires additional interface implementations/registrations, but is also very configurable. See <a class="el" href="_email_md.html#EmailImplementationMd">Implementation Customizations</a></li>
+</ol>
 <h1><a class="anchor" id="EmailImplementationMd"></a>
 Implementation Customizations</h1>
 <p>The <a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html">DotNetEmail</a> is very configurable. There are many principles at work here, so we'll start with the <a class="el" href="namespace_sphyrnidae_1_1_common_1_1_email_utilities_1_1_models.html#a906a7d0a948cce173dd2cb78f80fe718">EmailType</a>. This implementation also makes use of <a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings.html">IEmailSettings</a> and <a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_dot_net_email_settings.html">IDotNetEmailSettings</a>. An email is generally made up of the following pieces of information:</p><ol type="1">
@@ -127,7 +130,7 @@ Implementation Customizations</h1>
 <tr>
 <td><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_email_utilities_1_1_models.html#a906a7d0a948cce173dd2cb78f80fe718a90589c47f06eb971d548591f23c285af">Custom</a> </td><td>User-supplied during the call </td></tr>
 </table>
-<p>Redirects are the ability to change who the email is being sent to (or cc/bcc). A redirect could happen for any number of reasons, but the most common scenario is environment-specific. In a non-production environment, you want to make sure that emails are not actually being sent out to end-users. You can guard against this by having the following configurations retrieve their values from the <a class="el" href="_environment_md.html">environment</a> or from variables.</p><ol type="1">
+<p>Redirects are the ability to change who the email is being sent to (or cc/bcc). A redirect could happen for any number of reasons, but the most common scenario is environment-specific. In a non-production environment, you want to make sure that emails are not actually being sent out to end-users. You can guard against this by having the following configurations retrieve their values from the <a class="el" href="_environment_md.html">environment</a> or from <a class="el" href="_variable_md.html">variables</a>.</p><ol type="1">
 <li><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings.html#a2b01fc107ee96309852c8793b025956c">AllowRedirect</a>: This should be false for production, but probably set to true for other environments. If this value is false, the remaining properties will be ignored. If this value is true, you will need to ensure the remaining properties are properly configured.</li>
 <li><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings.html#adfa80940236d01ac31576e6aa93a019a">AllowedDomains</a>: This is a white-listing of domains (eg. sphyrnidaetech.com) where emails will go out normally. Anything that is not listed, will be redirected. The domains listed are not wild-carded. The exact phrase must match the ending of the provided email address to be allowed.</li>
 <li><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings.html#a846c51dc0553e8ec517bf9d022033e1a">DomainAndEmailComparison</a>: This allows you to customize the behavior (eg. InvariantCultureIgnoreCase) for pattern matching the email address/domains.</li>
@@ -148,7 +151,7 @@ Custom Implementation</h1>
 <h1><a class="anchor" id="EmailWhereUsedMd"></a>
 Where Used</h1>
 <ol type="1">
-<li>SingalR: Errors will be emailed</li>
+<li><a class="el" href="_signal_r_md.html">SingalR</a>: Errors will be emailed</li>
 <li><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html">EmailBase</a>: How to send the customized email content</li>
 <li>Logger: Any failures during logging will be emailed</li>
 <li><a class="el" href="_settings_md.html">Settings</a>: Any errors retrieving these listings will be emailed</li>

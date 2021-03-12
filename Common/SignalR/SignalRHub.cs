@@ -131,7 +131,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive(ISignalR signalR, string url, string context, Action method) => signalR.Receive(url, context, method);
+        public static Task Receive(ISignalR signalR, string url, string context, Action method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -143,7 +143,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T>(ISignalR signalR, string url, string context, Action<T> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T>(ISignalR signalR, string url, string context, Action<T> method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -156,7 +156,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T1, T2>(ISignalR signalR, string url, string context, Action<T1, T2> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T1, T2>(ISignalR signalR, string url, string context, Action<T1, T2> method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -170,7 +170,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T1, T2, T3>(ISignalR signalR, string url, string context, Action<T1, T2, T3> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T1, T2, T3>(ISignalR signalR, string url, string context, Action<T1, T2, T3> method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -185,7 +185,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T1, T2, T3, T4>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T1, T2, T3, T4>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4> method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -201,7 +201,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T1, T2, T3, T4, T5>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T1, T2, T3, T4, T5>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5> method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -218,7 +218,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T1, T2, T3, T4, T5, T6>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5, T6> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T1, T2, T3, T4, T5, T6>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5, T6> method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -236,7 +236,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T1, T2, T3, T4, T5, T6, T7>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5, T6, T7> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T1, T2, T3, T4, T5, T6, T7>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5, T6, T7> method) => signalR.Receive(url, context, method);
         /// <summary>
         /// Receives a message
         /// </summary>
@@ -255,7 +255,7 @@ namespace Sphyrnidae.Common.SignalR
         /// <param name="url">The name of the url to the hub</param>
         /// <param name="context">The name of the context that was invoked</param>
         /// <param name="method">A function to execute upon being called</param>
-        public static void Receive<T1, T2, T3, T4, T5, T6, T7, T8>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5, T6, T7, T8> method) => signalR.Receive(url, context, method);
+        public static Task Receive<T1, T2, T3, T4, T5, T6, T7, T8>(ISignalR signalR, string url, string context, Action<T1, T2, T3, T4, T5, T6, T7, T8> method) => signalR.Receive(url, context, method);
         #endregion
     }
 }

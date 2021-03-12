@@ -113,8 +113,15 @@ Helper Methods</h1>
 <p>These methods can be directly called without any interface registration. As such, all customization in the behavior of these methods is done via method overloads. All calls to uses these classes/methods are either extension methods, or at static in nature.</p>
 <p><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_active_directory_utilities.html">Active Directory</a>: Methods for accessing active directory (not currently supported)</p>
 <p><a class="el" href="_binary_list_md.html">BinaryList</a>: Fast searching of a list</p>
+<p><a class="el" href="_compression_md.html">Compression</a>: Shrinking a string (eg. serialized object)</p>
 <p><a class="el" href="_dynamic_sql_md.html">Dynamic Sql</a>: Helper for building a complex sql statement</p>
 <p><a class="el" href="namespace_sphyrnidae_1_1_common_1_1_extensions.html">Extension Methods</a>: All kinds of extension methods</p>
+<p><a class="el" href="_named_locker_md.html">Named Locker</a>: Allows items to be locked on a name instead of the same global object</p>
+<p><a class="el" href="_paths_md.html">Path and Url Builder</a>: Methods for building URL's or Paths</p>
+<p><a class="el" href="_retry_md.html">Retry</a>: Executes something repeatedly until no exception is thrown</p>
+<p><a class="el" href="_safe_try_md.html">SafeTry</a>: Wrapper around try/catch statements, with some automated exception handling</p>
+<p><a class="el" href="_serialize_md.html">Serialize</a>: Performs de/serialization of either XML or JSON string/objects</p>
+<p><a class="el" href="_service_locator_md.html">Service Locator</a>: Allows injection of any service by injecting a single service instead</p>
 <h1><a class="anchor" id="OverviewInterfaceMethodsMd"></a>
 Interface-Based Functionality</h1>
 <p>These pieces of functionality are abstracted into an interface. From there, a default implementation is usually provided. A mock implementation is also provided. If the default implementation is abstract in nature, there may be a child class which does the rest of the implementation. Lastly, there could be a wrapper class around the interface. This wrapper class is sometimes done for ease-of-use, but is also done if there is specific functionality that should be done for every possible implementation (eg. it wraps the interface call in some helper code) </p><table class="doxtable">
@@ -131,7 +138,8 @@ Interface-Based Functionality</h1>
 <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_distributed.html">CacheDistributed</a> <br  />
 <a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html">CacheLocalAndDistributed</a> (Default) </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_cache_1_1_caching.html">Caching</a> </td><td></td></tr>
 <tr>
-<td><a class="el" href="_email_md.html">Email</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html">EmailMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html">DotNetEmail</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email.html">Email</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html">EmailBase</a>: Content generation </td></tr>
+<td><a class="el" href="_email_md.html">Email</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email.html">IEmail</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html">EmailMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html">EmailMock</a> (Default) <br  />
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html">DotNetEmail</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email.html">Email</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html">EmailBase</a>: Content generation </td></tr>
 <tr>
 <td><a class="el" href="_encryption_md.html">Encryption</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html">IEncryption</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_none.html">EncryptionNone</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_encryption_dispatcher.html">EncryptionDispatcher</a> (Default) <br  />
 <a class="el" href="class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_strong.html">EncryptionStrong</a> <br  />
@@ -151,15 +159,13 @@ Interface-Based Functionality</h1>
 <tr>
 <td><a class="el" href="_logging_md.html">Logging</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_logging_1_1_interfaces_1_1_i_logger.html">ILogger</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_non_logger.html">NonLogger</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html">Logger</a> </td><td></td><td></td></tr>
 <tr>
-<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td><a class="el" href="_request_data_md.html">Request Data</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_request_data_1_1_i_request_data.html">IRequestData</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_request_data_1_1_request_data_mock.html">RequestDataMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_request_data_1_1_request_data.html">RequestData</a> </td><td></td><td></td></tr>
 <tr>
-<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td><a class="el" href="_signal_r_md.html">SignalR</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_signal_r_1_1_i_signal_r.html">ISignalR</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r_mock.html">SignalRMock</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r.html">SignalR</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r_hub.html">SignalRHub</a> </td><td></td></tr>
 <tr>
-<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td><a class="el" href="_user_preferences_md.html">User Preferences</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_user_preference_1_1_interfaces_1_1_i_user_preference_settings.html">IUserPreferenceSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings_default.html">UserPreferenceSettingsDefault</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings.html">UserPreferenceSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_user_preference_1_1_settings_user_preference.html">SettingsUserPreference</a> </td><td>The implementation is an abstract class, so you should provide your own implementation </td></tr>
 <tr>
-<td></td><td></td><td></td><td></td><td></td><td></td></tr>
-<tr>
-<td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<td><a class="el" href="_variable_md.html">Variables</a> </td><td><a class="el" href="interface_sphyrnidae_1_1_common_1_1_variable_1_1_interfaces_1_1_i_variable_settings.html">IVariableSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_default.html">VariableSettingsDefault</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings.html">VariableSettings</a> </td><td><a class="el" href="class_sphyrnidae_1_1_common_1_1_variable_1_1_settings_variable.html">SettingsVariable</a> </td><td>The implementation is an abstract class, so you should provide your own implementation </td></tr>
 </table>
 <h1><a class="anchor" id="OverviewBaseClassesMd"></a>
 Base Classes</h1>
@@ -172,7 +178,7 @@ Base Classes</h1>
 <li>
 <a class="el" href="class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html">BaseRepo</a> [See <a class="el" href="_dal_md.html">Data Access Layer</a> for more information]: All database repositoris should inherit from this class. A repo is responsible for CRUD operations against a repository (eg. database, file sytem, etc). It is best practice to usually have a repository class per database table. </li>
 <li>
-<a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html">WebServiceBase</a> [See Web Services for more information]: All web services should inherit from this class. A web service is a call to another system (could be SOA, microservices, or an external system). Each system/API that you need to access should be it's own web service class. </li>
+<a class="el" href="class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html">WebServiceBase</a> [See <a class="el" href="_web_service_md.html">Web Services</a> for more information]: All web services should inherit from this class. A web service is a call to another system (could be SOA, microservices, or an external system). Each system/API that you need to access should be it's own web service class. </li>
 <li>
 Service layer (no base class): A service layer is a class that does one of the following things: <ol>
 <li>

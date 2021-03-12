@@ -83,7 +83,6 @@ var hierarchy =
       [ "Sphyrnidae.Common.Serialize.IgnoreEmptyEnumerableResolver", "class_sphyrnidae_1_1_common_1_1_serialize_1_1_ignore_empty_enumerable_resolver.html", null ]
     ] ],
     [ "Sphyrnidae.Common.CaseInsensitiveBinaryList< string >", "class_sphyrnidae_1_1_common_1_1_case_insensitive_binary_list.html", null ],
-    [ "Sphyrnidae.Common.Utilities.Claims", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_claims.html", null ],
     [ "Sphyrnidae.Common.Microsoft.ClientBrowser", "class_sphyrnidae_1_1_common_1_1_microsoft_1_1_client_browser.html", null ],
     [ "Sphyrnidae.Common.Microsoft.ClientOS", "class_sphyrnidae_1_1_common_1_1_microsoft_1_1_client_o_s.html", null ],
     [ "Sphyrnidae.Common.Extensions.ColorExtensions", "class_sphyrnidae_1_1_common_1_1_extensions_1_1_color_extensions.html", null ],
@@ -127,8 +126,8 @@ var hierarchy =
       [ "Sphyrnidae.Common.Alerts.Alert", "class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert.html", null ],
       [ "Sphyrnidae.Common.Alerts.AlertNone", "class_sphyrnidae_1_1_common_1_1_alerts_1_1_alert_none.html", null ]
     ] ],
-    [ "Sphyrnidae.Common.WebServices.Interfaces.IApiAuthenticationWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_api_authentication_web_service.html", [
-      [ "Sphyrnidae.Common.WebServices.ApiAuthenticationWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_web_service_mock.html", null ]
+    [ "Sphyrnidae.Common.WebServices.ApiAuthentication.IApiAuthenticationWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_i_api_authentication_web_service.html", [
+      [ "Sphyrnidae.Common.WebServices.ApiAuthentication.ApiAuthenticationWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_api_authentication_web_service_mock.html", null ]
     ] ],
     [ "Sphyrnidae.Common.Api.Responses.IApiResponse", "interface_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_i_api_response.html", [
       [ "Sphyrnidae.Common.Api.Responses.ApiResponseStandard", "class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response_standard.html", null ]
@@ -143,9 +142,7 @@ var hierarchy =
       [ "Sphyrnidae.Common.Cache.CacheLocalAndDistributed", "class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_local_and_distributed.html", null ],
       [ "Sphyrnidae.Common.Cache.CacheNone", "class_sphyrnidae_1_1_common_1_1_cache_1_1_cache_none.html", null ]
     ] ],
-    [ "Sphyrnidae.Common.EmailUtilities.Interfaces.IDotNetEmailSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_dot_net_email_settings.html", [
-      [ "Sphyrnidae.Common.EmailUtilities.SphyrnidaeDotNetEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_dot_net_email_settings.html", null ]
-    ] ],
+    [ "Sphyrnidae.Common.EmailUtilities.Interfaces.IDotNetEmailSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_dot_net_email_settings.html", null ],
     [ "Sphyrnidae.Common.DynamicSql.Interfaces.IDynamicMySqlRepo", "interface_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_interfaces_1_1_i_dynamic_my_sql_repo.html", [
       [ "Sphyrnidae.Common.DynamicSql.DynamicMySqlRepo", "class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_my_sql_repo.html", null ]
     ] ],
@@ -156,12 +153,8 @@ var hierarchy =
       [ "Sphyrnidae.Common.EmailUtilities.DotNetEmail", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html", null ],
       [ "Sphyrnidae.Common.EmailUtilities.EmailMock", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html", null ]
     ] ],
-    [ "Sphyrnidae.Common.EmailUtilities.Interfaces.IEmailDefaultSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_default_settings.html", [
-      [ "Sphyrnidae.Common.EmailUtilities.SphyrnidaeEmailDefaultSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_default_settings.html", null ]
-    ] ],
-    [ "Sphyrnidae.Common.EmailUtilities.Interfaces.IEmailSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings.html", [
-      [ "Sphyrnidae.Common.EmailUtilities.SphyrnidaeEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_settings.html", null ]
-    ] ],
+    [ "Sphyrnidae.Common.EmailUtilities.Interfaces.IEmailDefaultSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_default_settings.html", null ],
+    [ "Sphyrnidae.Common.EmailUtilities.Interfaces.IEmailSettings", "interface_sphyrnidae_1_1_common_1_1_email_utilities_1_1_interfaces_1_1_i_email_settings.html", null ],
     [ "Sphyrnidae.Common.Encryption.IEncryption", "interface_sphyrnidae_1_1_common_1_1_encryption_1_1_i_encryption.html", [
       [ "Sphyrnidae.Common.Encryption.Algorithms.EncryptionAlgorithm", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_algorithm.html", [
         [ "Sphyrnidae.Common.Encryption.Algorithms.EncryptionNormal", "class_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms_1_1_encryption_normal.html", null ],
@@ -181,9 +174,6 @@ var hierarchy =
     [ "Sphyrnidae.Common.Environment.IEnvironmentSettings", "interface_sphyrnidae_1_1_common_1_1_environment_1_1_i_environment_settings.html", [
       [ "Sphyrnidae.Common.Environment.EnvironmentalSettings", "class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings.html", null ],
       [ "Sphyrnidae.Common.Environment.EnvironmentalSettingsMock", "class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings_mock.html", null ]
-    ] ],
-    [ "Sphyrnidae.Common.WebServices.Interfaces.IFeatureToggleWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_feature_toggle_web_service.html", [
-      [ "Sphyrnidae.Common.WebServices.FeatureToggleWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_feature_toggle_web_service_mock.html", null ]
     ] ],
     [ "Sphyrnidae.Common.HttpClient.IHttpClientSettings", "interface_sphyrnidae_1_1_common_1_1_http_client_1_1_i_http_client_settings.html", [
       [ "Sphyrnidae.Common.HttpClient.HttpClientSettings", "class_sphyrnidae_1_1_common_1_1_http_client_1_1_http_client_settings.html", null ],
@@ -253,12 +243,6 @@ var hierarchy =
     [ "Sphyrnidae.Common.SignalR.ISignalR", "interface_sphyrnidae_1_1_common_1_1_signal_r_1_1_i_signal_r.html", [
       [ "Sphyrnidae.Common.SignalR.SignalR", "class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r.html", null ],
       [ "Sphyrnidae.Common.SignalR.SignalRMock", "class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r_mock.html", null ]
-    ] ],
-    [ "Sphyrnidae.Common.WebServices.Interfaces.IUserPreferenceWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_user_preference_web_service.html", [
-      [ "Sphyrnidae.Common.WebServices.UserPreferenceWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_user_preference_web_service_mock.html", null ]
-    ] ],
-    [ "Sphyrnidae.Common.WebServices.Interfaces.IVariableWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_variable_web_service.html", [
-      [ "Sphyrnidae.Common.WebServices.VariableWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service_mock.html", null ]
     ] ],
     [ "Sphyrnidae.Common.Api.Middleware.JwtMiddleware", "class_sphyrnidae_1_1_common_1_1_api_1_1_middleware_1_1_jwt_middleware.html", null ],
     [ "Sphyrnidae.Common.Cache.Models.L2CacheItem< T >", "class_sphyrnidae_1_1_common_1_1_cache_1_1_models_1_1_l2_cache_item.html", null ],

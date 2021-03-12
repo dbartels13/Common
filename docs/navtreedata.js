@@ -135,12 +135,73 @@ var NAVTREE =
       [ "Configurations", "_logging_md.html#LoggingConfigurationsMd", null ],
       [ "Customizations", "_logging_md.html#LoggingCustomizationsMd", null ]
     ] ],
+    [ "Url and Path Builder", "_paths_md.html", [
+      [ "Overview", "_paths_md.html#PathsOverviewMd", null ],
+      [ "Where Used", "_paths_md.html#PathsWhereUsedMd", null ],
+      [ "Examples", "_paths_md.html#PathsExampleMd", null ]
+    ] ],
+    [ "Request Data", "_request_data_md.html", [
+      [ "Overview", "_request_data_md.html#RequestDataOverviewMd", null ],
+      [ "Where Used", "_request_data_md.html#RequestDataWhereUsedMd", null ],
+      [ "Examples", "_request_data_md.html#RequestDataExampleMd", null ]
+    ] ],
+    [ "Retry", "_retry_md.html", [
+      [ "Where Used", "_retry_md.html#RetryWhereUsedMd", null ],
+      [ "Examples", "_retry_md.html#RetryExampleMd", null ]
+    ] ],
+    [ "Serialize", "_serialize_md.html", [
+      [ "Where Used", "_serialize_md.html#SerializeWhereUsedMd", null ],
+      [ "Examples", "_serialize_md.html#SerializeExampleMd", null ]
+    ] ],
     [ "Settings", "_settings_md.html", [
       [ "Overview", "_settings_md.html#SettingsOverviewMd", null ],
       [ "Where Used", "_settings_md.html#SettingsWhereUsedMd", null ],
       [ "Examples", "_settings_md.html#SettingsExampleMd", null ]
     ] ],
     [ "API Setup", "_setup_md.html", null ],
+    [ "SignalR", "_signal_r_md.html", [
+      [ "Overview", "_signal_r_md.html#SignalROverviewMd", null ],
+      [ "Setup", "_signal_r_md.html#SignalRSetupMd", null ],
+      [ "Where Used", "_signal_r_md.html#SignalRWhereUsedMd", null ],
+      [ "Examples", "_signal_r_md.html#SignalRExampleMd", null ]
+    ] ],
+    [ "User Preferences", "_user_preferences_md.html", [
+      [ "Overview", "_user_preferences_md.html#UserPreferenceOverviewMd", null ],
+      [ "Where Used", "_user_preferences_md.html#UserPreferenceWhereUsedMd", null ],
+      [ "Examples", "_user_preferences_md.html#UserPreferenceExampleMd", null ]
+    ] ],
+    [ "Compression", "_compression_md.html", [
+      [ "Overview", "_compression_md.html#CompressionOverviewMd", null ],
+      [ "Where Used", "_compression_md.html#CompressionWhereUsedMd", null ],
+      [ "Examples", "_compression_md.html#CompressionExampleMd", null ]
+    ] ],
+    [ "Named Locker", "_named_locker_md.html", [
+      [ "Overview", "_named_locker_md.html#NamedLockerOverviewMd", null ],
+      [ "Where Used", "_named_locker_md.html#NamedLockerWhereUsedMd", null ],
+      [ "Examples", "_named_locker_md.html#NamedLockerExampleMd", null ]
+    ] ],
+    [ "Safe Try", "_safe_try_md.html", [
+      [ "Overview", "_safe_try_md.html#SafeTryOverviewMd", null ],
+      [ "Performance Concerns", "_safe_try_md.html#SafeTryPerformanceMd", null ],
+      [ "Where Used", "_safe_try_md.html#SafeTryWhereUsedMd", null ],
+      [ "Examples", "_safe_try_md.html#SafeTryExampleMd", null ]
+    ] ],
+    [ "Service Locator", "_service_locator_md.html", [
+      [ "Overview", "_service_locator_md.html#ServiceLocatorOverviewMd", null ],
+      [ "Static Methods", "_service_locator_md.html#ServiceLocatorStaticMd", null ],
+      [ "Multiple Dependencies", "_service_locator_md.html#ServiceLocatorMultipleMd", null ],
+      [ "Where Used", "_service_locator_md.html#ServiceLocatorWhereUsedMd", null ],
+      [ "Examples", "_service_locator_md.html#ServiceLocatorExampleMd", null ]
+    ] ],
+    [ "Variables", "_variable_md.html", [
+      [ "Overview", "_variable_md.html#VariableOverviewMd", null ],
+      [ "Where Used", "_variable_md.html#VariableWhereUsedMd", null ],
+      [ "Examples", "_variable_md.html#VariableExampleMd", null ]
+    ] ],
+    [ "Web Services", "_web_service_md.html", [
+      [ "Where Used", "_web_service_md.html#WebServiceWhereUsedMd", null ],
+      [ "Examples", "_web_service_md.html#WebServiceExampleMd", null ]
+    ] ],
     [ "Packages", "namespaces.html", [
       [ "Packages", "namespaces.html", "namespaces_dup" ],
       [ "Package Functions", "namespacemembers.html", [
@@ -165,14 +226,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_alerts_md.html",
-"class_sphyrnidae_1_1_common_1_1_api_1_1_service_registration_1_1_models_1_1_service_configuration.html#a42b096e1dec3314ae669ed00425fce34",
-"class_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_dynamic_sql_builder.html#a9c425c6ba39754c3ef15b7b4df436790",
-"class_sphyrnidae_1_1_common_1_1_environment_1_1_environmental_settings.html#a964e7cfa96c6d213cb8d223468bd2f34",
-"class_sphyrnidae_1_1_common_1_1_logging_1_1_configuration_1_1_mock_logger_configuration.html#a91e6f0f54753f7d6773a7cc1f181463e",
-"class_sphyrnidae_1_1_common_1_1_logging_1_1_logger_information.html#af12e5558e3b213b646213815e57163b1",
-"class_sphyrnidae_1_1_common_1_1_signal_r_1_1_signal_r.html#ae63ed047fe0e19611d2c988a9b0b2272",
-"interface_sphyrnidae_1_1_common_1_1_application_1_1_i_application_settings.html#a107a551f5f15821d39c01b2820f63a4e",
-"namespace_sphyrnidae_1_1_common_1_1_dynamic_sql_1_1_enums.html#a1c583b7ca71c1e58b90625391a96cdf5a3a2d5fe857d8f9541136a124c2edec6c"
+"class_sphyrnidae_1_1_common_1_1_api_1_1_responses_1_1_api_response.html#abc11ad2da41255c06f4548201e0a36c5",
+"class_sphyrnidae_1_1_common_1_1_dal_1_1_base_repo.html#af865c489835c171e8d75d284bcc5fc37",
+"class_sphyrnidae_1_1_common_1_1_encryption_1_1_key_manager_1_1_encryption_key_manager.html",
+"class_sphyrnidae_1_1_common_1_1_logging_1_1_configuration_1_1_logger_configuration.html#a678f0d3c21462565b739cb3e853c6ef1",
+"class_sphyrnidae_1_1_common_1_1_logging_1_1_logger.html#ad6177b4ed1e7fd5e4657ca64de76c8f5",
+"class_sphyrnidae_1_1_common_1_1_serialize_1_1_ignore_empty_enumerable_resolver.html#a1273111707886a11ca025cc4aa122e60",
+"index.html",
+"namespace_sphyrnidae_1_1_common_1_1_dal.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

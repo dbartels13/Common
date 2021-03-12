@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using Sphyrnidae.Common.Variable.Interfaces;
-
 // ReSharper disable UnusedMember.Global
 
 namespace Sphyrnidae.Common.Variable

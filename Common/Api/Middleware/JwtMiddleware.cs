@@ -20,7 +20,7 @@ namespace Sphyrnidae.Common.Api.Middleware
 
         public async Task Invoke(HttpContext context, ILogger logger, IIdentityHelper identity, IHttpClientSettings http, IEncryption encrypt)
         {
-            var info = await logger.MiddlewareEntry("Jwt");
+            var info = logger.MiddlewareEntry("Jwt");
 
             // We need to ensure a jwt always exists
             if (identity.Current.IsDefault())
@@ -36,7 +36,7 @@ namespace Sphyrnidae.Common.Api.Middleware
 
             await Next(context);
 
-            await logger.MiddlewareExit(info);
+            logger.MiddlewareExit(info);
         }
     }
 }

@@ -131,10 +131,7 @@ var annotated_dup =
           [ "DotNetEmail", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_dot_net_email" ],
           [ "Email", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email" ],
           [ "EmailBase", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_base" ],
-          [ "EmailMock", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock" ],
-          [ "SphyrnidaeDotNetEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_dot_net_email_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_dot_net_email_settings" ],
-          [ "SphyrnidaeEmailDefaultSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_default_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_default_settings" ],
-          [ "SphyrnidaeEmailSettings", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_settings.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_sphyrnidae_email_settings" ]
+          [ "EmailMock", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock.html", "class_sphyrnidae_1_1_common_1_1_email_utilities_1_1_email_mock" ]
         ] ],
         [ "Encryption", "namespace_sphyrnidae_1_1_common_1_1_encryption.html", [
           [ "Algorithms", "namespace_sphyrnidae_1_1_common_1_1_encryption_1_1_algorithms.html", [
@@ -314,7 +311,6 @@ var annotated_dup =
           [ "UserPreferenceSettingsDefault", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings_default.html", "class_sphyrnidae_1_1_common_1_1_user_preference_1_1_user_preference_settings_default" ]
         ] ],
         [ "Utilities", "namespace_sphyrnidae_1_1_common_1_1_utilities.html", [
-          [ "Claims", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_claims.html", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_claims" ],
           [ "Compression", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_compression.html", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_compression" ],
           [ "NamedLocker", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_named_locker.html", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_named_locker" ],
           [ "SafeTry", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_safe_try.html", "class_sphyrnidae_1_1_common_1_1_utilities_1_1_safe_try" ],
@@ -332,16 +328,10 @@ var annotated_dup =
           [ "VariableSettingsDefault", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_default.html", "class_sphyrnidae_1_1_common_1_1_variable_1_1_variable_settings_default" ]
         ] ],
         [ "WebServices", "namespace_sphyrnidae_1_1_common_1_1_web_services.html", [
-          [ "Interfaces", "namespace_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces.html", [
-            [ "IApiAuthenticationWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_api_authentication_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_api_authentication_web_service" ],
-            [ "IFeatureToggleWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_feature_toggle_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_feature_toggle_web_service" ],
-            [ "IUserPreferenceWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_user_preference_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_user_preference_web_service" ],
-            [ "IVariableWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_variable_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_interfaces_1_1_i_variable_web_service" ]
+          [ "ApiAuthentication", "namespace_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication.html", [
+            [ "ApiAuthenticationWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_api_authentication_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_api_authentication_web_service_mock" ],
+            [ "IApiAuthenticationWebService", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_i_api_authentication_web_service.html", "interface_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_i_api_authentication_web_service" ]
           ] ],
-          [ "ApiAuthenticationWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_web_service_mock" ],
-          [ "FeatureToggleWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_feature_toggle_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_feature_toggle_web_service_mock" ],
-          [ "UserPreferenceWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_user_preference_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_user_preference_web_service_mock" ],
-          [ "VariableWebServiceMock", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service_mock.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_variable_web_service_mock" ],
           [ "WebServiceBase", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base.html", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_web_service_base" ]
         ] ],
         [ "BinaryList", "class_sphyrnidae_1_1_common_1_1_binary_list.html", "class_sphyrnidae_1_1_common_1_1_binary_list" ],

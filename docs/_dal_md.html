@@ -145,14 +145,14 @@ Examples</h1>
         public override string CnnStr =&gt; "My Connection String - possibly lookup from Environmental Settings";
         protected override string CnnName =&gt; "Widgets";
 
-        public async Task&lt;int?&gt; InsertWidget(string name, double cost)
+        public Task&lt;int?&gt; InsertWidget(string name, double cost)
         {
             var parameters = new
             {
                 Name = name,
                 Cost = cost
             };
-            return await InsertTrappingExceptionsAsync("insert into Widgets([Name], [Cost]) values (@Name, @Cost)", parameters);
+            return InsertTrappingExceptionsAsync("insert into Widgets([Name], [Cost]) values (@Name, @Cost)", parameters);
         }
         public override ApiResponseStandard HandleException()
         {
@@ -161,7 +161,7 @@ Examples</h1>
                 return ApiResponse.Duplicate();
             return ApiResponse.InternalServerError(Ex);
         }
-        public async Task&lt;bool&gt; TransactionTestWidget(int id, string name, double cost)
+        public Task&lt;bool&gt; TransactionTestWidget(int id, string name, double cost)
         {
             var parameters = new
             {
@@ -169,7 +169,7 @@ Examples</h1>
                 Name = name,
                 Cost = cost
             };
-            return await WriteSQLAsBoolAsync("update Widgets set [Name]=@Name, [Cost]=@Cost where [Id]=@Id", parameters);
+            return WriteSQLAsBoolAsync("update Widgets set [Name]=@Name, [Cost]=@Cost where [Id]=@Id", parameters);
         }
     }
 </pre><h2>Consuming a Repository</h2>

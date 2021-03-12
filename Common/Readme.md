@@ -27,9 +27,23 @@ All calls to uses these classes/methods are either extension methods, or at stat
 
 [BinaryList](@ref BinaryListMd): Fast searching of a list
 
+[Compression](@ref CompressionMd): Shrinking a string (eg. serialized object)
+
 [Dynamic Sql](@ref DynamicSqlMd): Helper for building a complex sql statement
 
 [Extension Methods](@ref Sphyrnidae.Common.Extensions): All kinds of extension methods
+
+[Named Locker](@ref NamedLockerMd): Allows items to be locked on a name instead of the same global object
+
+[Path and Url Builder](@ref PathsMd): Methods for building URL's or Paths
+
+[Retry](@ref RetryMd): Executes something repeatedly until no exception is thrown
+
+[SafeTry](@ref SafeTryMd): Wrapper around try/catch statements, with some automated exception handling
+
+[Serialize](@ref SerializeMd): Performs de/serialization of either XML or JSON string/objects
+
+[Service Locator](@ref ServiceLocatorMd): Allows injection of any service by injecting a single service instead
 
 ## Interface-Based Functionality {#OverviewInterfaceMethodsMd}
 These pieces of functionality are abstracted into an interface.
@@ -82,7 +96,8 @@ but is also done if there is specific functionality that should be done for ever
 		<td>[Email](@ref EmailMd)
 		<td>[IEmail](@ref Sphyrnidae.Common.EmailUtilities.Interfaces.IEmail)
 		<td>[EmailMock](@ref Sphyrnidae.Common.EmailUtilities.EmailMock)
-		<td>[DotNetEmail](@ref Sphyrnidae.Common.EmailUtilities.DotNetEmail)
+		<td>[EmailMock](@ref Sphyrnidae.Common.EmailUtilities.EmailMock) (Default)
+		<br />[DotNetEmail](@ref Sphyrnidae.Common.EmailUtilities.DotNetEmail)
 		<td>[Email](@ref Sphyrnidae.Common.EmailUtilities.Email)
 		<td>[EmailBase](@ref Sphyrnidae.Common.EmailUtilities.EmailBase): Content generation
 	<tr>
@@ -139,40 +154,33 @@ but is also done if there is specific functionality that should be done for ever
 		<td>
 		<td>
 	<tr>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-	<tr>
-		<td>
-		<td>
-		<td>
-		<td>
+		<td>[Request Data](@ref RequestDataMd)
+		<td>[IRequestData](@ref Sphyrnidae.Common.RequestData.IRequestData)
+		<td>[RequestDataMock](@ref Sphyrnidae.Common.RequestData.RequestDataMock)
+		<td>[RequestData](@ref Sphyrnidae.Common.RequestData.RequestData)
 		<td>
 		<td>
 	<tr>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-	<tr>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
+		<td>[SignalR](@ref SignalRMd)
+		<td>[ISignalR](@ref Sphyrnidae.Common.SignalR.ISignalR)
+		<td>[SignalRMock](@ref Sphyrnidae.Common.SignalR.SignalRMock)
+		<td>[SignalR](@ref Sphyrnidae.Common.SignalR.SignalR)
+		<td>[SignalRHub](@ref Sphyrnidae.Common.SignalR.SignalRHub)
 		<td>
 	<tr>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
-		<td>
+		<td>[User Preferences](@ref UserPreferencesMd)
+		<td>[IUserPreferenceSettings](@ref Sphyrnidae.Common.UserPreference.Interfaces.IUserPreferenceSettings)
+		<td>[UserPreferenceSettingsDefault](@ref Sphyrnidae.Common.UserPreference.UserPreferenceSettingsDefault)
+		<td>[UserPreferenceSettings](@ref Sphyrnidae.Common.UserPreference.UserPreferenceSettings)
+		<td>[SettingsUserPreference](@ref Sphyrnidae.Common.UserPreference.SettingsUserPreference)
+		<td>The implementation is an abstract class, so you should provide your own implementation
+	<tr>
+		<td>[Variables](@ref VariableMd)
+		<td>[IVariableSettings](@ref Sphyrnidae.Common.Variable.Interfaces.IVariableSettings)
+		<td>[VariableSettingsDefault](@ref Sphyrnidae.Common.Variable.VariableSettingsDefault)
+		<td>[VariableSettings](@ref Sphyrnidae.Common.Variable.VariableSettings)
+		<td>[SettingsVariable](@ref Sphyrnidae.Common.Variable.SettingsVariable)
+		<td>The implementation is an abstract class, so you should provide your own implementation
 </table>
 
 

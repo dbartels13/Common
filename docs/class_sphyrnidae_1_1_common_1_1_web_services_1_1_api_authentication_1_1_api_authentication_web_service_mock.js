@@ -1,0 +1,4 @@
+var class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_api_authentication_web_service_mock =
+[
+    [ "IsAuthenticated", "class_sphyrnidae_1_1_common_1_1_web_services_1_1_api_authentication_1_1_api_authentication_web_service_mock.html#ac6e8e71bcee06c5f59d196c0dc9e6c64", null ]
+];
